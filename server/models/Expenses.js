@@ -6,6 +6,6 @@ const expensesSchema = new mongoose.Schema({
   Recurring: { type: Boolean, default: false }
 });
 
-const Expenses = mongoose.model('Expenses', expensesSchema);
+const Expense = mongoose.model('Expenses', expensesSchema);
 
-module.exports = Expenses;
+module.exports = Expense;
