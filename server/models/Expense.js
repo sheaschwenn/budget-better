@@ -1,20 +1,18 @@
 const mongoose = require('mongoose');
 
 const expensesSchema = new mongoose.Schema({
-  Category: {
+  category: {
     type: String,
-    required: true 
+    required: true
   },
-  Amount: {
+  amount: {
     type: Number,
-    required: true 
+    required: true
   },
-  Recurring: {
+  recurring: {
     type: Boolean,
-    default: false 
+    default: false
   }
 });
 
-const Expense = mongoose.model('Expenses', expensesSchema);
-
-module.exports = Expense;
+module.exports = mongoose.model('Expense', expensesSchema);
