@@ -1,17 +1,17 @@
-const{Income, User} = require('../models')
+const{Goal, User} = require('../models')
 
 module.exports = {
-    createExpense(req, res){
-        Income.create(req.body)
-        .then((income) =>{
-            const incomeId = income._id;
+    createGoal(req, res){
+        Goal.create(req.body)
+        .then((goal) =>{
+            const goalId = goal._id;
             return User.findOneAndUpdate(
                 // need a way to find a single user tokens?
-                {$addToSet: {Income: {_id: incomeId}}},
+                {$addToSet: {Goal: {_id: goalId}}},
                 {runValidators: true, new: true}
-            ).then(()=> income)
+            ).then(()=> goal)
         })
-        .then((income) => res.json(income))
+        .then((goal) => res.json(goal))
         .catch((err) => {
             console.error(err)
             return res.status(500).json(err)
@@ -19,22 +19,22 @@ module.exports = {
         .catch((err) => res.status(500).json(err))
     },
 
-    updateIncome(req, res){
-        Income.findOneAndUpdate(
+    updateGoal(req, res){
+        Goal.findOneAndUpdate(
             // need id here somehow
             {$set: req.body},
             {runValidators: true, new: true}
         )
-        .then((income) =>
-            !income? res.status(404).json({message: 'No income matching that id'}): res.json(income)
+        .then((goal) =>
+            !goal? res.status(404).json({message: 'No goal matching that id'}): res.json(goal)
         ).catch((err) => res.status(500).json(err))
     },
 
-    deleteExpense(req, res){
-        Income.findOneAndDelete(
+    deleteGoal(req, res){
+        Goal.findOneAndDelete(
         //   need id
-        ).then((income) =>
-        !income?res.status(404).json({message: 'No source of income with this ID'}): res.json({message : "Source of income has been deleted"}))
+        ).then((goal) =>
+        !goal?res.status(404).json({message: 'No goal with this ID'}): res.json({message : "Goal has been deleted"}))
         .catch((err) => res.status(500).json(err))
     }
 }

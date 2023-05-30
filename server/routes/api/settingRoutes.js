@@ -1,5 +1,8 @@
 const router= require('express').Router()
+const{
+    updateSetting
+} = require('./../../controllers/settingController')
 
-route.route('/').post().put()
+route.route('/').put(updateSetting)
 
 module.exports = router
