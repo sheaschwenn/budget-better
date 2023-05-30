@@ -1,18 +1,16 @@
 const mongoose = require('mongoose');
 
 const settingSchema = new mongoose.Schema({
-  light: { 
-    type: Boolean, 
-    default: false 
+  light: {
+    type: Boolean,
+    default: false
   },
-  currency: { 
-    type: String 
+  currency: {
+    type: String
   },
   language: {
-    type: String 
+    type: String
   }
 });
 
-const Setting = mongoose.model('Setting', settingSchema);
-
-module.exports = Setting;
+module.exports = mongoose.model('Setting', settingSchema);

@@ -1,23 +1,22 @@
 const mongoose = require('mongoose');
 
 const incomeSchema = new mongoose.Schema({
-  Name: {
-    type: String, 
-    required: true 
-    },
-  Passive: {
-    type: Boolean, 
-    default: false 
-    },
-  Amount: {
-    type: Number, 
-    required: true 
-    },
-  RecurringOrSalary: {
-    type: Boolean, 
-    default: false }
+  name: {
+    type: String,
+    required: true
+  },
+  passive: {
+    type: Boolean,
+    default: false
+  },
+  amount: {
+    type: Number,
+    required: true
+  },
+  recurringOrSalary: {
+    type: Boolean,
+    default: false
+  }
 });
 
-const Income = mongoose.model('Income', incomeSchema);
-
-module.exports = Income;
+module.exports = mongoose.model('Income', incomeSchema);
