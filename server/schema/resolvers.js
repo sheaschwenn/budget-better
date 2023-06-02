@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User,  } = require('../models');
+const { User, Expense,  } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -15,38 +15,70 @@ const resolvers = {
             if(!user){
                 throw new AuthenticationError('Incorrect email or password')
             }
+            const correctPassword = await user.isCorrectPassword(password)
+            if(!correctPassword){
+                throw new AuthenticationError("Incorrect email or password")
+            }
+            const token = signToken(user)
+
+            return{ token, user }
         },
-        addUser: {
+        addUser: async(parent, args) => {
+            const user = await User.create(args)
+            const token = signToken(user);
+            return{ token, user }
 
         },
-        createExpense: {
+        createExpense: async(parent, args, context) =>{
+           if(context.user){
+            const updatedUser = await User.findOneAndUpdate(
+                {_id: context.user._id},
+                {$push: {Expenses: args}},
+                {runValidators: true, new: true}
+            )
+            return updatedUser
+           }
+           throw new AuthenticationError('You need to be logged in!');
 
         },
-        updateExpense: {
+        updateExpense: async(parent, args, context) =>{
+            if(context.user){
+                const updatedExpense = await Expense.findOneAndUpdate(
+                    {_id: args._id},
+                    {$set: args},
+                    {runValidators: true, new: true}
+                )
+                return updatedExpense
+            }
+        },
+        deleteExpense:async(parent, args, context) => {
+            if(context.user){
+                const deleteExpense = await Expense.findOneAndDelete(
+                    {_id: args}
+                )
+                return deleteExpense
+                }
+            }
+        },
+        createIncome: async(parent, args, context) =>{
 
         },
-        deleteExpense: {
+        updateIncome: async(parent, args, context) =>{
 
         },
-        createIncome: {
+        deleteIncome: async(parent, args, context) =>{
 
         },
-        updateIncome: {
+        createGoal: async(parent, args, context) =>{
 
         },
-        deleteIncome: {
+        updateGoal: async(parent, args, context) =>{
 
         },
-        createGoal: {
+        deleteGoal: async(parent, args, context) => {
 
         },
-        updateGoal:{
-
-        },
-        deleteGoal: {
-
-        },
-        updateSetting: {
+        updateSetting: async(parent, args, context) => {
 
         }
     }
