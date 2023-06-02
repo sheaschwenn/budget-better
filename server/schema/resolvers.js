@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Expense,  } = require('../models');
+const { User, Expense, Income, Goal, Setting,  } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -58,28 +58,75 @@ const resolvers = {
                 )
                 return deleteExpense
                 }
+            },
+        createIncome:async(parent, args, context) =>{
+            if(context.user){
+             const updatedUser = await User.findOneAndUpdate(
+                 {_id: context.user._id},
+                 {$push: {Income: args}},
+                 {runValidators: true, new: true}
+             )
+             return updatedUser
             }
-        },
-        createIncome: async(parent, args, context) =>{
+            throw new AuthenticationError('You need to be logged in!');
 
         },
         updateIncome: async(parent, args, context) =>{
-
+            if(context.user){
+                const updatedIncome = await Income.findOneAndUpdate(
+                    {_id: args._id},
+                    {$set: args},
+                    {runValidators: true, new: true}
+                )
+                return updatedIncome
+            }
         },
         deleteIncome: async(parent, args, context) =>{
-
+            if(context.user){
+                const deleteIncome = await Income.findOneAndDelete(
+                    {_id: args}
+                )
+                return deleteIncome
+                }
         },
         createGoal: async(parent, args, context) =>{
-
+            if(context.user){
+                const updatedUser = await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$push: {Goal: args}},
+                    {runValidators: true, new: true}
+                )
+                return updatedUser
+               }
+               throw new AuthenticationError('You need to be logged in!');
         },
         updateGoal: async(parent, args, context) =>{
-
+            if(context.user){
+                const updatedGoal = await Goal.findOneAndUpdate(
+                    {_id: args._id},
+                    {$set: args},
+                    {runValidators: true, new: true}
+                )
+                return updatedGoal
+            }
         },
         deleteGoal: async(parent, args, context) => {
-
+            if(context.user){
+                const deleteGoal = await Goal.findOneAndDelete(
+                    {_id: args}
+                )
+                return deleteGoal
+                }
         },
         updateSetting: async(parent, args, context) => {
-
+            if(context.user){
+                const updatedSetting = await Setting.findOneAndUpdate(
+                    {_id: args._id},
+                    {$set: args},
+                    {runValidators: true, new: true}
+                )
+                return updatedSetting
+            }
         }
     }
 }
