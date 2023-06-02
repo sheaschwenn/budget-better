@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import Navbar from './Navbar';
 
 const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
@@ -24,6 +25,7 @@ const Account = () => {
 
   return (
     <div>
+      <Navbar />
       <h2>Account</h2>
 
       <div>
