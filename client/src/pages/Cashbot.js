@@ -12,4 +12,4 @@ const Cashbot = () => {
   );
 };
 
-export default ChatbotPage;
+export default Cashbot;
