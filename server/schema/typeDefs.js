@@ -12,38 +12,59 @@ type User{
 }
 
 type Expense{
+    _id: ID
     Category: String
     Amount: Number
     Recurring: Boolean
 }
 
 type Income{
+    _id: ID
     Name: String
     Passive: Boolean
     RecurringOrSalary: Boolean
 }
 
 type Setting{
+    _id: ID!
     light: Boolean
     currency: String
     language: String
 }
 
 type Goal{
+    _id: ID
     name: String
     AmountToSave: Number
     byDate: String
     ShortTerm: Boolean
 }
 
+type Auth{
+    token: ID!
+    user: User
+}
+
 type Query{
     users: [User]
-    user(userId: ID!): User
+    me: User
 }
 
 type Mutation{
-    createExpense(Category: String, Amount: Number!, Recurring: Boolean!): User
-    updateExpense(Category: String, Amount: Number, Recurring: Boolean): User
-    deleteExpense(Category: String, Amount: Number!, Recurring: Boolean!): User
+    login(email: String!, password: String!): Auth
+    addUser(username: String!, email: String!, password: String!): Auth
+    createExpense(Category: String!, Amount: Number!, Recurring: Boolean!): User
+    updateExpense(_id:ID!): User
+    deleteExpense(_id: ID!): User
+    createIncome(  Name: String!, Passive: Boolean!, RecurringOrSalary: Boolean!): User
+    updateIncome(_id: ID!): User
+    deleteIncome(_id: ID!): User
+    createGoal(name: String!, AmountToSave: Number!, byDate: String!, ShortTerm: Boolean!): User
+    updateGoal(_id: ID!): User
+    deleteGoal(_id: ID!): User
+    updateSetting(_id:ID!): User
+
 }
 `
+
+module.exports = typeDefs;
