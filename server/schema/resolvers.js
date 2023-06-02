@@ -127,6 +127,8 @@ const resolvers = {
                 )
                 return updatedSetting
             }
-        }
-    }
+        },
+    },
 }
+
+module.exports = resolvers
