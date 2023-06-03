@@ -36,3 +36,59 @@
     transform: rotate(360deg);
   }
 }
+
+
+/* Login/signup CSS */
+.login-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
+.card.login-form {
+  max-width: 400px;
+  padding: 2rem;
+  box-sizing: border-box;
+  margin: 0 auto;
+}
+
+.login-form .logo-container {
+  margin-bottom: 2rem;
+}
+
+.login-form form {
+  width: 100%;
+  max-width: 300px;
+}
+
+.login-form .input-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  
+}
+
+.login-form .input-icon {
+  margin-right: 0.5rem;
+}
+
+.login-form .signup-link {
+  margin-top: 1rem;
+  text-align: center;
+}
+
+.login-form .signup-link a {
+  color: blue;
+}
+
+.login-form input {
+  border: none;
+  border-bottom: 1px solid #ccc;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+

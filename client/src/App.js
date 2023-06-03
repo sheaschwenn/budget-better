@@ -3,6 +3,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Home from './pages/Home';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Dashboard from './pages/Dashboard';
@@ -43,8 +44,7 @@ function App() {
         <h1>Budget Better</h1>
         {/* <Navbar /> */}
         <Routes>
-          <Route path="/" element={<Dashboard />} />
-          <Route path="/cashbot" element={<Cashbot />} />
+          <Route path="/" element={<Home />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/account" element={<Account />} />
           <Route path="/login" element={<Login />} />
