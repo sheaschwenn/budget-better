@@ -1,0 +1,17 @@
+[
+  {
+    "light": true,
+    "currency": "USD",
+    "language": "English"
+  },
+  {
+    "light": false,
+    "currency": "EUR",
+    "language": "French"
+  },
+  {
+    "light": true,
+    "currency": "GBP",
+    "language": "English"
+  }
+]

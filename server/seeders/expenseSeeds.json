@@ -1,0 +1,17 @@
+[
+  {
+    "category": "Groceries",
+    "amount": 120.50,
+    "recurring": true
+  },
+  {
+    "category": "Rent",
+    "amount": 800.00,
+    "recurring": true
+  },
+  {
+    "category": "Entertainment",
+    "amount": 50.00,
+    "recurring": false
+  }
+]

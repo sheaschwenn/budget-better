@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Buy a new car",
+    "amountToSave": 50000,
+    "byDate": "2024-12-31",
+    "shortTerm": false
+  },
+  {
+    "name": "Vacation in Spain",
+    "amountToSave": 10000,
+    "byDate": "2023-12-31",
+    "shortTerm": true
+  },
+  {
+    "name": "Buy a new laptop",
+    "amountToSave": 2000,
+    "byDate": "2023-06-30",
+    "shortTerm": true
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Software Engineering Job",
+    "passive": false,
+    "amount": 4500.00,
+    "recurringOrSalary": true
+  },
+  {
+    "name": "Rental Income",
+    "passive": true,
+    "amount": 1200.00,
+    "recurringOrSalary": true
+  },
+  {
+    "name": "Freelance Web Design",
+    "passive": false,
+    "amount": 500.00,
+    "recurringOrSalary": false
+  }
+]
