@@ -1,6 +1,5 @@
 import './App.css';
 import React from 'react';
-import Chatbot from './components/chatbot';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -41,6 +40,7 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
+        <h1>Budget Better</h1>
         <Navbar />
         <Routes>
           <Route path="/" element={<Cashbot />} />
