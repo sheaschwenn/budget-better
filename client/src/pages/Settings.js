@@ -1,13 +1,14 @@
 import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
+import './Settings.css';
 
 const Settings = () => {
-  const [isLightMode, setIsLightMode] = useState(false);
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
   const [selectedLanguage, setSelectedLanguage] = useState('English');
 
-  const handleLightModeToggle = () => {
-    setIsLightMode(!isLightMode);
+  const handleDarkModeToggle = () => {
+    setIsDarkMode(!isDarkMode);
   };
 
   const handleCurrencyChange = (event) => {
@@ -28,10 +29,10 @@ const Settings = () => {
         <label>
           <input
             type="checkbox"
-            checked={isLightMode}
-            onChange={handleLightModeToggle}
+            checked={isDarkMode}
+            onChange={handleDarkModeToggle}
           />
-          Light Mode
+          Dark Mode
         </label>
       </div>
 

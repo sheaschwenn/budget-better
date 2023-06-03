@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
+import './Navbar.css';
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -20,7 +21,10 @@ const Navbar = () => {
         <li>
           <Link to="/">Dashboard</Link>
         </li>
-        <li className="dropdown">
+        <li>
+          <Link to="/cashbot">CashBot</Link>
+        </li>
+        <li className={`dropdown ${dropdownOpen ? 'dropdown-open' : ''}`}>
           <div className="dropdown-toggle" onClick={toggleDropdown}>
             Menu
           </div>

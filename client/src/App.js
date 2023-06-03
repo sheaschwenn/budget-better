@@ -41,9 +41,10 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <h1>Budget Better</h1>
-        <Navbar />
+        {/* <Navbar /> */}
         <Routes>
-          <Route path="/" element={<Cashbot />} />
+          <Route path="/" element={<Dashboard />} />
+          <Route path="/cashbot" element={<Cashbot />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/account" element={<Account />} />
           <Route path="/login" element={<Login />} />
