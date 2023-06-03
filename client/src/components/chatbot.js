@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-// import "./Chatbot.css"; // Need to improve this CSS file as we move foward
+import "./chatbot.css"; // Need to improve this CSS file as we move foward
 
 const Chatbot = () => {
   const [message, setMessage] = useState("");

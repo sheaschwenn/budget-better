@@ -1,0 +1,60 @@
+body {
+  background-color: #F5F5F5;
+}
+
+.container {
+  max-width: 800px;
+  min-height: 50%;
+  margin: auto;
+  padding: 20px;
+}
+
+h1 {
+  color: #333;
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.card {
+  margin-bottom: 20px;
+}
+
+.card-header {
+  background-color: #007bff;
+  color: #fff;
+  font-size: 1.2em;
+  font-weight: bold;
+}
+
+.list-group-item {
+  border: none;
+  background-color: transparent;
+  color: #555;
+  font-size: 1.1em;
+  margin-bottom: 10px;
+}
+
+#chat-history {
+  max-height: 300px;
+  overflow-y: auto;
+}
+
+.input-group-text {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: bold;
+}
+
+#user-input {
+  height: px;
+}
+
+#submit {
+  width: 150px;
+}
+
+#spinner {
+  width: 2em;
+  height: 2em;
+}
