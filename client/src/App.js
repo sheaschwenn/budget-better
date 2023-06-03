@@ -10,6 +10,10 @@ import Dashboard from './pages/Dashboard';
 import Settings from './pages/Settings';
 import Account from './pages/Account';
 import Cashbot from './pages/Cashbot';
+import  About from './pages/About';
+import  Contact from './pages/Contact';
+import  Demo from './pages/Demo';
+
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
@@ -51,6 +55,9 @@ function App() {
           <Route path="/signup" element={<Signup />} />
           <Route path="/settings" element={<Settings />} />
           <Route path="/cashbot" element={<Cashbot />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/contact" element={<Contact />} />
+          <Route path="/demo" element={<Demo />} />
         </Routes>
         <Footer />
       </Router>
