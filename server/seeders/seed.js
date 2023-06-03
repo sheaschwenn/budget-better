@@ -1,4 +1,4 @@
-const mongoose = require('../config/connection');
+const db = require('../config/connection');
 const { User, Expense, Income, Setting, Goal } = require('../models');
 const userSeeds = require('./userSeeds.json');
 const expenseSeeds = require('./expenseSeeds.json');
@@ -6,7 +6,7 @@ const incomeSeeds = require('./incomeSeeds.json');
 const settingSeeds = require('./settingSeeds.json');
 const goalSeeds = require('./goalSeeds.json');
 
-mongoose.connection.once('open', async () => {
+db.once('open', async () => {
   try {
     // Delete existing data
     await User.deleteMany({});
