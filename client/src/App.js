@@ -4,6 +4,12 @@ import Chatbot from './components/chatbot';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+import Dashboard from './pages/Dashboard';
+import Settings from './pages/Settings';
+import Account from './pages/Account';
+import Cashbot from './pages/Cashbot';
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
@@ -35,14 +41,18 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <Router>
-        <div>
-          <Navbar />
-          <Routes>
-            <Route exact path="/" element={<Chatbot />} />
-          </Routes>
-        </div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Cashbot />} />
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/account" element={<Account />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Signup />} />
+          <Route path="/settings" element={<Settings />} />
+          <Route path="/cashbot" element={<Cashbot />} />
+        </Routes>
+        <Footer />
       </Router>
-      <Footer />
     </ApolloProvider>
   );
 }

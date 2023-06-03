@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Navbar from './Navbar';
-import { generateExpensePieChart } from '../utils/chartUtils';
+import Navbar from '../components/Navbar';
+import { generateExpensePieChart } from '../utils/chart';
 
 const Dashboard = () => {
   const chartRef = useRef(null);

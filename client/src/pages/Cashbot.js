@@ -1,6 +1,6 @@
 import React from "react";
-import Navbar from "./Navbar";
-import Chatbot from "./chatbot";
+import Navbar from "../components/Navbar";
+import Chatbot from "../components/chatbot";
 
 const Cashbot = () => {
   return (
