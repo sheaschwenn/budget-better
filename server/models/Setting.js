@@ -13,4 +13,8 @@ const settingSchema = new mongoose.Schema({
   }
 });
 
-module.exports = mongoose.model('Setting', settingSchema);
+// module.exports = mongoose.model('Setting', settingSchema);
+
+const Setting = mongoose.model('Setting', settingSchema);
+
+module.exports = Setting;
