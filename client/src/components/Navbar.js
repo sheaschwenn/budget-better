@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
-import './Navbar.css'
+import '../styles/Navbar.css'
+
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);

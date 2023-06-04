@@ -1,0 +1,43 @@
+/* Navbar styles */
+nav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  nav ul li {
+    display: inline-block;
+    position: relative;
+  }
+  
+  /* Dropdown toggle styles */
+  .dropdown-toggle {
+    cursor: pointer;
+  }
+  
+  /* Dropdown menu styles */
+  .dropdown-menu {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: #fff;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+  
+  .dropdown-menu li {
+    margin-bottom: 10px;
+  }
+  
+  .dropdown-menu a {
+    display: block;
+    text-decoration: none;
+    color: #333;
+  }
+  
+  /* Show dropdown menu on hover */
+  li.dropdown:hover .dropdown-menu {
+    display: block;
+  }
+  

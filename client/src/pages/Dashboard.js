@@ -20,7 +20,6 @@ const Dashboard = () => {
 
   return (
     <div>
-      {/* <Navbar /> */}
       <section className="dashboard-section">
         <h2>Welcome to Your Dashboard</h2>
         <div className="finance-info">
