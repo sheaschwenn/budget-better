@@ -7,31 +7,31 @@ export const LOGIN_USER = gql`
       user {
         _id
         name
-        Email
-        Expenses {
+        email
+        expenses {
           _id
-          Category
-          Amount
-          Recurring
+          category
+          amount
+          recurring
         }
-        Income {
+        income {
           _id
-          Name
-          Passive
-          RecurringOrSalary
+          name
+          passive
+          recurringOrSalary
         }
-        Settings {
+        settings {
           _id
           light
           currency
           language
         }
-        Goal {
+        goal {
           _id
           name
-          AmountToSave
+          amountToSave
           byDate
-          ShortTerm
+          shortTerm
         }
       }
     }
@@ -39,37 +39,37 @@ export const LOGIN_USER = gql`
 `;
 
 export const ADD_USER = gql`
-  mutation addUser($username: String!, $email: String!, $password: String!) {
-    addUser(username: $username, email: $email, password: $password) {
+  mutation addUser($name: String!, $email: String!, $password: String!) {
+    addUser(name: $name, email: $email, password: $password) {
       token
       user {
         _id
         name
-        Email
-        Expenses {
+        email
+        expenses {
           _id
-          Category
-          Amount
-          Recurring
+          category
+          amount
+          recurring
         }
-        Income {
+        income {
           _id
           Name
           Passive
           RecurringOrSalary
         }
-        Settings {
+        settings {
           _id
           light
           currency
           language
         }
-        Goal {
+        goal {
           _id
           name
-          AmountToSave
+          amountToSave
           byDate
-          ShortTerm
+          shortTerm
         }
       }
     }
@@ -77,16 +77,16 @@ export const ADD_USER = gql`
 `;
 
 export const CREATE_EXPENSE = gql`
-  mutation createExpense($Category: String!, $Amount: Float!, $Recurring: Boolean!) {
-    createExpense(Category: $Category, Amount: $Amount, Recurring: $Recurring) {
+  mutation createExpense($category: String!, $amount: Float!, $recurring: Boolean!) {
+    createExpense(category: $category, amount: $amount, recurring: $recurring) {
       _id
       name
-      Email
-      Expenses {
+      email
+      expenses {
         _id
-        Category
-        Amount
-        Recurring
+        category
+        amount
+        recurring
       }
     }
   }
@@ -97,8 +97,8 @@ export const UPDATE_SETTING = gql`
     updateSetting(_id: $id, light: $light, currency: $currency, language: $language) {
       _id
       name
-      Email
-      Settings {
+      email
+      settings {
         _id
         light
         currency
@@ -109,16 +109,16 @@ export const UPDATE_SETTING = gql`
 `;
 
 export const UPDATE_EXPENSE = gql`
-  mutation updateExpense($id: ID!, $Category: String, $Amount: Float, $Recurring: Boolean) {
-    updateExpense(_id: $id, Category: $Category, Amount: $Amount, Recurring: $Recurring) {
+  mutation updateExpense($id: ID!, $category: String, $amount: Float, $recurring: Boolean) {
+    updateExpense(_id: $id, category: $category, Amount: $amount, recurring: $recurring) {
       _id
       name
-      Email
-      Expenses {
+      email
+      expenses {
         _id
-        Category
-        Amount
-        Recurring
+        category
+        amount
+        recurring
       }
     }
   }
@@ -129,44 +129,44 @@ export const DELETE_EXPENSE = gql`
     deleteExpense(_id: $id) {
       _id
       name
-      Email
-      Expenses {
+      email
+      expenses {
         _id
-        Category
-        Amount
-        Recurring
+        category
+        amount
+        recurring
       }
     }
   }
 `;
 
 export const CREATE_INCOME = gql`
-  mutation createIncome($Name: String!, $Passive: Boolean!, $RecurringOrSalary: Boolean!) {
-    createIncome(Name: $Name, Passive: $Passive, RecurringOrSalary: $RecurringOrSalary) {
+  mutation createIncome($Name: String!, $passive: Boolean!, $recurringOrSalary: Boolean!) {
+    createIncome(name: $name, passive: $passive, recurringOrSalary: $recurringOrSalary) {
       _id
       name
-      Email
-      Income {
+      email
+      income {
         _id
-        Name
-        Passive
-        RecurringOrSalary
+        name
+        passive
+        recurringOrSalary
       }
     }
   }
 `;
 
 export const UPDATE_INCOME = gql`
-  mutation updateIncome($id: ID!, $Name: String, $Passive: Boolean, $RecurringOrSalary: Boolean) {
-    updateIncome(_id: $id, Name: $Name, Passive: $Passive, RecurringOrSalary: $RecurringOrSalary) {
+  mutation updateIncome($id: ID!, $name: String, $passive: Boolean, $recurringOrSalary: Boolean) {
+    updateIncome(_id: $id, name: $name, passive: $passive, recurringOrSalary: $recurringOrSalary) {
       _id
       name
-      Email
-      Income {
+      email
+      encome {
         _id
-        Name
-        Passive
-        RecurringOrSalary
+        name
+        passive
+        recurringOrSalary
       }
     }
   }
@@ -177,46 +177,46 @@ export const DELETE_INCOME = gql`
     deleteIncome(_id: $id) {
       _id
       name
-      Email
-      Income {
+      email
+      income {
         _id
-        Name
-        Passive
-        RecurringOrSalary
+        name
+        passive
+        recurringOrSalary
       }
     }
   }
 `;
 
 export const CREATE_GOAL = gql`
-  mutation createGoal($name: String!, $AmountToSave: Float!, $byDate: String!, $ShortTerm: Boolean!) {
-    createGoal(name: $name, AmountToSave: $AmountToSave, byDate: $byDate, ShortTerm: $ShortTerm) {
+  mutation createGoal($name: String!, $amountToSave: Float!, $byDate: String!, $shortTerm: Boolean!) {
+    createGoal(name: $name, amountToSave: $amountToSave, byDate: $byDate, shortTerm: $shortTerm) {
       _id
       name
-      Email
-      Goal {
+      email
+      goal {
         _id
         name
-        AmountToSave
+        amountToSave
         byDate
-        ShortTerm
+        shortTerm
       }
     }
   }
 `;
 
 export const UPDATE_GOAL = gql`
-  mutation updateGoal($id: ID!, $name: String, $AmountToSave: Float, $byDate: String, $ShortTerm: Boolean) {
-    updateGoal(_id: $id, name: $name, AmountToSave: $AmountToSave, byDate: $byDate, ShortTerm: $ShortTerm) {
+  mutation updateGoal($id: ID!, $name: String, $amountToSave: Float, $byDate: String, $shortTerm: Boolean) {
+    updateGoal(_id: $id, name: $name, amountToSave: $amountToSave, byDate: $byDate, shortTerm: $shortTerm) {
       _id
       name
-      Email
-      Goal {
+      email
+      goal {
         _id
         name
-        AmountToSave
+        amountToSave
         byDate
-        ShortTerm
+        shortTerm
       }
     }
   }
@@ -227,13 +227,13 @@ export const DELETE_GOAL = gql`
     deleteGoal(_id: $id) {
       _id
       name
-      Email
-      Goal {
+      email
+      goal {
         _id
         name
-        AmountToSave
+        amountToSave
         byDate
-        ShortTerm
+        shortTerm
       }
     }
   }
