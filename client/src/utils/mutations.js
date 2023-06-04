@@ -44,33 +44,7 @@ export const ADD_USER = gql`
       token
       user {
         _id
-        name
         email
-        expenses {
-          _id
-          category
-          amount
-          recurring
-        }
-        income {
-          _id
-          Name
-          Passive
-          RecurringOrSalary
-        }
-        settings {
-          _id
-          light
-          currency
-          language
-        }
-        goal {
-          _id
-          name
-          amountToSave
-          byDate
-          shortTerm
-        }
       }
     }
   }
@@ -162,7 +136,7 @@ export const UPDATE_INCOME = gql`
       _id
       name
       email
-      encome {
+      income {
         _id
         name
         passive
