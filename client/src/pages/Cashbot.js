@@ -5,7 +5,7 @@ import Chatbot from "../components/chatbot";
 const Cashbot = () => {
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <h2>Chatbot Page</h2>
       <Chatbot />
     </div>
