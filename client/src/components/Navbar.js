@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
+import '../styles/Navbar.css'
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -36,7 +37,7 @@ const Navbar = () => {
                 <Link to="/faq">FAQ</Link>
               </li>
               <li>
-                <a href="/" onClick={logout}>Logout</a>
+                <Link to="/" onClick={logout}>Logout</Link>
               </li>
             </ul>
           )}
