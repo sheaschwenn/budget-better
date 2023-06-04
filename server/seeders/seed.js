@@ -1,10 +1,6 @@
 const db = require('../config/connection');
-const { User, Expense, Income, Setting, Goal } = require('../models');
+const { User, Expense, Income, Goal, Setting } = require('../models');
 const userSeeds = require('./userSeeds.json');
-const expenseSeeds = require('./expenseSeeds.json');
-const incomeSeeds = require('./incomeSeeds.json');
-const settingSeeds = require('./settingSeeds.json');
-const goalSeeds = require('./goalSeeds.json');
 
 db.once('open', async () => {
   try {
@@ -16,25 +12,42 @@ db.once('open', async () => {
     await Goal.deleteMany({});
 
     // Create new data
-    const users = await User.create(userSeeds);
-    const expenses = await Expense.create(expenseSeeds);
+    for (let userSeed of userSeeds) {
+      const { expenses, income, goals, settings, ...userDetails } = userSeed;
 
-    // Attach the first expense to the first user
-    users[0].expenses.push(expenses[0]._id);
-    await users[0].save();
+      // Create expense docs
+      const expenseDocs = await Expense.create(expenses);
+      const expenseIds = expenseDocs.map(doc => doc._id);
 
-    // Create other data...
-    await Income.create(incomeSeeds);
-    await Setting.create(settingSeeds);
-    await Goal.create(goalSeeds);
+      // Create income docs
+      const incomeDocs = await Income.create(income);
+      const incomeIds = incomeDocs.map(doc => doc._id);
 
-    // If you have more relations that need to be updated, you can do that here
+      // Convert byDate string to Date object and create goal docs
+      for (let goal of goals) {
+        goal.byDate = new Date(goal.byDate);
+      }
+      const goalDocs = await Goal.create(goals);
+      const goalIds = goalDocs.map(doc => doc._id);
 
+      // Create setting docs
+      const settingDocs = await Setting.create(settings);
+      const settingIds = settingDocs.map(doc => doc._id);
+
+      // Create user with associated expenses, income, goal, and settings
+      await User.create({
+        ...userDetails,
+        expenses: expenseIds,
+        income: incomeIds,
+        goals: goalIds,
+        settings: settingIds
+      });
+    }
+
+    console.log('all done!');
+    process.exit(0);
   } catch (err) {
     console.error(err);
     process.exit(1);
   }
-
-  console.log('all done!');
-  process.exit(0);
 });
