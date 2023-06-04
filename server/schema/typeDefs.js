@@ -4,25 +4,26 @@ const typeDefs = gql`
 type User{
     _id: ID
     name: String
-    Email: String
-    Expenses: [Expense]
-    Income: [Income]
-    Settings: [Setting]
-    Goal: [Goal]
+    email: String
+    expenses: [Expense]
+    income: [Income]
+    settings: [Setting]
+    goal: [Goal]
 }
 
 type Expense{
     _id: ID
-    Category: String
-    Amount: Int
-    Recurring: Boolean
+    category: String
+    amount: Int
+    recurring: Boolean
 }
 
 type Income{
     _id: ID
-    Name: String
-    Passive: Boolean
-    RecurringOrSalary: Boolean
+    name: String
+    passive: Boolean
+    amount: Int
+    recurringOrSalary: Boolean
 }
 
 type Setting{
@@ -35,9 +36,9 @@ type Setting{
 type Goal{
     _id: ID
     name: String
-    AmountToSave: Int
+    amountToSave: Int
     byDate: String
-    ShortTerm: Boolean
+    shortTerm: Boolean
 }
 
 type Auth{
@@ -52,15 +53,15 @@ type Query{
 
 type Mutation{
     login(email: String!, password: String!): Auth
-    addUser(username: String!, email: String!, password: String!): Auth
-    createExpense(Category: String!, Amount: Int!, Recurring: Boolean!): User
-    updateExpense(_id:ID!, Category: String, Amount: Int, Recurring: Boolean): User
+    addUser(name: String!, email: String!, password: String!): Auth
+    createExpense(category: String!, amount: Int!, recurring: Boolean!): User
+    updateExpense(_id:ID!, category: String, amount: Int, recurring: Boolean): User
     deleteExpense(_id: ID!): User
-    createIncome(  Name: String!, Passive: Boolean!, RecurringOrSalary: Boolean!): User
-    updateIncome(_id: ID!, Name: String, Passive: Boolean, RecurringOrSalary: Boolean): User
+    createIncome(  name: String!, passive: Boolean!, amount: Int!, recurringOrSalary: Boolean!): User
+    updateIncome(_id: ID!, name: String, passive: Boolean, amount: Int!, recurringOrSalary: Boolean): User
     deleteIncome(_id: ID!): User
-    createGoal(name: String!, AmountToSave: Int!, byDate: String!, ShortTerm: Boolean!): User
-    updateGoal(_id: ID!, name: String, AmountToSave: Int, byDate: String, ShortTerm: Boolean): User
+    createGoal(name: String!, amountToSave: Int!, byDate: String!, shortTerm: Boolean!): User
+    updateGoal(_id: ID!, name: String, amountToSave: Int, byDate: String, shortTerm: Boolean): User
     deleteGoal(_id: ID!): User
     updateSetting(_id:ID!, light: Boolean, currency: String, language: String ): User
 
