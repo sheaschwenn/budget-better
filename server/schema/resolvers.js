@@ -5,7 +5,7 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
-            return User.findOne({_id: context.user._id}).populate(['Expenses', 'Income','Settings', 'Goal'])
+            return User.findOne({_id: context.user._id}).populate(['expenses', 'income','settings', 'goal'])
         }
     },
 
@@ -33,7 +33,7 @@ const resolvers = {
            if(context.user){
             const updatedUser = await User.findOneAndUpdate(
                 {_id: context.user._id},
-                {$push: {Expenses: args}},
+                {$push: {expenses: args}},
                 {runValidators: true, new: true}
             )
             return updatedUser
@@ -63,7 +63,7 @@ const resolvers = {
             if(context.user){
              const updatedUser = await User.findOneAndUpdate(
                  {_id: context.user._id},
-                 {$push: {Income: args}},
+                 {$push: {income: args}},
                  {runValidators: true, new: true}
              )
              return updatedUser
@@ -93,7 +93,7 @@ const resolvers = {
             if(context.user){
                 const updatedUser = await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$push: {Goal: args}},
+                    {$push: {goal: args}},
                     {runValidators: true, new: true}
                 )
                 return updatedUser

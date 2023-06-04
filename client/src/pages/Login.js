@@ -61,7 +61,7 @@ const Login = (props) => {
                 className="form-control"
                 id="email"
                 name="email"
-                placeholder="Username"
+                placeholder="Email"
                 value={formState.email}
                 onChange={handleChange}
               />
@@ -107,7 +107,7 @@ const Login = (props) => {
           {data && (
             <div className="my-3 p-3 bg-success text-white">
               Success! You may now head{' '}
-              <Link to="/">back to the homepage.</Link>
+              <Link to="/dashboard">back to the homepage.</Link>
             </div>
           )}
         </div>

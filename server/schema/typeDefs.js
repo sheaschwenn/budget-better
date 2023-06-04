@@ -54,14 +54,14 @@ type Query{
 type Mutation{
     login(email: String!, password: String!): Auth
     addUser(name: String!, email: String!, password: String!): Auth
-    createExpense(category: String!, amount: Int!, recurring: Boolean!): User
-    updateExpense(_id:ID!, category: String, amount: Int, recurring: Boolean): User
+    createExpense(category: String!, amount: Float!, recurring: Boolean!): User
+    updateExpense(_id:ID!, category: String, amount: Float, recurring: Boolean): User
     deleteExpense(_id: ID!): User
-    createIncome(  name: String!, passive: Boolean!, amount: Int!, recurringOrSalary: Boolean!): User
-    updateIncome(_id: ID!, name: String, passive: Boolean, amount: Int!, recurringOrSalary: Boolean): User
+    createIncome(  name: String!, passive: Boolean!, amount: Float!, recurringOrSalary: Boolean!): User
+    updateIncome(_id: ID!, name: String, passive: Boolean, amount: Float!, recurringOrSalary: Boolean): User
     deleteIncome(_id: ID!): User
-    createGoal(name: String!, amountToSave: Int!, byDate: String!, shortTerm: Boolean!): User
-    updateGoal(_id: ID!, name: String, amountToSave: Int, byDate: String, shortTerm: Boolean): User
+    createGoal(name: String!, amountToSave: Float!, byDate: String!, shortTerm: Boolean!): User
+    updateGoal(_id: ID!, name: String, amountToSave: Float, byDate: String, shortTerm: Boolean): User
     deleteGoal(_id: ID!): User
     updateSetting(_id:ID!, light: Boolean, currency: String, language: String ): User
 
