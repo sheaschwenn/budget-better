@@ -1,11 +1,34 @@
+import { FaGithub } from "react-icons/fa";
+
 const people = [
   {
-    name: "Leslie Alexander",
+    name: "Shea Schwennicke",
     role: "Co-Founder / CEO",
-    imageUrl:
-      "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+    imageUrl: "Add headshot pic here",
+    githubUrl: "",
+    linkedin: "",
   },
-  // More people...
+  {
+    name: "Christopher Daniels",
+    role: "Co-Founder / CFO",
+    imageUrl: "Add headshot pic here",
+    githubUrl: "",
+    linkedin: "",
+  },
+  {
+    name: "Didrik Lindberg",
+    role: "Co-Founder / CTO",
+    imageUrl: "Add headshot pic here",
+    githubUrl: "",
+    linkedin: "",
+  },
+  {
+    name: "Matt Gibson",
+    role: "Co-Founder / COO",
+    imageUrl: "Add headshot pic here",
+    githubUrl: "",
+    linkedin: "",
+  },
 ];
 
 export default function Example() {
@@ -40,6 +63,13 @@ export default function Example() {
                   <p className="text-sm font-semibold leading-6 text-indigo-600">
                     {person.role}
                   </p>
+                  <a
+                    href={person.githubUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <FaGithub size={24} />
+                  </a>
                 </div>
               </div>
             </li>
