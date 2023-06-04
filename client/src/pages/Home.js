@@ -24,8 +24,6 @@ const Home = () => {
               <div className="flex-row justify-center mt-3">
                 <Link to="/login" className="btn btn-primary mr-2">Login</Link>
                 <Link to="/signup" className="btn btn-primary">Signup</Link>
-                <Link to="/dashboard" className="btn btn-primary">Dashboard</Link>
-                <Link to="/cashbot" className="btn btn-primary">Cashbot</Link>
               </div>
             </>
           )}

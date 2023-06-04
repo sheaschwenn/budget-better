@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 
 const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
@@ -25,7 +25,7 @@ const Account = () => {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <h2>Account</h2>
 
       <div>
