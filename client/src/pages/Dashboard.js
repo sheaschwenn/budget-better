@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 import { generateExpensePieChart } from '../utils/chart';
 
 const Dashboard = () => {
@@ -20,7 +20,7 @@ const Dashboard = () => {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <section className="dashboard-section">
         <h2>Welcome to Your Dashboard</h2>
         <div className="finance-info">

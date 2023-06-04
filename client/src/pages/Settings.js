@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 
 const Settings = () => {
   const [isLightMode, setIsLightMode] = useState(false);
@@ -20,7 +20,7 @@ const Settings = () => {
 
   return (
     <div>
-      <Navbar />
+      {/* <Navbar /> */}
       <h2>Settings</h2>
 
       <div>
