@@ -69,3 +69,16 @@ export const GET_USERS = gql`
     }
   }
 `;
+
+export const GET_EXPENSES = gql`
+  query getExpenses {
+    me {
+      expenses {
+        _id
+        category
+        amount
+        recurring
+      }
+    }
+  }
+`;
