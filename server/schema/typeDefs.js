@@ -1,7 +1,7 @@
-const {gql} = require('apollo-server-express');
+const { gql } = require("apollo-server-express");
 
 const typeDefs = gql`
-type User{
+  type User {
     _id: ID
     name: String
     Email: String
@@ -9,62 +9,91 @@ type User{
     Income: [Income]
     Settings: [Setting]
     Goal: [Goal]
-}
+  }
 
-type Expense{
+  type Expense {
     _id: ID
     Category: String
-    Amount: Number
+    Amount: Float!
     Recurring: Boolean
-}
+  }
 
-type Income{
+  type Income {
     _id: ID
     Name: String
     Passive: Boolean
     RecurringOrSalary: Boolean
-}
+  }
 
-type Setting{
+  type Setting {
     _id: ID!
     light: Boolean
     currency: String
     language: String
-}
+  }
 
-type Goal{
+  type Goal {
     _id: ID
     name: String
-    AmountToSave: Number
+    AmountToSave: Float!
     byDate: String
     ShortTerm: Boolean
-}
+  }
 
-type Auth{
+  type Auth {
     token: ID!
     user: User
-}
+  }
 
-type Query{
+  type Query {
     users: [User]
     me: User
-}
+  }
 
-type Mutation{
+  type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!): Auth
-    createExpense(Category: String!, Amount: Number!, Recurring: Boolean!): User
-    updateExpense(_id:ID!, Category: String, Amount: Number, Recurring: Boolean): User
+    createExpense(Category: String!, Amount: Float!, Recurring: Boolean!): User
+    updateExpense(
+      _id: ID!
+      Category: String
+      Amount: Float
+      Recurring: Boolean
+    ): User
     deleteExpense(_id: ID!): User
-    createIncome(  Name: String!, Passive: Boolean!, RecurringOrSalary: Boolean!): User
-    updateIncome(_id: ID!, Name: String, Passive: Boolean, RecurringOrSalary: Boolean): User
+    createIncome(
+      Name: String!
+      Passive: Boolean!
+      RecurringOrSalary: Boolean!
+    ): User
+    updateIncome(
+      _id: ID!
+      Name: String
+      Passive: Boolean
+      RecurringOrSalary: Boolean
+    ): User
     deleteIncome(_id: ID!): User
-    createGoal(name: String!, AmountToSave: Number!, byDate: String!, ShortTerm: Boolean!): User
-    updateGoal(_id: ID!, name: String, AmountToSave: Number, byDate: String, ShortTerm: Boolean): User
+    createGoal(
+      name: String!
+      AmountToSave: Float!
+      byDate: String!
+      ShortTerm: Boolean!
+    ): User
+    updateGoal(
+      _id: ID!
+      name: String
+      AmountToSave: Float
+      byDate: String
+      ShortTerm: Boolean
+    ): User
     deleteGoal(_id: ID!): User
-    updateSetting(_id:ID!, light: Boolean, currency: String, language: String ): User
-
-}
-`
+    updateSetting(
+      _id: ID!
+      light: Boolean
+      currency: String
+      language: String
+    ): User
+  }
+`;
 
 module.exports = typeDefs;
