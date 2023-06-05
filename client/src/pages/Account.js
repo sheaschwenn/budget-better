@@ -107,6 +107,7 @@ const handleIncomeChange = (event) =>{
     [name]: value,
   });
   console.log(income)
+  
 }
   const handleGoalSubmit = (event) => {
     event.preventDefault();
