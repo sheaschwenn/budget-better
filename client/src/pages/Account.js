@@ -14,7 +14,12 @@ const Account = () => {
   category: '' ,
   amount: '',
   recurring: false})
-  const [income, setIncome] = useState('')
+  const [income, setIncome] = useState({
+    name: '',
+    passive: false,
+    amount: '',
+    recurringOrSalary: false
+  })
   const [goal, setGoal] = useState('')
 
   // need to fix this 
@@ -26,10 +31,28 @@ const Account = () => {
     setSelectedTab(tab);
   };
 
-  const handleIncomeSubmit = (event) => {
+  const handleIncomeSubmit = async(event) => {
     event.preventDefault();
     // Handle income submission logic
-
+    try{
+      const {data} = await createIncome({
+        variables: {
+          name: income.name,
+          passive: income.passive,
+          amount: parseFloat(income.amount),
+          recurringOrSalary: income.recurringOrSalary
+        },
+      })
+      console.log(data)
+      setIncome({
+        name: '',
+        passive: false,
+        amount: '',
+        recurringOrSalary: false
+      })
+    }catch (err) {
+      console.error(err);
+    }
 
   };
 
@@ -63,14 +86,23 @@ const Account = () => {
       recurring: !prevState.recurring, // Toggle the value of recurring
     }));
   };
-const handleChange = (event) => {
+const handleExpensesChange = (event) => {
   const { name, value } = event.target
   setExpenses({
     ...expenses,
     [name]: value,
   });
 
-  console.log(expenses)
+  // console.log(expenses)
+}
+
+const handleIncomeChange = (event) =>{
+  const { name, value } = event.target
+  setIncome({
+    ...income,
+    [name]: value,
+  });
+  console.log(income)
 }
   const handleGoalSubmit = (event) => {
     event.preventDefault();
@@ -86,12 +118,37 @@ const handleChange = (event) => {
         <button onClick={() => handleTabChange('income')}>Income</button>
         {selectedTab === 'income' && (
           <form onSubmit={handleIncomeSubmit}>
-            <input type="text" placeholder="Name" />
+            <input 
+            type="text" 
+            placeholder="Name"
+            name= 'name'
+            value= {income.name}
+            onChange={handleIncomeChange} />
             <label>
               Passive:
-              <input type="checkbox" />
+              <input 
+              type="checkbox" 
+              name= 'passive'
+              value= {income.passive}
+              onChange= {handleIncomeChange}
+              />
             </label>
-            <input type="number" placeholder="Amount" />
+            <input 
+            type="number" 
+            placeholder="Amount" 
+            name= 'amount'
+            value= {income.amount}
+            onChange= {handleIncomeChange}
+            />
+            <label>
+              Recurring:
+              <input 
+              type="checkbox" 
+              name= 'recurringOrSalary'
+              value= {income.recurringOrSalary}
+              onChange= {handleIncomeChange}
+              />
+            </label>
             <label>
               Frequency:
               <select>
@@ -113,14 +170,14 @@ const handleChange = (event) => {
             type="text" 
             placeholder="Category" 
             value= {expenses.category}
-            onChange={handleChange}
+            onChange={handleExpensesChange}
             />
             <input 
             name= 'amount'
             type="number" 
             placeholder="Amount" 
             value= {expenses.amount}
-            onChange={handleChange }
+            onChange={handleExpensesChange }
             />
              <label>
               Recurring:

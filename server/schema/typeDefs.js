@@ -57,7 +57,7 @@ type Mutation{
     createExpense( category: String!, amount: Float!, recurring: Boolean!): Expense
     updateExpense(_id:ID!, category: String, amount: Float, recurring: Boolean): User
     deleteExpense(_id: ID!): User
-    createIncome(  name: String!, passive: Boolean!, amount: Float!, recurringOrSalary: Boolean!): User
+    createIncome(  name: String!, passive: Boolean!, amount: Float!, recurringOrSalary: Boolean!): Income
     updateIncome(_id: ID!, name: String, passive: Boolean, amount: Float!, recurringOrSalary: Boolean): User
     deleteIncome(_id: ID!): User
     createGoal(name: String!, amountToSave: Float!, byDate: String!, shortTerm: Boolean!): User

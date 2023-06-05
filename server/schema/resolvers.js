@@ -29,15 +29,15 @@ const resolvers = {
             return{ token, user }
 
         },
-        createExpense: async(parent, { userId, category, amount, recurring }, context) =>{
+        createExpense: async(parent, { category, amount, recurring }, context) =>{
           if(context.user){
             const expense = await Expense.create({ category, amount, recurring }) 
-            const updatedUser = await User.findOneAndUpdate(
+             await User.findOneAndUpdate(
                 {_id: context.user._id},
                 {$addToSet: {expenses: expense._id}},
                 {runValidators: true, new: true}
             )
-            return updatedUser
+            return expense
            }
            throw new AuthenticationError('You need to be logged in!');
 
@@ -62,12 +62,13 @@ const resolvers = {
             },
         createIncome:async(parent, args, context) =>{
             if(context.user){
-             const updatedUser = await User.findOneAndUpdate(
+                const income = await Income.create(args)
+             await User.findOneAndUpdate(
                  {_id: context.user._id},
-                 {$push: {income: args}},
+                 {$addToSet: {income: income._id}},
                  {runValidators: true, new: true}
              )
-             return updatedUser
+             return income
             }
             throw new AuthenticationError('You need to be logged in!');
 
