@@ -1,37 +1,40 @@
-import { FaGithub } from "react-icons/fa";
-
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+import chrisImg from "../assets/images/chris.png";
+import didrikImg from "../assets/images/didrik.png";
+import mattImg from "../assets/images/matt.png";
+import sheaImg from "../assets/images/shea.png";
 const people = [
   {
     name: "Shea Schwennicke",
     role: "Co-Founder / CEO",
-    imageUrl: "Add headshot pic here",
-    githubUrl: "",
-    linkedin: "",
+    imageUrl: sheaImg,
+    githubUrl: "https://github.com/sheaschwenn",
+    linkedin: "https://www.linkedin.com/in/shea-schwennicke/",
   },
   {
     name: "Christopher Daniels",
     role: "Co-Founder / CFO",
-    imageUrl: "Add headshot pic here",
-    githubUrl: "",
-    linkedin: "",
+    imageUrl: chrisImg,
+    githubUrl: "https://github.com/danielschris96",
+    linkedin: "https://www.linkedin.com/in/christopher-daniels-01317726b/",
   },
   {
     name: "Didrik Lindberg",
     role: "Co-Founder / CTO",
-    imageUrl: "Add headshot pic here",
-    githubUrl: "",
-    linkedin: "",
+    imageUrl: didrikImg,
+    githubUrl: "https://github.com/DidrikLindberg",
+    linkedin: "https://www.linkedin.com/in/didrik-lindberg-3b2955148/",
   },
   {
     name: "Matt Gibson",
     role: "Co-Founder / COO",
-    imageUrl: "Add headshot pic here",
-    githubUrl: "",
-    linkedin: "",
+    imageUrl: mattImg,
+    githubUrl: "https://github.com/ohSweetWampum",
+    linkedin: "https://www.linkedin.com/in/matthew-gibson-6b9b12237/",
   },
 ];
 
-export default function Example() {
+export default function About() {
   return (
     <div className="bg-white py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
@@ -54,7 +57,7 @@ export default function Example() {
                 <img
                   className="h-16 w-16 rounded-full"
                   src={person.imageUrl}
-                  alt=""
+                  alt={person.name}
                 />
                 <div>
                   <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
@@ -63,13 +66,24 @@ export default function Example() {
                   <p className="text-sm font-semibold leading-6 text-indigo-600">
                     {person.role}
                   </p>
-                  <a
-                    href={person.githubUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <FaGithub size={24} />
-                  </a>
+                  {person.githubUrl && (
+                    <a
+                      href={person.githubUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaGithub size={24} />
+                    </a>
+                  )}
+                  {person.linkedin && (
+                    <a
+                      href={person.linkedin}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <FaLinkedin size={24} />
+                    </a>
+                  )}
                 </div>
               </div>
             </li>

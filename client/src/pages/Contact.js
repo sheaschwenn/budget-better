@@ -1,7 +1,7 @@
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { useState } from "react";
 
-export default function ContactForm() {
+export default function Contact() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");

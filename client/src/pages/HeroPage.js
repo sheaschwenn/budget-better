@@ -8,7 +8,7 @@ const navigation = [
   { name: "Our Mission", href: "#" },
 ];
 
-export default function Example() {
+export default function HeroPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
