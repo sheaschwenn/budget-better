@@ -1,10 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
-// import Navbar from '../components/Navbar';
+import React, { useState, useEffect, useRef, useContext } from 'react';
 import { generateExpensePieChart } from '../utils/chart';
+import { ThemeContext } from '../utils/ThemeContext';
+
 
 const Dashboard = () => {
   const chartRef = useRef(null);
   const [expenses, setExpenses] = useState([]);
+  const { isDarkMode } = useContext(ThemeContext);
+
 
   useEffect(() => {
     // Fetch expenses from the database and set the state
@@ -18,8 +21,13 @@ const Dashboard = () => {
     }
   }, [expenses]);
 
+  const styles = {
+    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
+    color: isDarkMode ? '#ffffff' : '#000000',
+  };
+
   return (
-    <div>
+    <div style={styles}>
       <section className="dashboard-section">
         <h2>Welcome to Your Dashboard</h2>
         <div className="finance-info">

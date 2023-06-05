@@ -1,14 +1,10 @@
-import React, { useState } from 'react';
-// import Navbar from '../components/Navbar';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from '../utils/ThemeContext';
 
 const Settings = () => {
-  const [isLightMode, setIsLightMode] = useState(false);
+  const { isDarkMode } = useContext(ThemeContext);
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
   const [selectedLanguage, setSelectedLanguage] = useState('English');
-
-  const handleLightModeToggle = () => {
-    setIsLightMode(!isLightMode);
-  };
 
   const handleCurrencyChange = (event) => {
     setSelectedCurrency(event.target.value);
@@ -18,22 +14,14 @@ const Settings = () => {
     setSelectedLanguage(event.target.value);
   };
 
+  const styles = {
+    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
+    color: isDarkMode ? '#ffffff' : '#000000',
+  };
+
   return (
-    <div>
+    <div style={styles}>
       <h2>Settings</h2>
-
-      <div>
-        <h3>Theme</h3>
-        <label>
-          <input
-            type="checkbox"
-            checked={isLightMode}
-            onChange={handleLightModeToggle}
-          />
-          Light Mode
-        </label>
-      </div>
-
       <div>
         <h3>Currency</h3>
         <select value={selectedCurrency} onChange={handleCurrencyChange}>
@@ -51,8 +39,10 @@ const Settings = () => {
           <option value="French">French</option>
         </select>
       </div>
+
     </div>
   );
 };
+
 
 export default Settings;

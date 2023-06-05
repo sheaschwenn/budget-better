@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
-// import Navbar from '../components/Navbar';
+import React, { useState, useContext } from 'react';
+import { ThemeContext } from '../utils/ThemeContext';
+
 
 const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
+  const { isDarkMode } = useContext(ThemeContext);
+
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
@@ -23,9 +26,13 @@ const Account = () => {
     // Handle goal submission logic
   };
 
+  const styles = {
+    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
+    color: isDarkMode ? '#ffffff' : '#000000',
+  };
+
   return (
-    <div>
-      {/* <Navbar /> */}
+    <div style={styles}>
       <h2>Account</h2>
 
       <div>
