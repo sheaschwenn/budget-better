@@ -1,30 +1,31 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { generateExpensePieChart } from '../utils/chart';
 import { ThemeContext } from '../utils/ThemeContext';
+import { GET_EXPENSES } from '../utils/queries';
+import { useQuery } from '@apollo/client';
 
 
 const Dashboard = () => {
   const chartRef = useRef(null);
-  const [expenses, setExpenses] = useState([]);
+
   const { isDarkMode } = useContext(ThemeContext);
 
 
-  useEffect(() => {
-    // Fetch expenses from the database and set the state
-    const fetchedExpenses = []; // Replace with actual fetched expenses
-    setExpenses(fetchedExpenses);
-  }, []);
+  const { loading, error, data } = useQuery(GET_EXPENSES);
 
   useEffect(() => {
-    if (chartRef.current && expenses.length > 0) {
-      generateExpensePieChart(chartRef.current, expenses);
+    if (chartRef.current && data?.me?.expenses.length > 0) {
+      generateExpensePieChart(chartRef.current, data.me.expenses);
     }
-  }, [expenses]);
+  }, [data]);
 
   const styles = {
     backgroundColor: isDarkMode ? '#000000' : '#ffffff',
     color: isDarkMode ? '#ffffff' : '#000000',
   };
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error :(</p>;
 
   return (
     <div style={styles}>
