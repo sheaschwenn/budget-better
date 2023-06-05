@@ -6,33 +6,8 @@ export const LOGIN_USER = gql`
       token
       user {
         _id
-        name
         email
-        expenses {
-          _id
-          category
-          amount
-          recurring
-        }
-        income {
-          _id
-          name
-          passive
-          recurringOrSalary
-        }
-        settings {
-          _id
-          light
-          currency
-          language
-        }
-        goal {
-          _id
-          name
-          amountToSave
-          byDate
-          shortTerm
-        }
+        
       }
     }
   }
@@ -53,15 +28,12 @@ export const ADD_USER = gql`
 export const CREATE_EXPENSE = gql`
   mutation createExpense($category: String!, $amount: Float!, $recurring: Boolean!) {
     createExpense(category: $category, amount: $amount, recurring: $recurring) {
-      _id
-      name
-      email
-      expenses {
+    
         _id
         category
         amount
         recurring
-      }
+      
     }
   }
 `;

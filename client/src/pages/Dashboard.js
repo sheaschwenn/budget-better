@@ -1,10 +1,16 @@
 import React, { useState, useEffect, useRef } from 'react';
 import Navbar from '../components/Navbar';
 import { generateExpensePieChart } from '../utils/chart';
+import { useQuery } from '@apollo/client';
+
+import { GET_ME } from '../utils/queries';
 
 const Dashboard = () => {
   const chartRef = useRef(null);
   const [expenses, setExpenses] = useState([]);
+
+  const {loading, data} = useQuery(GET_ME)
+  const me = data?.me || []
 
   useEffect(() => {
     // Fetch expenses from the database and set the state

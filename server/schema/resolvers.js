@@ -29,11 +29,12 @@ const resolvers = {
             return{ token, user }
 
         },
-        createExpense: async(parent, args, context) =>{
-           if(context.user){
+        createExpense: async(parent, { userId, category, amount, recurring }, context) =>{
+          if(context.user){
+            const expense = await Expense.create({ category, amount, recurring }) 
             const updatedUser = await User.findOneAndUpdate(
                 {_id: context.user._id},
-                {$push: {expenses: args}},
+                {$addToSet: {expenses: expense._id}},
                 {runValidators: true, new: true}
             )
             return updatedUser

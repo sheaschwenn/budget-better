@@ -54,7 +54,7 @@ type Query{
 type Mutation{
     login(email: String!, password: String!): Auth
     addUser(name: String!, email: String!, password: String!): Auth
-    createExpense(category: String!, amount: Float!, recurring: Boolean!): User
+    createExpense( category: String!, amount: Float!, recurring: Boolean!): Expense
     updateExpense(_id:ID!, category: String, amount: Float, recurring: Boolean): User
     deleteExpense(_id: ID!): User
     createIncome(  name: String!, passive: Boolean!, amount: Float!, recurringOrSalary: Boolean!): User
