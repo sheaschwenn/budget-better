@@ -1,5 +1,6 @@
 import { CloudArrowUpIcon, LockClosedIcon } from "@heroicons/react/20/solid";
-
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 export default function Features() {
   return (
     <div className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0">

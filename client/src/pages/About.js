@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import chrisImg from "../assets/images/chris.png";
 import didrikImg from "../assets/images/didrik.png";

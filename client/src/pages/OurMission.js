@@ -1,3 +1,5 @@
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 const stats = [
   { name: "Individuals gained financial Freedom", value: "10,000+" },
   { name: "Five Star Reviews", value: "300+" },

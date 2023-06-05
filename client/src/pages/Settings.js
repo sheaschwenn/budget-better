@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
+import React, { useState } from "react";
+import Navbar from "../components/Navbar";
 
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 const Settings = () => {
   const [isLightMode, setIsLightMode] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState('USD');
-  const [selectedLanguage, setSelectedLanguage] = useState('English');
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [selectedLanguage, setSelectedLanguage] = useState("English");
 
   const handleLightModeToggle = () => {
     setIsLightMode(!isLightMode);

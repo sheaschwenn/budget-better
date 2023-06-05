@@ -1,6 +1,7 @@
 import { ChevronDownIcon } from "@heroicons/react/outline";
 import { useState } from "react";
-
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 export default function Contact() {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
@@ -14,7 +15,6 @@ export default function Contact() {
     const formData = {
       firstName,
       lastName,
-
       email,
       phoneNumber,
       message,
@@ -32,7 +32,6 @@ export default function Contact() {
       console.log("Form submitted successfully");
       setFirstName("");
       setLastName("");
-
       setEmail("");
       setPhoneNumber("");
       setMessage("");

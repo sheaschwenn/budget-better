@@ -1,5 +1,6 @@
 import React from "react";
-
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 function Demo() {
   return (
     <div className="px-4 py-5 sm:p-6">

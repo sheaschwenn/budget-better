@@ -1,8 +1,9 @@
-import React, { useState } from 'react';
-import Navbar from '../components/Navbar';
+import React, { useState } from "react";
+import Navbar from "../components/Navbar";
 
+import Footer from "../components/Footer";
 const Account = () => {
-  const [selectedTab, setSelectedTab] = useState('');
+  const [selectedTab, setSelectedTab] = useState("");
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
@@ -29,8 +30,8 @@ const Account = () => {
       <h2>Account</h2>
 
       <div>
-        <button onClick={() => handleTabChange('income')}>Income</button>
-        {selectedTab === 'income' && (
+        <button onClick={() => handleTabChange("income")}>Income</button>
+        {selectedTab === "income" && (
           <form onSubmit={handleIncomeSubmit}>
             <input type="text" placeholder="Name" />
             <label>
@@ -51,8 +52,8 @@ const Account = () => {
       </div>
 
       <div>
-        <button onClick={() => handleTabChange('expenses')}>Expenses</button>
-        {selectedTab === 'expenses' && (
+        <button onClick={() => handleTabChange("expenses")}>Expenses</button>
+        {selectedTab === "expenses" && (
           <form onSubmit={handleExpenseSubmit}>
             <input type="text" placeholder="Category" />
             <input type="number" placeholder="Amount" />
@@ -69,8 +70,8 @@ const Account = () => {
       </div>
 
       <div>
-        <button onClick={() => handleTabChange('goals')}>Goals</button>
-        {selectedTab === 'goals' && (
+        <button onClick={() => handleTabChange("goals")}>Goals</button>
+        {selectedTab === "goals" && (
           <form onSubmit={handleGoalSubmit}>
             <input type="text" placeholder="Name" />
             <input type="number" placeholder="Amount to Save" />
