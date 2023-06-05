@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {useMutation} from '@apollo/client'
 import { 
   CREATE_EXPENSE,
@@ -6,10 +6,14 @@ import {
   CREATE_GOAL
  } from '../utils/mutations';
  import Auth from '../utils/auth'
+ import { ThemeContext} from '../utils/ThemeContext'
+
 
 
 const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
+  const { isDarkMode } = useContext(ThemeContext);
+
   const [expenses, setExpenses] = useState({   
   category: '' ,
   amount: '',
@@ -109,9 +113,13 @@ const handleIncomeChange = (event) =>{
     // Handle goal submission logic
   };
 
-  return (
-    <div>
+  const styles = {
+    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
+    color: isDarkMode ? '#ffffff' : '#000000',
+  };
 
+  return (
+    <div style={styles}>
       <h2>Account</h2>
 
       <div>

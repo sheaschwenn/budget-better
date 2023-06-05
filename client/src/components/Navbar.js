@@ -1,11 +1,15 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import '../styles/Navbar.css'
+import DarkMode from '../components/DarkMode';
+import { ThemeContext } from '../utils/ThemeContext';
 
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
+  const { isDarkMode } = useContext(ThemeContext);
+
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -20,9 +24,15 @@ const Navbar = () => {
     Auth.logout();
   };
 
+  const styles = {
+    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
+    color: isDarkMode ? '#ffffff' : '#000000',
+  };
+
   return (
-    <nav>
+    <nav style={styles}>
       <ul className="nav">
+      <DarkMode />
         <li>
           <Link to="/dashboard">Dashboard</Link>
         </li>
