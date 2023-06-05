@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, useContext } from 'react';
+import React, { useEffect, useRef, useContext } from 'react';
 import { generateExpensePieChart } from '../utils/chart';
 import { ThemeContext } from '../utils/ThemeContext';
 import { GET_EXPENSES } from '../utils/queries';
@@ -7,7 +7,7 @@ import { useQuery } from '@apollo/client';
 
 const Dashboard = () => {
   const chartRef = useRef(null);
-  const [expenses, setExpenses] = useState([]);
+
   const { isDarkMode } = useContext(ThemeContext);
 
 
