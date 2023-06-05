@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import Navbar from '../components/Navbar';
+// import Navbar from '../components/Navbar';
 import { generateExpensePieChart } from '../utils/chart';
 import { useQuery } from '@apollo/client';
 
