@@ -1,6 +1,9 @@
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express')
 const path = require('path')
+const dateScalar = require('./schema/dateScalar')
+// const { GraphQLScalarType, Kind, GraphQLError } = require('graphql');
+
 
 const {authMiddleware} = require('./utils/auth')
 
@@ -12,7 +15,10 @@ const app = express();
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers: {
+    ...resolvers,
+    Date: dateScalar
+  },
   context: authMiddleware,
 })
 
