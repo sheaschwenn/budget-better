@@ -2,13 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
+
 import companyLogo from "../assets/images/BudgetBetterLogo.png";
 
 import Auth from "../utils/auth";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
 const Login = (props) => {
   const [formState, setFormState] = useState({ email: "", password: "" });
@@ -43,7 +40,6 @@ const Login = (props) => {
 
   return (
     <>
-      <Navbar />
       <div className="flex min-h-screen flex-col justify-center px-6 py-12 lg:px-8">
         <div className="sm:mx-auto sm:w-full sm:max-w-sm">
           <img
@@ -139,7 +135,6 @@ const Login = (props) => {
           )}
         </div>
       </div>
-      <Footer />
     </>
   );
 };

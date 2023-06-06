@@ -1,11 +1,19 @@
-import React from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "../utils/ThemeContext";
+
+
+
+  
 function Demo() {
+  const { isDarkMode } = useContext(ThemeContext);
+
+  const styles = {
+    backgroundColor: isDarkMode ? "#000000" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#000000",
+  };
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
-      <Navbar />
+    <div style= {styles} className="flex flex-col min-h-screen bg-gray-50">
       <main className="flex-grow px-4 py-5 sm:p-6">
         <h1 className="text-3xl font-bold mb-4">How to use Budget Better</h1>
 
@@ -42,7 +50,6 @@ function Demo() {
           </div>
         </section>
       </main>
-      <Footer />
     </div>
   );
 }

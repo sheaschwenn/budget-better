@@ -1,14 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import { Link } from "react-router-dom";
 import Auth from "../utils/auth";
 import "../styles/Navbar.css";
 import DarkMode from "../components/DarkMode";
 import { ThemeContext } from "../utils/ThemeContext";
 
-import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
-  ArrowPathIcon,
   Bars3Icon,
   ChartPieIcon,
   CursorArrowRaysIcon,

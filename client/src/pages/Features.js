@@ -1,11 +1,20 @@
 import { CloudArrowUpIcon, LockClosedIcon } from "@heroicons/react/20/solid";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import React, {  useContext } from "react";
+import { ThemeContext } from "../utils/ThemeContext";
 
+
+
+
+ 
 export default function Features() {
+  const { isDarkMode } = useContext(ThemeContext);
+
+  const styles = {
+    backgroundColor: isDarkMode ? "#000000" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#000000",
+  };
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
-      <Navbar />
+    <div style = {styles} className="flex flex-col min-h-screen bg-gray-50">
       <main className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0 flex-grow">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <svg
@@ -121,7 +130,6 @@ export default function Features() {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 }

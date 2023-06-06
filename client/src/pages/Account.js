@@ -1,11 +1,9 @@
-import Navbar from "../components/Navbar";
 import React, { useState, useContext } from "react";
 import { useMutation } from "@apollo/client";
 import { CREATE_EXPENSE, CREATE_INCOME, CREATE_GOAL } from "../utils/mutations";
-import Auth from "../utils/auth";
+
 import { ThemeContext } from "../utils/ThemeContext";
 
-import Footer from "../components/Footer";
 const Account = () => {
   const [selectedTab, setSelectedTab] = useState("");
   const { isDarkMode } = useContext(ThemeContext);

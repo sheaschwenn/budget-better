@@ -6,8 +6,6 @@ import { useContext } from "react";
 
 import { GET_ME } from "../utils/queries";
 
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
 const Home = () => {
   const { loading, data } = useQuery(GET_ME);
   const me = data?.me || {};

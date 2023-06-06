@@ -1,9 +1,15 @@
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import React, { useContext } from "react";
+import { ThemeContext } from "../utils/ThemeContext";
 export default function PageNotFound() {
+  const { isDarkMode } = useContext(ThemeContext);
+
+  const styles = {
+    backgroundColor: isDarkMode ? "#000000" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#000000",
+  };
   return (
-    <div>
-      <Navbar />
+    <div style = {styles}>
+     
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
           <p className="text-base font-semibold text-indigo-600">404</p>
@@ -26,7 +32,7 @@ export default function PageNotFound() {
           </div>
         </div>
       </main>
-      <Footer />
+    
     </div>
   );
 }

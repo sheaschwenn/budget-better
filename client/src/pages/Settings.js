@@ -1,13 +1,8 @@
-
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
-
-const Settings = () => {
-  const [isLightMode, setIsLightMode] = useState(false);
-  const [selectedCurrency, setSelectedCurrency] = useState("USD");
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
 import React, { useState, useContext } from 'react';
 import { ThemeContext } from '../utils/ThemeContext';
+
+
+
 
 const Settings = () => {
   const { isDarkMode } = useContext(ThemeContext);
@@ -47,7 +42,7 @@ const Settings = () => {
           <option value="French">French</option>
         </select>
       </div>
-      <Footer />
+   
     </div>
   );
 };

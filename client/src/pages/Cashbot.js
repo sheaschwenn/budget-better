@@ -1,6 +1,5 @@
-import React, { useState } from "react";
-import Navbar from "../components/Navbar";
-import Footer from "../components/Footer";
+import React, { useState, useContext } from "react";
+import { ThemeContext } from "../utils/ThemeContext";
 
 const Chatbot = () => {
   const { isDarkMode } = useContext(ThemeContext);
@@ -41,8 +40,7 @@ const Chatbot = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col bg-gray-50">
-      <Navbar />
+    <div style={styles} className="min-h-screen flex flex-col bg-gray-50">
       <main className="flex-grow">
         <div className="py-16 px-4 sm:px-6 lg:px-8 mx-auto max-w-7xl">
           <div className="text-center">
@@ -86,7 +84,6 @@ const Chatbot = () => {
           </div>
         </div>
       </main>
-      <Footer />
     </div>
   );
 };

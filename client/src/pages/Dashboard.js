@@ -1,12 +1,9 @@
-import React, { useState, useEffect, useRef } from "react";
-import Navbar from "../components/Navbar";
-import { generateExpensePieChart } from "../utils/chart";
-import React, { useEffect, useContext } from "react";
+import React, { useContext } from "react";
+
 import { ThemeContext } from "../utils/ThemeContext";
 import { GET_EXPENSES, GET_INCOME, GET_GOAL } from "../utils/queries";
 import { useQuery } from "@apollo/client";
 
-import Footer from "../components/Footer";
 const Dashboard = () => {
   const { isDarkMode } = useContext(ThemeContext);
 
