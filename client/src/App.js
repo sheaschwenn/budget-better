@@ -1,40 +1,45 @@
-import './App.css';
-import React from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Dashboard from './pages/Dashboard';
-import Settings from './pages/Settings';
-import Account from './pages/Account';
-import Cashbot from './pages/Cashbot';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
+import Account from "./pages/Account";
+import Cashbot from "./pages/Cashbot";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Demo from "./pages/Demo";
 import Testimonials from "./pages/Testamonials";
 import Features from "./pages/Features";
 // import HeroPage from "./pages/HeroPage";
-import OurMission from "./pages/OurMission";
-import PageNotFound from "./pages/PageNotFound";
-import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+// import OurMission from "./pages/OurMission";
+// import PageNotFound from "./pages/PageNotFound";
+import {
+  ApolloProvider,
+  InMemoryCache,
+  ApolloClient,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 // Create an HTTP link to the GraphQL server
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 // Create an auth link to include the authentication token in the headers
 const authLink = setContext((_, { headers }) => {
   // Get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   // Return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -64,10 +69,6 @@ function App() {
           <Route path="/demo" element={<Demo />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/features" element={<Features />} />
-          {/* <Route path="/heropage" element={<HeroPage />} /> */}
-          <Route path="/ourmission" element={<OurMission />} />
-          <Route path="*" element={<PageNotFound />} />
-          
         </Routes>
         <Footer />
       </Router>
