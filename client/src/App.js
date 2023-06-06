@@ -51,8 +51,8 @@ function App() {
   const { isDarkMode } = useContext(ThemeContext); // Retrieve the isDarkMode value from the ThemeContext
 
   const styles = {
-    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
-    color: isDarkMode ? '#ffffff' : '#000000',
+    backgroundColor: isDarkMode ? '#121212' : '#ffffff',
+    color: isDarkMode ? '#ffffff' : '#121212',
   };
 
   return (
