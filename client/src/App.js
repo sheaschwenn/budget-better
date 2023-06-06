@@ -16,8 +16,8 @@ import Demo from "./pages/Demo";
 import Testimonials from "./pages/Testamonials";
 import Features from "./pages/Features";
 // import HeroPage from "./pages/HeroPage";
-// import OurMission from "./pages/OurMission";
-// import PageNotFound from "./pages/PageNotFound";
+import OurMission from "./pages/OurMission";
+import PageNotFound from "./pages/PageNotFound";
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
@@ -64,6 +64,9 @@ function App() {
           <Route path="/demo" element={<Demo />} />
           <Route path="/testimonials" element={<Testimonials />} />
           <Route path="/features" element={<Features />} />
+          {/* <Route path="/heropage" element={<HeroPage />} /> */}
+          <Route path="/ourmission" element={<OurMission />} />
+          <Route path="*" element={<PageNotFound />} />
           
         </Routes>
         <Footer />
