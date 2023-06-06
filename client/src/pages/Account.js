@@ -8,7 +8,7 @@ import {
  import Auth from '../utils/auth'
  import { ThemeContext} from '../utils/ThemeContext'
 
-
+import IncomeList from '../components/IncomeList'
 
 const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
@@ -190,6 +190,8 @@ const handleIncomeCheckboxChange = (event) => {
       <div>
         <button onClick={() => handleTabChange('income')}>Income</button>
         {selectedTab === 'income' && (
+          <div>
+          <IncomeList incomes={getIncome}/>
           <form onSubmit={handleIncomeSubmit}>
             <input 
             type="text" 
@@ -231,6 +233,7 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
+        </div>
         )}
       </div>
 
@@ -270,6 +273,7 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
+          
         )}
       </div>
 
