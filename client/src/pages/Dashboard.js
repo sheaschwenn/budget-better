@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useRef } from 'react';
+import React, { useEffect, useContext, useRef, useState } from 'react';
 import { ThemeContext } from '../utils/ThemeContext';
 import { GET_EXPENSES, GET_INCOME, GET_GOAL } from '../utils/queries';
 import { useQuery } from '@apollo/client';
@@ -6,6 +6,7 @@ import { generateGroupedBarChart } from '../utils/chart';
 
 const Dashboard = () => {
   const { isDarkMode } = useContext(ThemeContext);
+  const [chartVisible, setChartVisible] = useState(false); // new state variable
 
   const { loading: expensesLoading, error: expensesError, data: expensesData } = useQuery(GET_EXPENSES);
   const { loading: incomeLoading, error: incomeError, data: incomeData } = useQuery(GET_INCOME);
@@ -23,20 +24,29 @@ const Dashboard = () => {
   const chartRef = useRef(null); // Create a ref to the canvas element
 
   useEffect(() => {
-    if (chartRef.current) {
-      // Generate the chart when the ref is available and data is loaded
+    if (chartRef.current && chartVisible) { // only generate the chart if it's visible
       const ctx = chartRef.current.getContext('2d');
-      const labels = ['Expenses', 'Income', 'Goals'];
+      const labels = ['Your Financial Data'];
       const datasets = [
         {
-          label: 'Amount',
-          data: [totalExpenses, totalIncome, totalGoals],
-          backgroundColor: ['#ff6b6b', '#63b3ed', '#48bb78'],
+          label: 'Expenses',
+          data: [totalExpenses],
+          backgroundColor: ['#ff6b6b'],
+        },
+        {
+          label: 'Income',
+          data: [totalIncome],
+          backgroundColor: ['#63b3ed'],
+        },
+        {
+          label: 'Goals',
+          data: [totalGoals],
+          backgroundColor: ['#48bb78'],
         },
       ];
       generateGroupedBarChart(ctx, labels, datasets);
     }
-  }, [expensesData, incomeData, goalsData, totalExpenses, totalIncome, totalGoals]); // Trigger chart generation when data or totals change
+  }, [expensesData, incomeData, goalsData, totalExpenses, totalIncome, totalGoals, chartVisible]);
 
   if (expensesLoading || incomeLoading || goalsLoading) return <p>Loading...</p>;
   if (expensesError || incomeError || goalsError) return <p>Error :(</p>;
@@ -46,7 +56,11 @@ const Dashboard = () => {
       <section className="dashboard-section">
         <h2>Welcome to Your Dashboard</h2>
         <div className="finance-info">
-          <canvas ref={chartRef}></canvas>
+          {/* Conditional rendering for chart */}
+          {chartVisible && <canvas ref={chartRef}></canvas>}
+          <button onClick={() => setChartVisible(!chartVisible)}>
+            {chartVisible ? 'Hide Chart' : 'Bar Chart'}
+          </button>
           <p>Total Expenses: ${totalExpenses || 0}</p>
           <p>Total Income: ${totalIncome || 0}</p>
           <p>Total Goals: ${totalGoals || 0}</p>
