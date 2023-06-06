@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../components/Navbar";
-
-import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+
 const Settings = () => {
   const [isLightMode, setIsLightMode] = useState(false);
   const [selectedCurrency, setSelectedCurrency] = useState("USD");
@@ -54,6 +53,7 @@ const Settings = () => {
           <option value="French">French</option>
         </select>
       </div>
+      <Footer />
     </div>
   );
 };

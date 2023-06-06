@@ -2,7 +2,8 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 export default function PageNotFound() {
   return (
-    <>
+    <div>
+      <Navbar />
       <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8">
         <div className="text-center">
           <p className="text-base font-semibold text-indigo-600">404</p>
@@ -25,6 +26,7 @@ export default function PageNotFound() {
           </div>
         </div>
       </main>
-    </>
+      <Footer />
+    </div>
   );
 }
