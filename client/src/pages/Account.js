@@ -5,6 +5,10 @@ import {
   CREATE_INCOME,
   CREATE_GOAL
  } from '../utils/mutations';
+  import {
+    GET_EXPENSES,
+    GET_INCOME,
+    GET_GOAL } from '../utils/queries';
  import Auth from '../utils/auth'
  import { ThemeContext} from '../utils/ThemeContext'
 
@@ -34,9 +38,20 @@ const Account = () => {
   })
 
   // need to fix this 
-  const [createExpense] = useMutation(CREATE_EXPENSE)
-  const [createIncome] = useMutation(CREATE_INCOME)
-  const [createGoal] = useMutation(CREATE_GOAL)
+const [createExpense] = useMutation(CREATE_EXPENSE, {
+  refetchQueries: [{ query: GET_EXPENSES }, { query: GET_INCOME }, { query: GET_GOAL }],
+  awaitRefetchQueries: true
+});
+
+const [createIncome] = useMutation(CREATE_INCOME, {
+  refetchQueries: [{ query: GET_EXPENSES }, { query: GET_INCOME }, { query: GET_GOAL }],
+  awaitRefetchQueries: true
+});
+
+const [createGoal] = useMutation(CREATE_GOAL, {
+  refetchQueries: [{ query: GET_EXPENSES }, { query: GET_INCOME }, { query: GET_GOAL }],
+  awaitRefetchQueries: true
+});
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);

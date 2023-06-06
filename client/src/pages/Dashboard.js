@@ -2,7 +2,6 @@ import React, { useEffect, useContext, useRef } from 'react';
 import { ThemeContext } from '../utils/ThemeContext';
 import { GET_EXPENSES, GET_INCOME, GET_GOAL } from '../utils/queries';
 import { useQuery } from '@apollo/client';
-import Chart from 'chart.js/auto';
 import { generateGroupedBarChart } from '../utils/chart';
 
 const Dashboard = () => {

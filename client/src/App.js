@@ -31,10 +31,23 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const cache = new InMemoryCache({
+  dataIdFromObject: object => {
+    switch (object.__typename) {
+      case 'User': return `User:${object._id}`;
+      case 'Expense': return `Expense:${object._id}`;
+      case 'Income': return `Income:${object._id}`;
+      case 'Setting': return `Setting:${object._id}`;
+      case 'Goal': return `Goal:${object._id}`;
+      default: return object._id || object.id || null;
+    }
+  },
+});
+
 // Create an Apollo Client instance with the auth link and the in-memory cache
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache, 
 });
 
 function App() {
