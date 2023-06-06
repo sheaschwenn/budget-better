@@ -7,17 +7,32 @@
       {
         "category": "Rent",
         "amount": 1000,
-        "recurring": true
+        "recurring": true,
+        "createdOn": "2023-05-01"
       },
       {
         "category": "Food",
         "amount": 500,
-        "recurring": true
+        "recurring": true,
+        "createdOn": "2023-05-01"
       },
       {
         "category": "Car",
         "amount": 300,
-        "recurring": true
+        "recurring": true,
+        "createdOn": "2023-05-01"
+      },
+      {
+        "category": "Vacation",
+        "amount": 2000,
+        "recurring": false,
+        "createdOn": "2023-05-01"
+      },
+      {
+        "category": "Bike",
+        "amount": 1000,
+        "recurring": false,
+        "createdOn": "2023-06-01"
       }
     ],
     "income": [
@@ -25,13 +40,22 @@
         "name": "Job",
         "passive": false,
         "amount": 2000,
-        "recurringOrSalary": true
+        "recurring": true,
+        "createdOn": "2023-05-01"
       },
       {
         "name": "Freelance",
         "passive": true,
         "amount": 1000,
-        "recurringOrSalary": true
+        "recurring": true,
+        "createdOn": "2023-05-01"
+      },
+      {
+        "name": "Gift",
+        "passive": false,
+        "amount": 500,
+        "recurring": false,
+        "createdOn": "2023-05-01"
       }
     ],
     "settings": [
@@ -41,11 +65,11 @@
         "language": "English"
       }
     ],
-    "goals": [
+    "goal": [
       {
         "name": "Car",
-        "amountToSave": 5000,
-        "byDate": "2024-01-01",
+        "amountToSave": 50000,
+        "byDate": "2025-01-01",
         "shortTerm": false
       },
       {

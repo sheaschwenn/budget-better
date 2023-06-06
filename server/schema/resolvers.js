@@ -69,9 +69,9 @@ const resolvers = {
                 return deleteExpense
                 }
             },
-        createIncome:async(parent, { name, passive, amount, recurringOrSalary}, context) =>{
+        createIncome:async(parent, { name, passive, amount, recurring}, context) =>{
             if(context.user){
-                const income = await Income.create( {name, passive, amount, recurringOrSalary})
+                const income = await Income.create( {name, passive, amount, recurring})
              await User.findOneAndUpdate(
                  {_id: context.user._id},
                  {$addToSet: {income: income._id}},

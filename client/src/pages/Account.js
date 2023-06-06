@@ -32,7 +32,7 @@ const Account = () => {
     name: '',
     passive: false,
     amount: '',
-    recurringOrSalary: false
+    recurring: false
   })
   
   const [goal, setGoal] = useState({
@@ -71,7 +71,7 @@ const [createGoal] = useMutation(CREATE_GOAL, {
           name: income.name,
           passive: income.passive,
           amount: parseFloat(income.amount),
-          recurringOrSalary: income.recurringOrSalary
+          recurring: income.recurring
         },
       })
       console.log(data)
@@ -79,7 +79,7 @@ const [createGoal] = useMutation(CREATE_GOAL, {
         name: '',
         passive: false,
         amount: '',
-        recurringOrSalary: false
+        recurring: false
       })
     }catch (err) {
       console.error(err);
@@ -146,10 +146,10 @@ const handleIncomeCheckboxChange = (event) => {
     passive: checked,
   })
   );}
-  else if(event.target.name === 'recurringOrSalary'){
+  else if(event.target.name === 'recurring'){
     setIncome((prevState) => ({
       ...prevState,
-      recurringOrSalary: checked,
+      recurring: checked,
     }))
   }
 };
@@ -239,8 +239,8 @@ const handleIncomeCheckboxChange = (event) => {
               Recurring:
               <input 
               type="checkbox" 
-              name= 'recurringOrSalary'
-              checked= {income.recurringOrSalary}
+              name= 'recurring'
+              checked= {income.recurring}
               onChange= {handleIncomeCheckboxChange}
               />
             </label>
