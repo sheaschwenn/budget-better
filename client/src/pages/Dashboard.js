@@ -17,7 +17,7 @@ const Dashboard = () => {
 
   const totalExpenses = expensesData?.me?.expenses?.reduce((total, expense) => total + expense.amount, 0);
   const totalIncome = incomeData?.me?.income?.reduce((total, income) => total + income.amount, 0);
-  const totalGoals = goalsData?.me?.goals?.reduce((total, goal) => total + goal.amountToSave, 0);
+  const totalGoals = goalsData?.me?.goal?.reduce((total, goal) => total + goal.amountToSave, 0);
 
   if (expensesLoading || incomeLoading || goalsLoading) return <p>Loading...</p>;
   if (expensesError || incomeError || goalsError) return <p>Error :(</p>;
