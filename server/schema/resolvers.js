@@ -10,7 +10,7 @@ const resolvers = {
                 .populate('goal')
                 .populate('expenses')
                 .populate('income');
-              console.log(user);
+            //   console.log(user);
               return user;
             }
             throw new AuthenticationError('You need to be logged in!');
@@ -37,6 +37,7 @@ const resolvers = {
             return{ token, user }
 
         },
+
         createExpense: async(parent, { category, amount, recurring }, context) =>{
           if(context.user){
             const expense = await Expense.create({ category, amount, recurring }) 
