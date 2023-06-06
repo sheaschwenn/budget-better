@@ -89,6 +89,7 @@ export const GET_INCOME = gql`
       income {
         _id
         name
+        amount
         passive
         recurringOrSalary
       }
