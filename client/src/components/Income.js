@@ -1,12 +1,9 @@
 import React, { useState, useContext } from 'react';
 import {useMutation, useQuery} from '@apollo/client'
-import { 
-  CREATE_EXPENSE,
-  CREATE_INCOME,
-  CREATE_GOAL,
- } from '../utils/mutations';
 
- import { GET_EXPENSES, GET_INCOME } from '../utils/queries';
+
+
+import { GET_INCOME } from '../utils/queries';
  import Auth from '../utils/auth'
  import { ThemeContext} from '../utils/ThemeContext'
 
@@ -16,15 +13,12 @@ const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
   const { isDarkMode } = useContext(ThemeContext);
 
-  const{loading, data} = useQuery(GET_EXPENSES)
-  const getExpenses = data?.me.expenses || []
+  const{loading, data} = useQuery(GET_INCOME)
+  const getIncome = data?.me.income || []
 
  
 
-  const [expenses, setExpenses] = useState({   
-  category: '' ,
-  amount: '',
-  recurring: false})
+ 
 
   const [income, setIncome] = useState({
     name: '',
@@ -33,17 +27,12 @@ const Account = () => {
     recurringOrSalary: false
   })
   
-  const [goal, setGoal] = useState({
-    name: '',
-    amountToSave: '',
-    byDate: '2023-06-07',
-    shortTerm: false
-  })
+
 
   // need to fix this 
-  const [createExpense] = useMutation(CREATE_EXPENSE)
+ 
   const [createIncome] = useMutation(CREATE_INCOME)
-  const [createGoal] = useMutation(CREATE_GOAL)
+
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);

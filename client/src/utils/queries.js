@@ -79,6 +79,23 @@ export const GET_EXPENSES = gql`
         category
         amount
         recurring
+        createdOn
+      }
+    }
+  }
+`;
+
+export const GET_INCOME = gql`
+  query getIncome {
+    me {
+      income {
+        _id
+        amount
+      createdOn
+      passive
+      passive
+      name
+      recurringOrSalary
       }
     }
   }
