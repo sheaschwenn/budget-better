@@ -109,8 +109,8 @@ const resolvers = {
                     {runValidators: true, new: true}
                 )
                 return goal
-            }
-            throw new AuthenticationError('You need to be logged in!');
+               }
+               throw new AuthenticationError('You need to be logged in!');
         },
         updateGoal: async(parent, args, context) =>{
             if(context.user){
