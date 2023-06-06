@@ -5,31 +5,32 @@ export const GET_ME = gql`
     me {
       _id
       name
-      Email
-      Expenses {
+      email
+      createdOn
+      expenses {
         _id
-        Category
-        Amount
-        Recurring
+        category
+        amount
+        recurring
       }
-      Income {
+      income {
         _id
-        Name
-        Passive
-        RecurringOrSalary
+        name
+        passive
+        recurringOrSalary
       }
-      Settings {
+      settings {
         _id
         light
         currency
         language
       }
-      Goal {
+      goal {
         _id
         name
-        AmountToSave
+        amountToSave
         byDate
-        ShortTerm
+        shortTerm
       }
     }
   }
@@ -78,6 +79,23 @@ export const GET_EXPENSES = gql`
         category
         amount
         recurring
+        createdOn
+      }
+    }
+  }
+`;
+
+export const GET_INCOME = gql`
+  query getIncome {
+    me {
+      income {
+        _id
+        amount
+      createdOn
+      passive
+      passive
+      name
+      recurringOrSalary
       }
     }
   }

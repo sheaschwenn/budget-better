@@ -12,6 +12,10 @@ const expensesSchema = new mongoose.Schema({
   recurring: {
     type: Boolean,
     default: false
+  },
+  createdOn: {
+    type: Date,
+    default: Date.now
   }
 });
 

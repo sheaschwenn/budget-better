@@ -15,6 +15,10 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true
   },
+  createdOn: {
+    type: Date,
+    default: Date.now
+  },
   expenses: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Expense'

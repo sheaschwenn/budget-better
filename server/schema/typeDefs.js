@@ -8,6 +8,7 @@ type User{
     _id: ID
     name: String
     email: String
+    createdOn: Date
     expenses: [Expense]
     income: [Income]
     settings: [Setting]
@@ -19,6 +20,7 @@ type Expense{
     category: String
     amount: Int
     recurring: Boolean
+    createdOn: Date
 }
 
 type Income{
@@ -27,6 +29,7 @@ type Income{
     passive: Boolean
     amount: Int
     recurringOrSalary: Boolean
+    createdOn: Date
 }
 
 type Setting{
@@ -42,6 +45,7 @@ type Goal{
     amountToSave: Int
     byDate: Date
     shortTerm: Boolean
+    createdOn: Date
 }
 
 type Auth{
