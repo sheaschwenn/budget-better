@@ -16,6 +16,10 @@ const goalSchema = new mongoose.Schema({
   shortTerm: {
     type: Boolean,
     default: false
+  },
+  createdOn: {
+    type: Date,
+    default: Date.now
   }
 });
 

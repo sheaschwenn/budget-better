@@ -16,6 +16,10 @@ const incomeSchema = new mongoose.Schema({
   recurringOrSalary: {
     type: Boolean,
     default: false
+  },
+  createdOn: {
+    type: Date,
+    default: Date.now
   }
 });
 

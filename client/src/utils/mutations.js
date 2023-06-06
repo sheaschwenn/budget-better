@@ -33,6 +33,7 @@ export const CREATE_EXPENSE = gql`
         category
         amount
         recurring
+        createdOn
       
     }
   }
@@ -95,6 +96,7 @@ export const CREATE_INCOME = gql`
         passive
         amount
         recurringOrSalary
+        createdOn
       }
   }
 `;
@@ -140,6 +142,7 @@ export const CREATE_GOAL = gql`
         amountToSave
         byDate
         shortTerm
+        createdOn
     }
   }
 `;
