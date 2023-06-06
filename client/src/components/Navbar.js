@@ -55,6 +55,7 @@ const Navbar = () => {
                 <Link to="/" onClick={logout}>Logout</Link>
               </li>
             </ul>
+            
           )}
         </li>
         <li>
@@ -62,6 +63,27 @@ const Navbar = () => {
         </li>
         <li>
           <Link to="/cashbot">Cashbot</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
+          <Link to="/signup">Signup</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li>
+          <Link to="/demo">Demo</Link>
+        </li>
+        <li>
+          <Link to="/features">Features</Link>
+        </li>
+        <li>
+          <Link to="/ourmission">Our Mission</Link>
         </li>
       </ul>
     </nav>
