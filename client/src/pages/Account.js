@@ -91,12 +91,14 @@ const Account = () => {
     }
 
   };
-  const handleCheckboxChange = () => {
+  const handleExpenseCheckboxChange = (event) => {
+    const { checked } = event.target;
     setExpenses((prevState) => ({
       ...prevState,
-      recurring: !prevState.recurring, // Toggle the value of recurring
+      recurring: checked,
     }));
   };
+  
 const handleExpensesChange = (event) => {
   const { name, value } = event.target
   setExpenses({
@@ -104,7 +106,7 @@ const handleExpensesChange = (event) => {
     [name]: value,
   });
 
-  // console.log(expenses)
+  console.log(expenses)
 }
 
 const handleIncomeChange = (event) =>{
@@ -116,6 +118,22 @@ const handleIncomeChange = (event) =>{
   console.log(income)
   
 }
+const handleIncomeCheckboxChange = (event) => {
+  const { checked } = event.target;
+  if(event.target.name === 'passive'){
+  setIncome((prevState) => ({
+    ...prevState,
+    passive: checked,
+  })
+  );}
+  else if(event.target.name === 'recurringOrSalary'){
+    setIncome((prevState) => ({
+      ...prevState,
+      recurringOrSalary: checked,
+    }))
+  }
+};
+
   const handleGoalSubmit = async(event) => {
     event.preventDefault();
     // Handle goal submission logic
@@ -151,6 +169,14 @@ const handleIncomeChange = (event) =>{
     
   }
 
+  const handleGoalCheckboxChange = (event) => {
+    const { checked } = event.target;
+    setGoal((prevState) => ({
+      ...prevState,
+      shortTerm: checked,
+    }));
+  };
+
 
   const styles = {
     backgroundColor: isDarkMode ? '#000000' : '#ffffff',
@@ -176,8 +202,8 @@ const handleIncomeChange = (event) =>{
               <input 
               type="checkbox" 
               name= 'passive'
-              value= {income.passive}
-              onChange= {handleIncomeChange}
+              checked= {income.passive}
+              onChange= {handleIncomeCheckboxChange}
               />
             </label>
             <input 
@@ -192,8 +218,8 @@ const handleIncomeChange = (event) =>{
               <input 
               type="checkbox" 
               name= 'recurringOrSalary'
-              value= {income.recurringOrSalary}
-              onChange= {handleIncomeChange}
+              checked= {income.recurringOrSalary}
+              onChange= {handleIncomeCheckboxChange}
               />
             </label>
             <label>
@@ -232,7 +258,7 @@ const handleIncomeChange = (event) =>{
               name= 'recurring'
                 type="checkbox"
                 checked={expenses.recurring}
-                onChange={handleCheckboxChange}
+                onChange={handleExpenseCheckboxChange}
               />
             </label>
             <label>
@@ -272,6 +298,16 @@ const handleIncomeChange = (event) =>{
             value = {goal.byDate}
             onChange= {handleGoalChange}
              />
+
+            <label>
+              Short Term:
+              <input
+              name= 'shortTerm'
+                type="checkbox"
+                checked={goal.shortTerm}
+                onChange={handleGoalCheckboxChange}
+              />
+            </label>
             <button type="submit">Submit</button>
           </form>
         )}

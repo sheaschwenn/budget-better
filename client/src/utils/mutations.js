@@ -132,7 +132,7 @@ export const DELETE_INCOME = gql`
 `;
 
 export const CREATE_GOAL = gql`
-  mutation createGoal($name: String!, $amountToSave: Float!, $byDate: String!, $shortTerm: Boolean!) {
+  mutation createGoal($name: String!, $amountToSave: Float!, $byDate: Date, $shortTerm: Boolean!) {
     createGoal(name: $name, amountToSave: $amountToSave, byDate: $byDate, shortTerm: $shortTerm) {
      
         _id
