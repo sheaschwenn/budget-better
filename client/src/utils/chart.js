@@ -1,26 +1,28 @@
 import Chart from 'chart.js/auto';
 
-export const generateExpensePieChart = (ctx, expenses) => {
-  new Chart(ctx, {
-    type: 'pie',
+export const generateGroupedBarChart = (ctx, labels, datasets) => {
+  // destroy the existing chart if it exists
+  if (ctx.chart) {
+    ctx.chart.destroy();
+  }
+
+  // create the new chart
+  ctx.chart = new Chart(ctx, {
+    type: 'bar',
     data: {
-      labels: expenses.map((expense) => expense.category),
-      datasets: [
-        {
-          data: expenses.map((expense) => expense.amount),
-          backgroundColor: [
-            '#FF6384',
-            '#36A2EB',
-            '#FFCE56',
-            // Add more colors as needed
-          ],
-        },
-      ],
+      labels,
+      datasets,
     },
     options: {
       responsive: true,
-      maintainAspectRatio: false,
-      // Add other options and styling as desired
+      scales: {
+        y: {
+          beginAtZero: true,
+        },
+      },
     },
   });
+
+  // return the chart instance
+  return ctx.chart;
 };

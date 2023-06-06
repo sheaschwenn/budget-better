@@ -29,7 +29,8 @@ const userSchema = new mongoose.Schema({
   },
   goal: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Goal'
+    ref: 'Goal',
+    default: []
   }
 });
 
