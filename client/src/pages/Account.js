@@ -6,20 +6,26 @@ import {
   CREATE_GOAL,
  } from '../utils/mutations';
 
- import { GET_EXPENSES, GET_INCOME } from '../utils/queries';
+ import {  GET_ME } from '../utils/queries';
  import Auth from '../utils/auth'
  import { ThemeContext} from '../utils/ThemeContext'
 
-import IncomeList from '../components/IncomeList'
+
+ import IncomeList from '../components/IncomeList'
+ import ExpensesList from '../components/ExpesnesList'
+ import GoalList from '../components/GoalList';
 
 const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
   const { isDarkMode } = useContext(ThemeContext);
 
-  const{loading, data} = useQuery(GET_EXPENSES)
-  const getExpenses = data?.me.expenses || []
+  // const{loadingExpenses, data} = useQuery(GET_EXPENSES)
+  // const getExpenses = data?.me.expenses || []
 
- 
+  const{loading, data} = useQuery(GET_ME)
+  const getIncome = data?.me.income || []
+  const getExpenses = data?.me.expenses || []
+  const getGoals = data?.me.goal || []
 
   const [expenses, setExpenses] = useState({   
   category: '' ,
@@ -41,12 +47,19 @@ const Account = () => {
   })
 
   // need to fix this 
-  const [createExpense] = useMutation(CREATE_EXPENSE)
-  const [createIncome] = useMutation(CREATE_INCOME)
-  const [createGoal] = useMutation(CREATE_GOAL)
+  const [createExpense] = useMutation(CREATE_EXPENSE, {
+    refetchQueries: [{query: GET_ME}]
+  })
+  const [createIncome] = useMutation(CREATE_INCOME, {
+    refetchQueries: [{query: GET_ME}]
+  })
+  const [createGoal] = useMutation(CREATE_GOAL, {
+    refetchQueries: [{query: GET_ME}]
+  })
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
+    console.log(data)
   };
 
   const handleIncomeSubmit = async(event) => {
@@ -198,7 +211,6 @@ const handleIncomeCheckboxChange = (event) => {
         <button onClick={() => handleTabChange('income')}>Income</button>
         {selectedTab === 'income' && (
           <div>
-          <IncomeList incomes={getExpenses}/>
           <form onSubmit={handleIncomeSubmit}>
             <input 
             type="text" 
@@ -240,6 +252,7 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
+          <IncomeList incomes={getIncome}/>
         </div>
         )}
       </div>
@@ -247,6 +260,7 @@ const handleIncomeCheckboxChange = (event) => {
       <div>
         <button onClick={() => handleTabChange('expenses')}>Expenses</button>
         {selectedTab === 'expenses' && (
+          <div>
           <form onSubmit={handleExpenseSubmit}>
             <input 
             name= 'category'
@@ -280,13 +294,15 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
-          
+          <ExpensesList expensesList= {getExpenses}/>
+          </div>
         )}
       </div>
 
       <div>
         <button onClick={() => handleTabChange('goals')}>Goals</button>
         {selectedTab === 'goals' && (
+          <div>
           <form onSubmit={handleGoalSubmit}>
             <input 
             type="text"
@@ -321,6 +337,8 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
+          <GoalList goalList= {getGoals}/>
+          </div>
         )}
       </div>
     </div>

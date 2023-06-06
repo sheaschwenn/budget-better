@@ -9,7 +9,7 @@ const IncomeList = ({incomes}) => {
         <div>
             {incomes && incomes.map((single) =>(
                 <div key= {single._id} >
-                    <h4>{single.name} {single.amount} {single.createdOn}</h4>
+                    <h4>{single.name} ${single.amount} {single.createdOn}</h4>
                      </div>
             ))}
         </div>
