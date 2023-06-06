@@ -89,6 +89,16 @@ const menuItems = [
     href: "/about",
     icon: SquaresPlusIcon,
   },
+  {
+    name: "Testamonials",
+    href: "/testamonials",
+    icon: SquaresPlusIcon,
+  },
+  {
+    name: "OurMission",
+    href: "/ourmission",
+    icon: SquaresPlusIcon,
+  },
 ];
 const callsToAction = [
   { name: "Watch demo", href: "/demo", icon: PlayCircleIcon },
@@ -201,6 +211,12 @@ export default function Navbar() {
           >
             Account
           </a>
+          <a
+            href="/cashbot"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Cashbot
+          </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
@@ -276,6 +292,12 @@ export default function Navbar() {
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Account
+                </a>
+                <a
+                  href="/cashbot"
+                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                >
+                  Cashbot
                 </a>
               </div>
               <div className="py-6">
