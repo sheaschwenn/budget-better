@@ -26,3 +26,5 @@ export const generateGroupedBarChart = (ctx, labels, datasets) => {
   // return the chart instance
   return ctx.chart;
 };
+
+

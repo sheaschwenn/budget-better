@@ -48,6 +48,7 @@ const Dashboard = () => {
     }
   }, [expensesData, incomeData, goalsData, totalExpenses, totalIncome, totalGoals, chartVisible]);
 
+
   if (expensesLoading || incomeLoading || goalsLoading) return <p>Loading...</p>;
   if (expensesError || incomeError || goalsError) return <p>Error :(</p>;
 
