@@ -1,5 +1,5 @@
 import './App.css';
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
@@ -20,6 +20,8 @@ import OurMission from "./pages/OurMission";
 import PageNotFound from "./pages/PageNotFound";
 import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
+import { ThemeContext } from './utils/ThemeContext';
+
 
 // Create an HTTP link to the GraphQL server
 const httpLink = createHttpLink({
@@ -46,9 +48,17 @@ const client = new ApolloClient({
 });
 
 function App() {
+  const { isDarkMode } = useContext(ThemeContext); // Retrieve the isDarkMode value from the ThemeContext
+
+  const styles = {
+    backgroundColor: isDarkMode ? '#121212' : '#ffffff',
+    color: isDarkMode ? '#ffffff' : '#121212',
+  };
+
   return (
     <ApolloProvider client={client}>
       <Router>
+        <div style={styles}>
         <h1>Budget Better</h1>
         <Navbar />
         <Routes>
@@ -70,6 +80,7 @@ function App() {
           
         </Routes>
         <Footer />
+        </div>
       </Router>
     </ApolloProvider>
   );
