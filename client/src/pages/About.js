@@ -2,9 +2,9 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import chrisImg from "../assets/images/chris.png";
-import didrikImg from "../assets/images/didrik.png";
-import mattImg from "../assets/images/matt.png";
-import sheaImg from "../assets/images/shea.png";
+import didrikImg from "../assets/images/didrik.jpg";
+import mattImg from "../assets/images/matt.jpeg";
+import sheaImg from "../assets/images/shea.jpeg";
 const people = [
   {
     name: "Shea Schwennicke",
