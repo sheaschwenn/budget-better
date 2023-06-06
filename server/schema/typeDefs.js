@@ -60,7 +60,7 @@ type Mutation{
     createIncome(  name: String!, passive: Boolean!, amount: Float!, recurringOrSalary: Boolean!): Income
     updateIncome(_id: ID!, name: String, passive: Boolean, amount: Float!, recurringOrSalary: Boolean): User
     deleteIncome(_id: ID!): User
-    createGoal(name: String!, amountToSave: Float!, byDate: String!, shortTerm: Boolean!): User
+    createGoal(name: String!, amountToSave: Float!, byDate: String, shortTerm: Boolean!): Goal
     updateGoal(_id: ID!, name: String, amountToSave: Float, byDate: String, shortTerm: Boolean): User
     deleteGoal(_id: ID!): User
     updateSetting(_id:ID!, light: Boolean, currency: String, language: String ): User

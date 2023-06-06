@@ -60,9 +60,9 @@ const resolvers = {
                 return deleteExpense
                 }
             },
-        createIncome:async(parent, args, context) =>{
+        createIncome:async(parent, { name, passive, amount, recurringOrSalary}, context) =>{
             if(context.user){
-                const income = await Income.create(args)
+                const income = await Income.create( {name, passive, amount, recurringOrSalary})
              await User.findOneAndUpdate(
                  {_id: context.user._id},
                  {$addToSet: {income: income._id}},
@@ -91,14 +91,15 @@ const resolvers = {
                 return deleteIncome
                 }
         },
-        createGoal: async(parent, args, context) =>{
+        createGoal: async(parent, {name, amountToSave, byDate, shortTerm}, context) =>{
             if(context.user){
-                const updatedUser = await User.findOneAndUpdate(
+                const goal = await Goal.create({name, amountToSave, byDate, shortTerm})
+                await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$push: {goal: args}},
+                    {$push: {goal: goal._id}},
                     {runValidators: true, new: true}
                 )
-                return updatedUser
+                return goal
                }
                throw new AuthenticationError('You need to be logged in!');
         },
