@@ -3,6 +3,12 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 const Chatbot = () => {
+  const { isDarkMode } = useContext(ThemeContext);
+
+  const styles = {
+    backgroundColor: isDarkMode ? "#000000" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#000000",
+  };
   const [message, setMessage] = useState("");
   const [history, setHistory] = useState([]);
 

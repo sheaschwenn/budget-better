@@ -1,55 +1,9 @@
-// import React, { useState } from "react";
-// import { Link } from "react-router-dom";
-// import Auth from "../utils/auth";
-
-// const Navbar = () => {
-//   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-//   const toggleDropdown = () => {
-//     setDropdownOpen(!dropdownOpen);
-//   };
-
-//   const logout = (event) => {
-//     event.preventDefault();
-//     Auth.logout();
-//   };
-
-//   return (
-//     <nav>
-//       <ul>
-//         <li>
-//           <Link to="/">Dashboard</Link>
-//         </li>
-//         <li className="dropdown">
-//           <div className="dropdown-toggle" onClick={toggleDropdown}>
-//             Menu
-//           </div>
-//           {dropdownOpen && (
-//             <ul className="dropdown-menu">
-//               <li>
-//                 <Link to="/settings">Settings</Link>
-//               </li>
-//               <li>
-//                 <Link to="/help">Help</Link>
-//               </li>
-//               <li>
-//                 <Link to="/faq">FAQ</Link>
-//               </li>
-//               <li>
-//                 <a href="/" onClick={logout}>
-//                   Logout
-//                 </a>
-//               </li>
-//             </ul>
-//           )}
-//         </li>
-//         <li>
-//           <Link to="/account">Account</Link>
-//         </li>
-//       </ul>
-//     </nav>
-//   );
-// };
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import Auth from "../utils/auth";
+import "../styles/Navbar.css";
+import DarkMode from "../components/DarkMode";
+import { ThemeContext } from "../utils/ThemeContext";
 
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
@@ -110,7 +64,13 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const { isDarkMode } = useContext(ThemeContext);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const styles = {
+    backgroundColor: isDarkMode ? "#000000" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#000000",
+  };
 
   return (
     <header className="bg-white">

@@ -1,0 +1,59 @@
+[
+  {
+    "name": "John Doe",
+    "email": "johndoe@example.com",
+    "password": "password123",
+    "expenses": [
+      {
+        "category": "Rent",
+        "amount": 1000,
+        "recurring": true
+      },
+      {
+        "category": "Food",
+        "amount": 500,
+        "recurring": true
+      },
+      {
+        "category": "Car",
+        "amount": 300,
+        "recurring": true
+      }
+    ],
+    "income": [
+      {
+        "name": "Job",
+        "passive": false,
+        "amount": 2000,
+        "recurringOrSalary": true
+      },
+      {
+        "name": "Freelance",
+        "passive": true,
+        "amount": 1000,
+        "recurringOrSalary": true
+      }
+    ],
+    "settings": [
+      {
+        "light": false,
+        "currency": "USD",
+        "language": "English"
+      }
+    ],
+    "goals": [
+      {
+        "name": "Car",
+        "amountToSave": 5000,
+        "byDate": "2024-01-01",
+        "shortTerm": false
+      },
+      {
+        "name": "Vacation",
+        "amountToSave": 3000,
+        "byDate": "2024-06-01",
+        "shortTerm": true
+      }
+    ]
+  }
+]

@@ -5,8 +5,16 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
-            return User.findOne({_id: context.user._id}).populate(['Expenses', 'Income','Settings', 'Goal'])
-        }
+            if (context.user) {
+              const user = await User.findOne({ _id: context.user._id })
+                .populate('goal')
+                .populate('expenses')
+                .populate('income');
+              console.log(user);
+              return user;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+          },
     },
 
     Mutation: {
@@ -29,14 +37,15 @@ const resolvers = {
             return{ token, user }
 
         },
-        createExpense: async(parent, args, context) =>{
-           if(context.user){
-            const updatedUser = await User.findOneAndUpdate(
+        createExpense: async(parent, { category, amount, recurring }, context) =>{
+          if(context.user){
+            const expense = await Expense.create({ category, amount, recurring }) 
+             await User.findOneAndUpdate(
                 {_id: context.user._id},
-                {$push: {Expenses: args}},
+                {$addToSet: {expenses: expense._id}},
                 {runValidators: true, new: true}
             )
-            return updatedUser
+            return expense
            }
            throw new AuthenticationError('You need to be logged in!');
 
@@ -59,14 +68,15 @@ const resolvers = {
                 return deleteExpense
                 }
             },
-        createIncome:async(parent, args, context) =>{
+        createIncome:async(parent, { name, passive, amount, recurringOrSalary}, context) =>{
             if(context.user){
-             const updatedUser = await User.findOneAndUpdate(
+                const income = await Income.create( {name, passive, amount, recurringOrSalary})
+             await User.findOneAndUpdate(
                  {_id: context.user._id},
-                 {$push: {Income: args}},
+                 {$addToSet: {income: income._id}},
                  {runValidators: true, new: true}
              )
-             return updatedUser
+             return income
             }
             throw new AuthenticationError('You need to be logged in!');
 
@@ -89,16 +99,17 @@ const resolvers = {
                 return deleteIncome
                 }
         },
-        createGoal: async(parent, args, context) =>{
+        createGoal: async(parent, {name, amountToSave, byDate, shortTerm}, context) =>{
             if(context.user){
-                const updatedUser = await User.findOneAndUpdate(
+                const goal = await Goal.create({name, amountToSave, byDate, shortTerm})
+                await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$push: {Goal: args}},
+                    {$push: {goal: goal._id}},
                     {runValidators: true, new: true}
                 )
-                return updatedUser
-               }
-               throw new AuthenticationError('You need to be logged in!');
+                return goal
+            }
+            throw new AuthenticationError('You need to be logged in!');
         },
         updateGoal: async(parent, args, context) =>{
             if(context.user){

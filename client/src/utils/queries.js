@@ -5,31 +5,31 @@ export const GET_ME = gql`
     me {
       _id
       name
-      Email
-      Expenses {
+      email
+      expenses {
         _id
-        Category
-        Amount
-        Recurring
+        category
+        amount
+        recurring
       }
-      Income {
+      income {
         _id
-        Name
-        Passive
-        RecurringOrSalary
+        name
+        passive
+        recurringOrSalary
       }
-      Settings {
+      settings {
         _id
         light
         currency
         language
       }
-      Goal {
+      goal {
         _id
         name
-        AmountToSave
+        amountToSave
         byDate
-        ShortTerm
+        shortTerm
       }
     }
   }
@@ -40,31 +40,85 @@ export const GET_USERS = gql`
     users {
       _id
       name
-      Email
-      Expenses {
+      email
+      expenses {
         _id
-        Category
-        Amount
-        Recurring
+        category
+        amount
+        recurring
       }
-      Income {
+      income {
         _id
-        Name
-        Passive
-        RecurringOrSalary
+        name
+        passive
+        recurringOrSalary
       }
-      Settings {
+      settings {
         _id
         light
         currency
         language
       }
-      Goal {
+      goal {
         _id
         name
-        AmountToSave
+        amountToSave
         byDate
-        ShortTerm
+        shortTerm
+      }
+    }
+  }
+`;
+
+export const GET_EXPENSES = gql`
+  query getExpenses {
+    me {
+      expenses {
+        _id
+        category
+        amount
+        recurring
+      }
+    }
+  }
+`;
+
+export const GET_INCOME = gql`
+  query getIncome {
+    me {
+      income {
+        _id
+        name
+        amount
+        passive
+        recurringOrSalary
+      }
+    }
+  }
+`;
+
+export const GET_SETTINGS = gql`
+  query getSettings {
+    me {
+      setting {
+        _id
+        light
+        currency
+        language
+      }
+    }
+  }
+`;
+
+export const GET_GOAL = gql`
+  query getGoal {
+    me {
+      goal {
+        _id
+        name
+        amountToSave
+        byDate
+        shortTerm
       }
     }
   }
