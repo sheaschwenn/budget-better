@@ -1,4 +1,4 @@
-import { CloudArrowUpIcon, LockClosedIcon } from "@heroicons/react/20/solid";
+// import { CloudArrowUpIcon, LockClosedIcon } from "@heroicons/react/20/solid";
 
 
 export default function Features() {
@@ -79,7 +79,7 @@ export default function Features() {
                 </p>
                 <ul role="list" className="mt-8 space-y-8 text-gray-600">
                   <li className="flex gap-x-3">
-                    <CloudArrowUpIcon
+                    {/* <CloudArrowUpIcon */}
                       className="mt-1 h-5 w-5 flex-none text-indigo-600"
                       aria-hidden="true"
                     />
@@ -93,7 +93,7 @@ export default function Features() {
                     </span>
                   </li>
                   <li className="flex gap-x-3">
-                    <LockClosedIcon
+                    {/* <LockClosedIcon */}
                       className="mt-1 h-5 w-5 flex-none text-indigo-600"
                       aria-hidden="true"
                     />
