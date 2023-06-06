@@ -5,31 +5,31 @@ export const GET_ME = gql`
     me {
       _id
       name
-      email
-      expenses {
+      Email
+      Expenses {
         _id
-        category
-        amount
-        recurring
+        Category
+        Amount
+        Recurring
       }
-      income {
+      Income {
         _id
-        name
-        passive
-        recurringOrSalary
+        Name
+        Passive
+        RecurringOrSalary
       }
-      settings {
+      Settings {
         _id
         light
         currency
         language
       }
-      goal {
+      Goal {
         _id
         name
-        amountToSave
+        AmountToSave
         byDate
-        shortTerm
+        ShortTerm
       }
     }
   }
@@ -40,31 +40,31 @@ export const GET_USERS = gql`
     users {
       _id
       name
-      email
-      expenses {
+      Email
+      Expenses {
         _id
-        category
-        amount
-        recurring
+        Category
+        Amount
+        Recurring
       }
-      income {
+      Income {
         _id
-        name
-        passive
-        recurringOrSalary
+        Name
+        Passive
+        RecurringOrSalary
       }
-      settings {
+      Settings {
         _id
         light
         currency
         language
       }
-      goal {
+      Goal {
         _id
         name
-        amountToSave
+        AmountToSave
         byDate
-        shortTerm
+        ShortTerm
       }
     }
   }
@@ -78,47 +78,6 @@ export const GET_EXPENSES = gql`
         category
         amount
         recurring
-      }
-    }
-  }
-`;
-
-export const GET_INCOME = gql`
-  query getIncome {
-    me {
-      income {
-        _id
-        name
-        amount
-        passive
-        recurringOrSalary
-      }
-    }
-  }
-`;
-
-export const GET_SETTINGS = gql`
-  query getSettings {
-    me {
-      setting {
-        _id
-        light
-        currency
-        language
-      }
-    }
-  }
-`;
-
-export const GET_GOAL = gql`
-  query getGoal {
-    me {
-      goal {
-        _id
-        name
-        amountToSave
-        byDate
-        shortTerm
       }
     }
   }
