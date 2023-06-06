@@ -18,18 +18,25 @@ const Account = () => {
   category: '' ,
   amount: '',
   recurring: false})
+
   const [income, setIncome] = useState({
     name: '',
     passive: false,
     amount: '',
     recurringOrSalary: false
   })
-  const [goal, setGoal] = useState('')
+  
+  const [goal, setGoal] = useState({
+    name: '',
+    amountToSave: '',
+    byDate: '2023-06-07',
+    shortTerm: false
+  })
 
   // need to fix this 
-  const [createExpense, {error}] = useMutation(CREATE_EXPENSE)
-  const [createIncome, {erro}] = useMutation(CREATE_INCOME)
-  const [ createGoal, {err}] = useMutation(CREATE_GOAL)
+  const [createExpense] = useMutation(CREATE_EXPENSE)
+  const [createIncome] = useMutation(CREATE_INCOME)
+  const [createGoal] = useMutation(CREATE_GOAL)
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
@@ -109,10 +116,41 @@ const handleIncomeChange = (event) =>{
   console.log(income)
   
 }
-  const handleGoalSubmit = (event) => {
+  const handleGoalSubmit = async(event) => {
     event.preventDefault();
     // Handle goal submission logic
+    try{
+      const {data} = await createGoal({
+        variables: {
+          name: goal.name,
+          amountToSave: parseFloat(goal.amountToSave),
+          byDate: goal.byDate,
+          shortTerm: goal.shortTerm
+        }
+        
+      })
+      console.log(data)
+      setGoal({
+        name: '',
+        amountToSave: '',
+        byDate:'2023-06-07',
+        shortTerm: false
+      })
+    }catch{
+
+    }
   };
+
+  const handleGoalChange = (event) => {
+    const {name, value} = event.target
+    setGoal({
+      ...goal,
+      [name]: value
+    })
+    console.log(goal)
+    
+  }
+
 
   const styles = {
     backgroundColor: isDarkMode ? '#000000' : '#ffffff',
@@ -213,9 +251,27 @@ const handleIncomeChange = (event) =>{
         <button onClick={() => handleTabChange('goals')}>Goals</button>
         {selectedTab === 'goals' && (
           <form onSubmit={handleGoalSubmit}>
-            <input type="text" placeholder="Name" />
-            <input type="number" placeholder="Amount to Save" />
-            <input type="date" placeholder="Deadline" />
+            <input 
+            type="text"
+             placeholder="Name"
+             name= 'name'
+             value = {goal.name}
+             onChange= {handleGoalChange}
+              />
+            <input
+             type="number" 
+             placeholder="Amount to Save" 
+             name = 'amountToSave'
+             value = {goal.amountToSave}
+             onChange = {handleGoalChange}
+             />
+            <input 
+            type="date" 
+            placeholder="Deadline"
+            name= 'byDate'
+            value = {goal.byDate}
+            onChange= {handleGoalChange}
+             />
             <button type="submit">Submit</button>
           </form>
         )}
