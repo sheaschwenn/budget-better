@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
-import '../styles/Navbar.css'
-import DarkMode from '../components/DarkMode';
+
 
 
 
@@ -29,7 +28,7 @@ const Navbar = () => {
   return (
     <nav>
       <ul className="nav">
-      <DarkMode />
+     
         <li>
           <Link to="/dashboard">Dashboard</Link>
         </li>
