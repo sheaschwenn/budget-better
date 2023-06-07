@@ -1,4 +1,4 @@
-import React, { useEffect, useContext, useRef, useState } from 'react';
+import React, { useEffect, useContext, useRef } from 'react';
 import { ThemeContext } from '../utils/ThemeContext';
 import { GET_EXPENSES, GET_INCOME, GET_GOAL } from '../utils/queries';
 import { useQuery } from '@apollo/client';
@@ -127,7 +127,11 @@ const Dashboard = () => {
     }
 
     // Generate labels array by taking all unique month-year values and sorting them
-    const labels = [...new Set([...Object.keys(incomePerMonth), ...Object.keys(expensesPerMonth)])].sort();
+    const labels = [...new Set([...Object.keys(incomePerMonth), ...Object.keys(expensesPerMonth)])].sort((a, b) => {
+      const dateA = new Date(a);
+      const dateB = new Date(b);
+      return dateA - dateB;
+    });
 
     // Generate expensesDataset and incomeDataset arrays by getting total expenses and income for each month in labels
     const expensesDataset = labels.map(monthYear => expensesPerMonth[monthYear] || 0);

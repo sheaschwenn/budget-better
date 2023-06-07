@@ -8,19 +8,19 @@
         "category": "Rent",
         "amount": 1000,
         "recurring": true,
-        "createdOn": "2023-05-01"
+        "createdOn": "2023-04-01"
       },
       {
         "category": "Food",
         "amount": 500,
         "recurring": true,
-        "createdOn": "2023-05-01"
+        "createdOn": "2023-04-01"
       },
       {
         "category": "Car",
         "amount": 300,
         "recurring": true,
-        "createdOn": "2023-05-01"
+        "createdOn": "2023-04-01"
       },
       {
         "category": "Vacation",
@@ -39,16 +39,16 @@
       {
         "name": "Job",
         "passive": false,
-        "amount": 2000,
+        "amount": 4000,
         "recurring": true,
-        "createdOn": "2023-05-01"
+        "createdOn": "2023-04-01"
       },
       {
         "name": "Freelance",
         "passive": true,
         "amount": 1000,
         "recurring": true,
-        "createdOn": "2023-05-01"
+        "createdOn": "2023-04-01"
       },
       {
         "name": "Gift",
@@ -56,7 +56,15 @@
         "amount": 500,
         "recurring": false,
         "createdOn": "2023-05-01"
+      },
+      {
+        "name": "Bonus",
+        "passive": false,
+        "amount": 2000,
+        "recurring": false,
+        "createdOn": "2023-06-01"
       }
+      
     ],
     "settings": [
       {
