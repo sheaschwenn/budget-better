@@ -8,31 +8,31 @@
         "category": "Rent",
         "amount": 1000,
         "recurring": true,
-        "createdOn": "2023-04-01"
+        "createdOn": "2023-04-05"
       },
       {
         "category": "Food",
         "amount": 500,
         "recurring": true,
-        "createdOn": "2023-04-01"
+        "createdOn": "2023-04-05"
       },
       {
         "category": "Car",
         "amount": 300,
         "recurring": true,
-        "createdOn": "2023-04-01"
+        "createdOn": "2023-04-05"
       },
       {
         "category": "Vacation",
         "amount": 2000,
         "recurring": false,
-        "createdOn": "2023-05-01"
+        "createdOn": "2023-05-05"
       },
       {
         "category": "Bike",
         "amount": 1000,
         "recurring": false,
-        "createdOn": "2023-06-01"
+        "createdOn": "2023-06-05"
       }
     ],
     "income": [
@@ -41,28 +41,28 @@
         "passive": false,
         "amount": 4000,
         "recurring": true,
-        "createdOn": "2023-04-01"
+        "createdOn": "2023-04-05"
       },
       {
         "name": "Freelance",
         "passive": true,
         "amount": 1000,
         "recurring": true,
-        "createdOn": "2023-04-01"
+        "createdOn": "2023-04-05"
       },
       {
         "name": "Gift",
         "passive": false,
         "amount": 500,
         "recurring": false,
-        "createdOn": "2023-05-01"
+        "createdOn": "2023-05-05"
       },
       {
         "name": "Bonus",
         "passive": false,
         "amount": 2000,
         "recurring": false,
-        "createdOn": "2023-06-01"
+        "createdOn": "2023-06-05"
       }
       
     ],
@@ -83,7 +83,7 @@
       {
         "name": "Vacation",
         "amountToSave": 3000,
-        "byDate": "2024-06-01",
+        "byDate": "2024-06-05",
         "shortTerm": true
       }
     ]
