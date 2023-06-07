@@ -6,7 +6,6 @@ import { generateGroupedBarChart, generateLineChart } from '../utils/chart';
 
 const Dashboard = () => {
   const { isDarkMode } = useContext(ThemeContext);
-  const [chartVisible, setChartVisible] = useState(false); // new state variable
 
   const { loading: expensesLoading, error: expensesError, data: expensesData } = useQuery(GET_EXPENSES);
   const { loading: incomeLoading, error: incomeError, data: incomeData } = useQuery(GET_INCOME);
@@ -21,11 +20,12 @@ const Dashboard = () => {
   const totalIncome = incomeData?.me?.income?.reduce((total, income) => total + income.amount, 0);
   const totalGoals = goalsData?.me?.goal?.reduce((total, goal) => total + goal.amountToSave, 0);
 
-  const chartRef = useRef(null); // Create a ref to the canvas element
+  const barChartRef = useRef(null); // Create a ref to the bar chart canvas element
+  const lineChartRef = useRef(null); // Create a ref to the line graph canvas element
 
   useEffect(() => {
-    if (chartRef.current && chartVisible) { // only generate the chart if it's visible
-      const ctx = chartRef.current.getContext('2d');
+    if (barChartRef.current && expensesData && incomeData && goalsData) {
+      const ctx = barChartRef.current.getContext('2d');
       const labels = ['Your Financial Data'];
       const datasets = [
         {
@@ -46,16 +46,19 @@ const Dashboard = () => {
       ];
       generateGroupedBarChart(ctx, labels, datasets);
     }
-  }, [expensesData, incomeData, goalsData, totalExpenses, totalIncome, totalGoals, chartVisible]);
 
+    if (lineChartRef.current && incomeData && expensesData) {
+      generateLineChartButtonClicked();
+    }
+  }, [expensesData, incomeData, goalsData, totalExpenses, totalIncome, totalGoals]);
 
   const generateLineChartButtonClicked = () => {
-    if (!chartRef.current) return;
-  
+    if (!lineChartRef.current || !incomeData || !expensesData) return;
+
     // This will store total income and expenses per month
     let incomePerMonth = {};
     let expensesPerMonth = {};
-  
+
     // Iterate over all income
     for (let income of incomeData.me.income) {
       let monthYear = new Date(income.createdOn).toLocaleString('default', { month: 'long', year: 'numeric' });
@@ -72,7 +75,7 @@ const Dashboard = () => {
         }
       }
     }
-  
+
     // Do the same for expenses
     for (let expense of expensesData.me.expenses) {
       let monthYear = new Date(expense.createdOn).toLocaleString('default', { month: 'long', year: 'numeric' });
@@ -89,14 +92,14 @@ const Dashboard = () => {
         }
       }
     }
-  
+
     // Generate labels array by taking all unique month-year values and sorting them
     const labels = [...new Set([...Object.keys(incomePerMonth), ...Object.keys(expensesPerMonth)])].sort();
-  
+
     // Generate expensesDataset and incomeDataset arrays by getting total expenses and income for each month in labels
     const expensesDataset = labels.map(monthYear => expensesPerMonth[monthYear] || 0);
     const incomeDataset = labels.map(monthYear => incomePerMonth[monthYear] || 0);
-  
+
     const datasets = [
       {
         label: 'Expenses',
@@ -113,8 +116,8 @@ const Dashboard = () => {
         tension: 0.1
       }
     ];
-  
-    const ctx = chartRef.current.getContext('2d');
+
+    const ctx = lineChartRef.current.getContext('2d');
     generateLineChart(ctx, labels, datasets);
   };
 
@@ -126,12 +129,8 @@ const Dashboard = () => {
       <section className="dashboard-section">
         <h2>Welcome to Your Dashboard</h2>
         <div className="finance-info">
-          {/* Conditional rendering for chart */}
-          {chartVisible && <canvas ref={chartRef}></canvas>}
-          <button onClick={() => setChartVisible(!chartVisible)}>
-            {chartVisible ? 'Hide Chart' : 'Bar Chart'}
-          </button>
-          <button onClick={generateLineChartButtonClicked}>Line Chart</button>
+          <canvas ref={barChartRef}></canvas>
+          <canvas ref={lineChartRef}></canvas>
           <p>Total Expenses: ${totalExpenses || 0}</p>
           <p>Total Income: ${totalIncome || 0}</p>
           <p>Total Goals: ${totalGoals || 0}</p>
