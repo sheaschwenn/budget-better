@@ -83,10 +83,14 @@ const resolvers = {
                 return updatedIncome
             }
         },
-        deleteIncome: async(parent, args, context) =>{
-            if(context.user){
+        deleteIncome: async(parent, {incomeId}, context) =>{
+             if(context.user){
                 const deleteIncome = await Income.findOneAndDelete(
-                    {_id: args}
+                    {_id: incomeId}
+                )
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {income: income._id}}
                 )
                 return deleteIncome
                 }

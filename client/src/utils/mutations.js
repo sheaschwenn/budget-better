@@ -118,18 +118,17 @@ export const UPDATE_INCOME = gql`
 `;
 
 export const DELETE_INCOME = gql`
-  mutation deleteIncome($id: ID!) {
-    deleteIncome(_id: $id) {
+  mutation deleteIncome($incomeId: ID!) {
+    deleteIncome(incomeId: $incomeId) {
       _id
+      amount
+      createdOn
       name
-      email
-      income {
-        _id
-        name
-        passive
-        recurringOrSalary
-      }
+      recurringOrSalary
+      passive
     }
+  
+    
   }
 `;
 

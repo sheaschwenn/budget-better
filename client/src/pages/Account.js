@@ -4,6 +4,7 @@ import {
   CREATE_EXPENSE,
   CREATE_INCOME,
   CREATE_GOAL,
+  DELETE_INCOME
  } from '../utils/mutations';
 
  import {  GET_ME } from '../utils/queries';
@@ -19,8 +20,7 @@ const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
   const { isDarkMode } = useContext(ThemeContext);
 
-  // const{loadingExpenses, data} = useQuery(GET_EXPENSES)
-  // const getExpenses = data?.me.expenses || []
+ 
 
   const{loading, data} = useQuery(GET_ME)
   const getIncome = data?.me.income || []
@@ -197,6 +197,19 @@ const handleIncomeCheckboxChange = (event) => {
     }));
   };
 
+  const [deleteIncome] = useMutation(DELETE_INCOME, {refetchQueries: [{query: GET_ME}]})
+
+  const handleDelete = async(incomeId) =>{
+      try{
+          const {data} = await deleteIncome({
+              variables: {incomeId},
+              refetchQueries: [{query: GET_ME}]
+      })
+      }catch(err){
+          console.error(err);
+      }
+  }
+
 
   const styles = {
     backgroundColor: isDarkMode ? '#000000' : '#ffffff',
@@ -252,7 +265,7 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
-          <IncomeList incomes={getIncome}/>
+          <IncomeList incomes={getIncome} handleDelete={handleDelete}/>
         </div>
         )}
       </div>

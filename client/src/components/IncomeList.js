@@ -1,6 +1,9 @@
 import React from 'react'
+import { DELETE_INCOME } from '../utils/mutations'
+import { useMutation } from '@apollo/client'
 
-const IncomeList = ({incomes}) => {
+const IncomeList = ({incomes, handleDelete}) => {
+   
     if(!incomes.length){
         return <h4>No recorded income</h4>
     }
@@ -9,7 +12,9 @@ const IncomeList = ({incomes}) => {
         <div>
             {incomes && incomes.map((single) =>(
                 <div key= {single._id} >
-                    <h4>{single.name} ${single.amount} {single.createdOn}</h4>
+                    <h4>{single.name} ${single.amount} {single.createdOn}
+                    <button onClick={() => handleDelete(single._id)}>Delete</button>
+                    </h4>
                      </div>
             ))}
         </div>
