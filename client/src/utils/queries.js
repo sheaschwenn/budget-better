@@ -17,6 +17,7 @@ export const GET_ME = gql`
         _id
         name
         passive
+        amount
         recurring
       }
       settings {

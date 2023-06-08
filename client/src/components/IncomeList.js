@@ -1,8 +1,25 @@
 import React, {useState} from 'react'
 
 
-const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeCheckboxChange, handleChange}) => {
+const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeCheckboxChange, handleIncomeChange}) => {
     const [edit, setEdit] = useState({})
+
+    const [editIncome, setEditIncome] = useState({
+        name: '',
+        passive: false,
+        amount: '',
+        recurring: false
+      })
+
+      const handleIncomeEditChange = (event) =>{
+        const { name, value } = event.target
+        setEditIncome((prevEditIncome) => ({
+            ...prevEditIncome,
+            [name]: value,
+        }))
+        
+      }
+
     const handleClick = (incomeId) => {
         console.log("this is happening")
         setEdit((prevEdit) => ({
@@ -16,6 +33,7 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
             ...prevEdit,
             [incomeId]: false,
           }));
+         
     }
     if(!getIncome.length){
         return <h4>No recorded income</h4>
@@ -36,7 +54,7 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
                         placeholder="Name"
                         name= 'name'
                         value= {single.name}
-                        // onChange={handleIncomeChange} 
+                        onChange={handleIncomeEditChange} 
                         />
                         <label>
                           Passive:
@@ -51,8 +69,9 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
                         type="number" 
                         placeholder="Amount" 
                         name= 'amount'
-                        value= {single.amount}
-                        onChange= {handleChange}
+                        
+                        value= {editIncome.amount}
+                        onChange= {handleIncomeEditChange}
                         />
                         <label>
                           Recurring:
