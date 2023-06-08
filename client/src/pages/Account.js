@@ -241,22 +241,24 @@ const handleGoalDelete = async(goalId) => {
     console.error(err)
   }
 }
-const [editedIncome, setEditedIncome] = useState("")
+const [editIncome, setEditIncome] = useState("")
 const incomeEdit = (income) => {
-  setEditedIncome(income)
+  setEditIncome(income)
 
 }
 
 const [updateIncome] = useMutation(UPDATE_INCOME, {refetchQueries: [{query: GET_ME}]})
-const handleIncomeEdit =async (editedIncome) =>{
+
+const handleIncomeEdit =async (event) =>{
+  event.preventDefault()
   try{
     const{data} = await updateIncome({
         variables: {
-          incomeId: editedIncome._id,
-          name: editedIncome.name,
-          passive: editedIncome.passive,
-          amount: parseFloat(editedIncome.amount),
-          recurring: editedIncome.recurring
+          incomeId: editIncome._id,
+          name: editIncome.name,
+          passive: editIncome.passive,
+          amount: parseFloat(editIncome.amount),
+          recurring: editIncome.recurring
         },
         
     })
@@ -321,7 +323,7 @@ const handleIncomeEdit =async (editedIncome) =>{
             </label>
             <button type="submit">Submit</button>
           </form>
-          <IncomeList getIncome={getIncome} handleDelete={handleDelete} handleIncomeEdit= {handleIncomeEdit} handleIncomeCheckboxChange = {handleIncomeCheckboxChange} handleIncomeChange= {handleIncomeChange} incomeEdit = {incomeEdit} />
+          <IncomeList getIncome={getIncome} handleDelete={handleDelete} handleIncomeEdit= {handleIncomeEdit}  handleIncomeChange= {handleIncomeChange} incomeEdit = {incomeEdit} editIncome={editIncome} setEditIncome={setEditIncome}/>
         </div>
         )}
       </div>

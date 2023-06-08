@@ -1,15 +1,15 @@
 import React, {useState} from 'react'
 
 
-const IncomeList = ({getIncome, handleDelete, handleIncomeEdit}) => {
+const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, editIncome, setEditIncome}) => {
     const [edit, setEdit] = useState({})
 
-    const [editIncome, setEditIncome] = useState({
-        name: '',
-        passive: false,
-        amount: '',
-        recurring: false
-      })
+    // const [editIncome, setEditIncome] = useState({
+    //     name: '',
+    //     passive: false,
+    //     amount: '',
+    //     recurring: false
+    //   })
 
       const handleIncomeEditChange = (event) =>{
         const { name, value } = event.target
@@ -106,7 +106,7 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit}) => {
                             <option value="yearly">Yearly</option>
                           </select>
                         </label>
-                        <button type="submit"  onClick= {() => handleEditSubmit(single._id) }>Submit</button>
+                        <button type="submit"  onClick= {() => handleIncomeEdit(single._id) }>Submit</button>
                       </form>
                     )}
                      </div>
