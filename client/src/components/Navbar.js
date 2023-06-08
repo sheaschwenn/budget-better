@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import Auth from '../utils/auth';
-
-
-
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import Auth from "../utils/auth";
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
- 
-
 
   const toggleDropdown = () => {
     setDropdownOpen(!dropdownOpen);
@@ -23,35 +18,39 @@ const Navbar = () => {
     Auth.logout();
   };
 
-
-
   return (
     <nav>
       <ul className="nav">
-     
         <li>
           <Link to="/dashboard">Dashboard</Link>
         </li>
-        <li className={`dropdown ${dropdownOpen ? 'open' : ''}`}>
+        <li className={`dropdown ${dropdownOpen ? "open" : ""}`}>
           <div className="dropdown-toggle" onClick={toggleDropdown}>
             Menu
           </div>
           {dropdownOpen && (
             <ul className="dropdown-menu">
               <li>
-                <Link to="/settings" onClick={closeDropdown}>Settings</Link>
+                <Link to="/settings" onClick={closeDropdown}>
+                  Settings
+                </Link>
               </li>
               <li>
-                <Link to="/help" onClick={closeDropdown}>Help</Link>
+                <Link to="/help" onClick={closeDropdown}>
+                  Help
+                </Link>
               </li>
               <li>
-                <Link to="/faq" onClick={closeDropdown}>FAQ</Link>
+                <Link to="/faq" onClick={closeDropdown}>
+                  FAQ
+                </Link>
               </li>
               <li>
-                <Link to="/" onClick={logout}>Logout</Link>
+                <Link to="/" onClick={logout}>
+                  Logout
+                </Link>
               </li>
             </ul>
-            
           )}
         </li>
         <li>
