@@ -1,7 +1,7 @@
 import Auth from './utils/auth';
 import './App.css';
 
-import React from 'react';
+import React, { useContext } from 'react';
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
 import Navbar from './components/Navbar';
