@@ -7,32 +7,64 @@
       {
         "category": "Rent",
         "amount": 1000,
-        "recurring": true
+        "recurring": true,
+        "createdOn": "2023-04-05"
       },
       {
         "category": "Food",
         "amount": 500,
-        "recurring": true
+        "recurring": true,
+        "createdOn": "2023-04-05"
       },
       {
         "category": "Car",
         "amount": 300,
-        "recurring": true
+        "recurring": true,
+        "createdOn": "2023-04-05"
+      },
+      {
+        "category": "Vacation",
+        "amount": 2000,
+        "recurring": false,
+        "createdOn": "2023-05-05"
+      },
+      {
+        "category": "Bike",
+        "amount": 1000,
+        "recurring": false,
+        "createdOn": "2023-06-05"
       }
     ],
     "income": [
       {
         "name": "Job",
         "passive": false,
-        "amount": 2000,
-        "recurringOrSalary": true
+        "amount": 4000,
+        "recurring": true,
+        "createdOn": "2023-04-05"
       },
       {
         "name": "Freelance",
         "passive": true,
         "amount": 1000,
-        "recurringOrSalary": true
+        "recurring": true,
+        "createdOn": "2023-04-05"
+      },
+      {
+        "name": "Gift",
+        "passive": false,
+        "amount": 500,
+        "recurring": false,
+        "createdOn": "2023-05-05"
+      },
+      {
+        "name": "Bonus",
+        "passive": false,
+        "amount": 2000,
+        "recurring": false,
+        "createdOn": "2023-06-05"
       }
+      
     ],
     "settings": [
       {
@@ -41,17 +73,17 @@
         "language": "English"
       }
     ],
-    "goals": [
+    "goal": [
       {
         "name": "Car",
-        "amountToSave": 5000,
-        "byDate": "2024-01-01",
+        "amountToSave": 50000,
+        "byDate": "2025-01-01",
         "shortTerm": false
       },
       {
         "name": "Vacation",
         "amountToSave": 3000,
-        "byDate": "2024-06-01",
+        "byDate": "2024-06-05",
         "shortTerm": true
       }
     ]

@@ -13,7 +13,7 @@ const incomeSchema = new mongoose.Schema({
     type: Number,
     required: true
   },
-  recurringOrSalary: {
+  recurring: {
     type: Boolean,
     default: false
   },

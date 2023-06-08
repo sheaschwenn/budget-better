@@ -28,7 +28,7 @@ type Income{
     name: String
     passive: Boolean
     amount: Int
-    recurringOrSalary: Boolean
+    recurring: Boolean
     createdOn: Date
 }
 

@@ -5,8 +5,16 @@ const { signToken } = require('../utils/auth');
 const resolvers = {
     Query: {
         me: async (parent, args, context) => {
-            return User.findOne({_id: context.user._id}).populate(['expenses', 'income','settings', 'goal'])
-        }
+            if (context.user) {
+              const user = await User.findOne({ _id: context.user._id })
+                .populate('goal')
+                .populate('expenses')
+                .populate('income');
+            //   console.log(user);
+              return user;
+            }
+            throw new AuthenticationError('You need to be logged in!');
+          },
     },
 
     Mutation: {
@@ -29,6 +37,7 @@ const resolvers = {
             return{ token, user }
 
         },
+
         createExpense: async(parent, { category, amount, recurring }, context) =>{
           if(context.user){
             const expense = await Expense.create({ category, amount, recurring }) 
@@ -64,9 +73,9 @@ const resolvers = {
                 return deleteExpense
                 }
             },
-        createIncome:async(parent, { name, passive, amount, recurringOrSalary}, context) =>{
+        createIncome:async(parent, { name, passive, amount, recurring}, context) =>{
             if(context.user){
-                const income = await Income.create( {name, passive, amount, recurringOrSalary})
+                const income = await Income.create( {name, passive, amount, recurring})
              await User.findOneAndUpdate(
                  {_id: context.user._id},
                  {$addToSet: {income: income._id}},

@@ -1,15 +1,15 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Auth from '../utils/auth';
 import '../styles/Navbar.css'
 import DarkMode from '../components/DarkMode';
-import { ThemeContext } from '../utils/ThemeContext';
+
 
 
 
 const Navbar = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
-  const { isDarkMode } = useContext(ThemeContext);
+ 
 
 
   const toggleDropdown = () => {
@@ -25,13 +25,10 @@ const Navbar = () => {
     Auth.logout();
   };
 
-  const styles = {
-    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
-    color: isDarkMode ? '#ffffff' : '#000000',
-  };
+
 
   return (
-    <nav style={styles}>
+    <nav>
       <ul className="nav">
       <DarkMode />
         <li>
@@ -56,6 +53,7 @@ const Navbar = () => {
                 <Link to="/" onClick={logout}>Logout</Link>
               </li>
             </ul>
+            
           )}
         </li>
         <li>
@@ -63,6 +61,27 @@ const Navbar = () => {
         </li>
         <li>
           <Link to="/cashbot">Cashbot</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
+        <li>
+          <Link to="/signup">Signup</Link>
+        </li>
+        <li>
+          <Link to="/contact">Contact</Link>
+        </li>
+        <li>
+          <Link to="/demo">Demo</Link>
+        </li>
+        <li>
+          <Link to="/features">Features</Link>
+        </li>
+        <li>
+          <Link to="/ourmission">Our Mission</Link>
         </li>
       </ul>
     </nav>

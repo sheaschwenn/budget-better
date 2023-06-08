@@ -1,8 +1,8 @@
-import React, { useState, useContext } from 'react';
-import { ThemeContext } from '../utils/ThemeContext';
+import React, { useState } from 'react';
+
 
 const Settings = () => {
-  const { isDarkMode } = useContext(ThemeContext);
+
   const [selectedCurrency, setSelectedCurrency] = useState('USD');
   const [selectedLanguage, setSelectedLanguage] = useState('English');
 
@@ -14,13 +14,10 @@ const Settings = () => {
     setSelectedLanguage(event.target.value);
   };
 
-  const styles = {
-    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
-    color: isDarkMode ? '#ffffff' : '#000000',
-  };
+
 
   return (
-    <div style={styles}>
+    <div>
       <h2>Settings</h2>
       <div>
         <h3>Currency</h3>
