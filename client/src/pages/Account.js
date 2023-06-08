@@ -244,6 +244,7 @@ const handleGoalDelete = async(goalId) => {
   }
 }
 const [editIncome, setEditIncome] = useState("")
+const [edit, setEdit] = useState({})
 const incomeEdit = (income) => {
   setEditIncome(income)
 
@@ -265,6 +266,7 @@ const handleIncomeEdit = async(event, incomeId) =>{
         },
         
     })
+    setEdit(false)
   
   }catch(err){
     console.error(err)
@@ -326,7 +328,17 @@ const handleIncomeEdit = async(event, incomeId) =>{
             </label>
             <button type="submit">Submit</button>
           </form>
-          <IncomeList getIncome={getIncome} handleDelete={handleDelete} handleIncomeEdit= {handleIncomeEdit}  handleIncomeChange= {handleIncomeChange} incomeEdit = {incomeEdit} editIncome={editIncome} setEditIncome={setEditIncome}/>
+          <IncomeList 
+          getIncome={getIncome} 
+          handleDelete={handleDelete} 
+          handleIncomeEdit= {handleIncomeEdit}  
+          handleIncomeChange= {handleIncomeChange} 
+          incomeEdit = {incomeEdit} 
+          editIncome={editIncome} 
+          setEditIncome={setEditIncome}
+          edit= {edit}
+          setEdit= {setEdit}
+          />
         </div>
         )}
       </div>

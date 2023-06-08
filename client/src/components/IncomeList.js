@@ -1,8 +1,8 @@
 import React, {useState} from 'react'
 
 
-const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, editIncome, setEditIncome}) => {
-    const [edit, setEdit] = useState({})
+const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, editIncome, setEditIncome, edit, setEdit}) => {
+    // const [edit, setEdit] = useState({})
 
 
       const handleIncomeEditChange = (event) =>{
@@ -37,6 +37,9 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, editIncome, setE
             [incomeId]: !prevEdit[incomeId],
           }));
     }
+    const submitClick = () => {
+        setEdit(false)
+    }
 
     const handleEditSubmit = (incomeId) =>{
         setEdit((prevEdit) => ({
@@ -58,7 +61,7 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, editIncome, setE
                       <button onClick={() =>handleClick(single._id, { incomeId: single._id, name: single.name,
         passive: single.passive,
         amount: single.amount,
-        recurring: single.recurring}) }>Edit</button> 
+        recurring: single.recurring})  }>Edit</button> 
                     </h4>
                     {edit[single._id] && (
                          <form onSubmit={(event) => handleIncomeEdit(event, single._id)}>
