@@ -1,6 +1,6 @@
 
-import "./App.css";
-import React from "react";
+import React, { useContext } from "react";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -18,8 +18,10 @@ import Demo from "./pages/Demo";
 import Testimonials from "./pages/Testamonials";
 import Features from "./pages/Features";
 // import HeroPage from "./pages/HeroPage";
-// import OurMission from "./pages/OurMission";
-// import PageNotFound from "./pages/PageNotFound";
+
+import OurMission from "./pages/OurMission";
+import PageNotFound from "./pages/PageNotFound";
+
 import {
   ApolloProvider,
   InMemoryCache,
@@ -28,8 +30,10 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
+
 import ProtectedRoute from './components/ProtectedRoute';
 import { ThemeContext } from './utils/ThemeContext';
+
 
 
 
@@ -74,14 +78,15 @@ function App() {
   const { isDarkMode } = useContext(ThemeContext); // Retrieve the isDarkMode value from the ThemeContext
 
   const styles = {
-    backgroundColor: isDarkMode ? '#121212' : '#ffffff',
-    color: isDarkMode ? '#ffffff' : '#121212',
+    backgroundColor: isDarkMode ? "#121212" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#121212",
   };
 
   return (
     <ApolloProvider client={client}>
       <Router>
         <div style={styles}>
+
         <h1>Budget Better</h1>
         <Navbar />
         <Routes>
@@ -103,6 +108,7 @@ function App() {
 </Routes>
 
         <Footer />
+
         </div>
       </Router>
     </ApolloProvider>

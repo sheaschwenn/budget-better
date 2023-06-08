@@ -1,10 +1,15 @@
 
+
 import React, { useState } from "react";
 
 const Cashbot = () => {
   const [message, setMessage] = useState("");
   const [history, setHistory] = useState([]);
 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const input = message;
 
   const handleUserInput = (e) => {
     setMessage(e.target.value);
@@ -28,6 +33,7 @@ const Cashbot = () => {
 
     const responseData = await response.json();
     const responseMessage = responseData.result[0].message.content;
+
 
     setHistory([...history, { prompt: input, response: responseMessage }]);
     setMessage("");
