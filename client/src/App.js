@@ -12,7 +12,7 @@ import Cashbot from "./pages/Cashbot";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Demo from "./pages/Demo";
-import Testimonials from "./pages/Testamonials";
+import Testimonials from "./pages/Testimonials";
 import Features from "./pages/Features";
 // import HeroPage from "./pages/HeroPage";
 import OurMission from "./pages/OurMission";
