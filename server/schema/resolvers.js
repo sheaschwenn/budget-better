@@ -86,11 +86,11 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
 
         },
-        updateIncome: async(parent, args, context) =>{
+        updateIncome: async(parent, {incomeId, name, passive, amount, recurring}, context) =>{
             if(context.user){
                 const updatedIncome = await Income.findOneAndUpdate(
-                    {_id: args._id},
-                    {$set: args},
+                    {_id: incomeId},
+                    {$set: {name: name, passive: passive, amount: amount, recurring: recurring }},
                     {runValidators: true, new: true}
                 )
                 return updatedIncome

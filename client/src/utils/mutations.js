@@ -100,15 +100,13 @@ export const CREATE_INCOME = gql`
 export const UPDATE_INCOME = gql`
   mutation updateIncome($id: ID!, $name: String, $passive: Boolean, $recurring: Boolean) {
     updateIncome(_id: $id, name: $name, passive: $passive, recurring: $recurring) {
-      _id
-      name
-      email
-      income {
+    
         _id
         name
         passive
         recurring
-      }
+        amount
+        createdOn
     }
   }
 `;
