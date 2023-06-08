@@ -1,27 +1,35 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import {useMutation, useQuery} from '@apollo/client'
 import { 
   CREATE_EXPENSE,
   CREATE_INCOME,
   CREATE_GOAL,
+  DELETE_INCOME,
+  DELETE_EXPENSE,
+  DELETE_GOAL,
+  UPDATE_INCOME
  } from '../utils/mutations';
-  import {
-    GET_EXPENSES,
-    GET_INCOME,
-    GET_GOAL } from '../utils/queries';
+
+ import {  GET_ME } from '../utils/queries';
  import Auth from '../utils/auth'
+ import { ThemeContext} from '../utils/ThemeContext'
 
 
-import IncomeList from '../components/IncomeList'
+ import IncomeList from '../components/IncomeList'
+ import ExpensesList from '../components/ExpesnesList'
+ import GoalList from '../components/GoalList';
 
 const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
+  const { isDarkMode } = useContext(ThemeContext);
 
-
-  const{loading, data} = useQuery(GET_EXPENSES)
-  const getExpenses = data?.me.expenses || []
 
  
+
+  const{loading, data} = useQuery(GET_ME)
+  const getIncome = data?.me.income || []
+  const getExpenses = data?.me.expenses || []
+  const getGoals = data?.me.goal || []
 
   const [expenses, setExpenses] = useState({   
   category: '' ,
@@ -43,23 +51,19 @@ const Account = () => {
   })
 
   // need to fix this 
-const [createExpense] = useMutation(CREATE_EXPENSE, {
-  refetchQueries: [{ query: GET_EXPENSES }, { query: GET_INCOME }, { query: GET_GOAL }],
-  awaitRefetchQueries: true
-});
-
-const [createIncome] = useMutation(CREATE_INCOME, {
-  refetchQueries: [{ query: GET_EXPENSES }, { query: GET_INCOME }, { query: GET_GOAL }],
-  awaitRefetchQueries: true
-});
-
-const [createGoal] = useMutation(CREATE_GOAL, {
-  refetchQueries: [{ query: GET_EXPENSES }, { query: GET_INCOME }, { query: GET_GOAL }],
-  awaitRefetchQueries: true
-});
+  const [createExpense] = useMutation(CREATE_EXPENSE, {
+    refetchQueries: [{query: GET_ME}]
+  })
+  const [createIncome] = useMutation(CREATE_INCOME, {
+    refetchQueries: [{query: GET_ME}]
+  })
+  const [createGoal] = useMutation(CREATE_GOAL, {
+    refetchQueries: [{query: GET_ME}]
+  })
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
+    console.log(data)
   };
 
   const handleIncomeSubmit = async(event) => {
@@ -75,6 +79,10 @@ const [createGoal] = useMutation(CREATE_GOAL, {
         },
       })
       console.log(data)
+      console.log(getIncome)
+
+
+  
       setIncome({
         name: '',
         passive: false,
@@ -135,7 +143,6 @@ const handleIncomeChange = (event) =>{
     ...income,
     [name]: value,
   });
-  console.log(income)
   
 }
 const handleIncomeCheckboxChange = (event) => {
@@ -167,7 +174,6 @@ const handleIncomeCheckboxChange = (event) => {
         }
         
       })
-      console.log(data)
       setGoal({
         name: '',
         amountToSave: '',
@@ -197,7 +203,74 @@ const handleIncomeCheckboxChange = (event) => {
     }));
   };
 
+  const [deleteIncome] = useMutation(DELETE_INCOME, {refetchQueries: [{query: GET_ME}]})
 
+  const handleDelete = async(incomeId) =>{
+      try{
+          const {data} = await deleteIncome({
+              variables: {incomeId},
+              // refetchQueries: [{query: GET_ME}]
+      })
+      console.log(getIncome)
+
+      }catch(err){
+          console.error(err);
+      }
+  }
+
+
+const [deleteExpense] = useMutation(DELETE_EXPENSE, {refetchQueries: [{query: GET_ME}]})
+
+const handleExpenseDelete = async(expenseId) => {
+  try{
+    const{data} = await deleteExpense({
+      variables: {expenseId}
+    })
+  }catch(err){
+    console.error(err)
+  }
+}
+
+const [deleteGoal] = useMutation(DELETE_GOAL, {refetchQueries: [{query: GET_ME}]})
+const handleGoalDelete = async(goalId) => {
+  try{
+    const{data} = await deleteGoal({
+      variables: {goalId}
+    })
+  }catch(err){
+    console.error(err)
+  }
+}
+const [editedIncome, setEditedIncome] = useState("")
+const incomeEdit = (income) => {
+  setEditedIncome(income)
+
+}
+
+const [updateIncome] = useMutation(UPDATE_INCOME, {refetchQueries: [{query: GET_ME}]})
+const handleIncomeEdit =async (editedIncome) =>{
+  try{
+    const{data} = await updateIncome({
+        variables: {
+          incomeId: editedIncome._id,
+          name: editedIncome.name,
+          passive: editedIncome.passive,
+          amount: parseFloat(editedIncome.amount),
+          recurring: editedIncome.recurring
+        },
+        
+    })
+  
+  }catch(err){
+    console.error(err)
+  }
+
+}
+
+  const styles = {
+    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
+    color: isDarkMode ? '#ffffff' : '#000000',
+  };
 
   return (
     <div >
@@ -207,7 +280,6 @@ const handleIncomeCheckboxChange = (event) => {
         <button onClick={() => handleTabChange('income')}>Income</button>
         {selectedTab === 'income' && (
           <div>
-          <IncomeList incomes={getExpenses}/>
           <form onSubmit={handleIncomeSubmit}>
             <input 
             type="text" 
@@ -249,6 +321,7 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
+          <IncomeList getIncome={getIncome} handleDelete={handleDelete} handleIncomeEdit= {handleIncomeEdit} handleIncomeCheckboxChange = {handleIncomeCheckboxChange} handleIncomeChange= {handleIncomeChange} incomeEdit = {incomeEdit} />
         </div>
         )}
       </div>
@@ -256,6 +329,7 @@ const handleIncomeCheckboxChange = (event) => {
       <div>
         <button onClick={() => handleTabChange('expenses')}>Expenses</button>
         {selectedTab === 'expenses' && (
+          <div>
           <form onSubmit={handleExpenseSubmit}>
             <input 
             name= 'category'
@@ -289,13 +363,15 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
-          
+          <ExpensesList expensesList= {getExpenses} handleExpenseDelete={handleExpenseDelete}/>
+          </div>
         )}
       </div>
 
       <div>
         <button onClick={() => handleTabChange('goals')}>Goals</button>
         {selectedTab === 'goals' && (
+          <div>
           <form onSubmit={handleGoalSubmit}>
             <input 
             type="text"
@@ -330,6 +406,8 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
+          <GoalList goalList= {getGoals} handleGoalDelete= {handleGoalDelete}/>
+          </div>
         )}
       </div>
     </div>
