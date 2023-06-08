@@ -19,6 +19,21 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
         }))
         
       }
+      const handleCheckboxChange = (event) => {
+        const { checked } = event.target;
+        if(event.target.name === 'passive'){
+        setEditIncome((prevState) => ({
+          ...prevState,
+          passive: checked,
+        })
+        );}
+        else if(event.target.name === 'recurring'){
+          setEditIncome((prevState) => ({
+            ...prevState,
+            recurring: checked,
+          }))
+        }
+      };
 
     const handleClick = (incomeId) => {
         console.log("this is happening")
@@ -45,7 +60,10 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
                 <div key= {single._id} >
                     <h4>{single.name} ${single.amount} {single.createdOn}
                     <button onClick={() => handleDelete(single._id) }>Delete</button>
-                      <button onClick={() =>handleClick(single._id) }>Edit</button> 
+                      <button onClick={() =>handleClick(single._id, setEditIncome({  name: single.name,
+        passive: single.passive,
+        amount: single.amount,
+        recurring: single.recurring})) }>Edit</button> 
                     </h4>
                     {edit[single._id] && (
                         <form onSubmit={handleIncomeEdit}>
@@ -53,7 +71,7 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
                         type="text" 
                         placeholder="Name"
                         name= 'name'
-                        value= {single.name}
+                        value= {editIncome.name}
                         onChange={handleIncomeEditChange} 
                         />
                         <label>
@@ -61,15 +79,14 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
                           <input 
                           type="checkbox" 
                           name= 'passive'
-                          checked= {single.passive}
-                          onChange= {handleIncomeCheckboxChange}
+                          checked= {editIncome.passive}
+                          onChange= {handleCheckboxChange}
                           />
                         </label>
                         <input 
                         type="number" 
                         placeholder="Amount" 
                         name= 'amount'
-                        
                         value= {editIncome.amount}
                         onChange= {handleIncomeEditChange}
                         />
@@ -78,8 +95,8 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
                           <input 
                           type="checkbox" 
                           name= 'recurring'
-                          checked= {single.recurring}
-                          onChange= {handleIncomeCheckboxChange}
+                          checked= {editIncome.recurring}
+                          onChange= {handleCheckboxChange}
                           />
                         </label>
                         <label>
