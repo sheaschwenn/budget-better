@@ -1,27 +1,32 @@
-import Auth from './utils/auth';
-import './App.css';
-import React, { useContext } from 'react';
-import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 
-import Navbar from './components/Navbar';
-import Footer from './components/Footer';
-import Home from './pages/Home';
-import Login from './pages/Login';
-import Signup from './pages/Signup';
-import Dashboard from './pages/Dashboard';
-import Settings from './pages/Settings';
-import Account from './pages/Account';
-import Cashbot from './pages/Cashbot';
+import "./App.css";
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
+import Account from "./pages/Account";
+import Cashbot from "./pages/Cashbot";
+
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Demo from "./pages/Demo";
 import Testimonials from "./pages/Testamonials";
 import Features from "./pages/Features";
 // import HeroPage from "./pages/HeroPage";
-import OurMission from "./pages/OurMission";
-import PageNotFound from "./pages/PageNotFound";
-import { ApolloProvider, InMemoryCache, ApolloClient, createHttpLink } from '@apollo/client';
-import { setContext } from '@apollo/client/link/context';
+// import OurMission from "./pages/OurMission";
+// import PageNotFound from "./pages/PageNotFound";
+import {
+  ApolloProvider,
+  InMemoryCache,
+  ApolloClient,
+  createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
 
 import ProtectedRoute from './components/ProtectedRoute';
 import { ThemeContext } from './utils/ThemeContext';
@@ -30,18 +35,18 @@ import { ThemeContext } from './utils/ThemeContext';
 
 // Create an HTTP link to the GraphQL server
 const httpLink = createHttpLink({
-  uri: '/graphql',
+  uri: "/graphql",
 });
 
 // Create an auth link to include the authentication token in the headers
 const authLink = setContext((_, { headers }) => {
   // Get the authentication token from local storage if it exists
-  const token = localStorage.getItem('id_token');
+  const token = localStorage.getItem("id_token");
   // Return the headers to the context so httpLink can read them
   return {
     headers: {
       ...headers,
-      authorization: token ? `Bearer ${token}` : '',
+      authorization: token ? `Bearer ${token}` : "",
     },
   };
 });
@@ -80,6 +85,7 @@ function App() {
         <h1>Budget Better</h1>
         <Navbar />
         <Routes>
+
     <Route path="/" element={Auth.loggedIn() ? <Home /> : <Navigate to="/login" />} />
     <Route path="/dashboard" element={Auth.loggedIn() ? <Dashboard /> : <Navigate to="/login" />} />
     <Route path="/account" element={Auth.loggedIn() ? <Account /> : <Navigate to="/login" />} />
@@ -95,6 +101,7 @@ function App() {
     <Route path="/ourmission" element={Auth.loggedIn() ? <OurMission /> : <Navigate to="/login" />} />
     <Route path="*" element={<PageNotFound />} />
 </Routes>
+
         <Footer />
         </div>
       </Router>
