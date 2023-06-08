@@ -1,10 +1,8 @@
-import React, { useState } from 'react';
-
+import React, { useState } from "react";
 
 const Settings = () => {
-
-  const [selectedCurrency, setSelectedCurrency] = useState('USD');
-  const [selectedLanguage, setSelectedLanguage] = useState('English');
+  const [selectedCurrency, setSelectedCurrency] = useState("USD");
+  const [selectedLanguage, setSelectedLanguage] = useState("English");
 
   const handleCurrencyChange = (event) => {
     setSelectedCurrency(event.target.value);
@@ -14,32 +12,36 @@ const Settings = () => {
     setSelectedLanguage(event.target.value);
   };
 
-
-
   return (
-    <div>
-      <h2>Settings</h2>
-      <div>
-        <h3>Currency</h3>
-        <select value={selectedCurrency} onChange={handleCurrencyChange}>
+    <div className="bg-white shadow p-6 rounded-lg">
+      <h2 className="text-xl font-bold mb-4">Settings</h2>
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold mb-2">Currency</h3>
+        <select
+          className="border border-gray-300 p-2 rounded"
+          value={selectedCurrency}
+          onChange={handleCurrencyChange}
+        >
           <option value="USD">USD</option>
           <option value="EUR">EUR</option>
           <option value="GBP">GBP</option>
         </select>
       </div>
 
-      <div>
-        <h3>Language</h3>
-        <select value={selectedLanguage} onChange={handleLanguageChange}>
+      <div className="mb-4">
+        <h3 className="text-lg font-semibold mb-2">Language</h3>
+        <select
+          className="border border-gray-300 p-2 rounded"
+          value={selectedLanguage}
+          onChange={handleLanguageChange}
+        >
           <option value="English">English</option>
           <option value="Spanish">Spanish</option>
           <option value="French">French</option>
         </select>
       </div>
-
     </div>
   );
 };
-
 
 export default Settings;
