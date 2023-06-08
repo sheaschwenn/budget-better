@@ -227,6 +227,17 @@ const handleExpenseDelete = async(expenseId) => {
     console.error(err)
   }
 }
+
+const [deleteGoal] = useMutation(DELETE_GOAL, {refetchQueries: [{query: GET_ME}]})
+const handleGoalDelete = async(goalId) => {
+  try{
+    const{data} = await deleteGoal({
+      variables: {goalId}
+    })
+  }catch(err){
+    console.error(err)
+  }
+}
   const styles = {
     backgroundColor: isDarkMode ? '#000000' : '#ffffff',
     color: isDarkMode ? '#ffffff' : '#000000',
@@ -366,7 +377,7 @@ const handleExpenseDelete = async(expenseId) => {
             </label>
             <button type="submit">Submit</button>
           </form>
-          <GoalList goalList= {getGoals}/>
+          <GoalList goalList= {getGoals} handleGoalDelete= {handleGoalDelete}/>
           </div>
         )}
       </div>

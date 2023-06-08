@@ -121,10 +121,10 @@ const resolvers = {
                 return updatedGoal
             }
         },
-        deleteGoal: async(parent, args, context) => {
+        deleteGoal: async(parent, {goalId}, context) => {
             if(context.user){
                 const deleteGoal = await Goal.findOneAndDelete(
-                    {_id: args}
+                    {_id: goalId}
                 )
                 await User.findOneAndUpdate(
                     {_id: context.user._id},
