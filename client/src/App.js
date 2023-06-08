@@ -68,7 +68,7 @@ function App() {
         <h1>Budget Better</h1>
         <Navbar />
         <Routes>
-    <Route path="/" element={<Home />} />
+    <Route path="/" element={Auth.loggedIn() ? <Home /> : <Navigate to="/login" />} />
     <Route path="/dashboard" element={Auth.loggedIn() ? <Dashboard /> : <Navigate to="/login" />} />
     <Route path="/account" element={Auth.loggedIn() ? <Account /> : <Navigate to="/login" />} />
     <Route path="/login" element={<Login />} />
