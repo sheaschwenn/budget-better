@@ -62,7 +62,6 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div style={styles}>
-          <h1>Budget Better</h1>
           <Navbar />
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />

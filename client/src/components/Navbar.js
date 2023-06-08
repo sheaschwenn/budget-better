@@ -1,7 +1,7 @@
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { useLocation } from "react-router-dom";
-
+import logo from "./BudgetBetterLogo.png";
 import {
   ArrowPathIcon,
   Bars3Icon,
@@ -75,7 +75,7 @@ export default function Navbar() {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Budget Better</span>
-            <img className="h-8 w-auto" src=" " alt="" />
+            <img className="h-8 w-auto" src={logo} alt="Budget Better Logo" />
           </a>
         </div>
         <div className="flex lg:hidden">
