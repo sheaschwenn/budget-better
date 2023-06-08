@@ -1,4 +1,6 @@
+
 import React, { useContext } from "react";
+
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -9,14 +11,17 @@ import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import Account from "./pages/Account";
 import Cashbot from "./pages/Cashbot";
+
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Demo from "./pages/Demo";
 import Testimonials from "./pages/Testamonials";
 import Features from "./pages/Features";
 // import HeroPage from "./pages/HeroPage";
+
 import OurMission from "./pages/OurMission";
 import PageNotFound from "./pages/PageNotFound";
+
 import {
   ApolloProvider,
   InMemoryCache,
@@ -24,8 +29,13 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { ThemeContext } from "./utils/ThemeContext";
-import "./style.css";
+
+
+import ProtectedRoute from './components/ProtectedRoute';
+import { ThemeContext } from './utils/ThemeContext';
+
+
+
 
 // Create an HTTP link to the GraphQL server
 const httpLink = createHttpLink({
@@ -45,10 +55,23 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const cache = new InMemoryCache({
+  dataIdFromObject: object => {
+    switch (object.__typename) {
+      case 'User': return `User:${object._id}`;
+      case 'Expense': return `Expense:${object._id}`;
+      case 'Income': return `Income:${object._id}`;
+      case 'Setting': return `Setting:${object._id}`;
+      case 'Goal': return `Goal:${object._id}`;
+      default: return object._id || object.id || null;
+    }
+  },
+});
+
 // Create an Apollo Client instance with the auth link and the in-memory cache
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache: new InMemoryCache(),
+  cache, 
 });
 
 function App() {
@@ -63,26 +86,29 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div style={styles}>
-          <h1>Budget Better</h1>
-          <Navbar />
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/account" element={<Account />} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/cashbot" element={<Cashbot />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/demo" element={<Demo />} />
-            <Route path="/testimonials" element={<Testimonials />} />
-            <Route path="/features" element={<Features />} />
-            {/* <Route path="/heropage" element={<HeroPage />} /> */}
-            <Route path="/ourmission" element={<OurMission />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-          <Footer />
+
+        <h1>Budget Better</h1>
+        <Navbar />
+        <Routes>
+
+    <Route path="/" element={Auth.loggedIn() ? <Home /> : <Navigate to="/login" />} />
+    <Route path="/dashboard" element={Auth.loggedIn() ? <Dashboard /> : <Navigate to="/login" />} />
+    <Route path="/account" element={Auth.loggedIn() ? <Account /> : <Navigate to="/login" />} />
+    <Route path="/login" element={<Login />} />
+    <Route path="/signup" element={<Signup />} />
+    <Route path="/settings" element={Auth.loggedIn() ? <Settings /> : <Navigate to="/login" />} />
+    <Route path="/cashbot" element={Auth.loggedIn() ? <Cashbot /> : <Navigate to="/login" />} />
+    <Route path="/about" element={<About />} />
+    <Route path="/contact" element={<Contact />} />
+    <Route path="/demo" element={<Demo />} />
+    <Route path="/testimonials" element={<Testimonials />} />
+    <Route path="/features" element={<Features />} />
+    <Route path="/ourmission" element={Auth.loggedIn() ? <OurMission /> : <Navigate to="/login" />} />
+    <Route path="*" element={<PageNotFound />} />
+</Routes>
+
+        <Footer />
+
         </div>
       </Router>
     </ApolloProvider>

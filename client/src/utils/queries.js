@@ -17,7 +17,7 @@ export const GET_ME = gql`
         _id
         name
         passive
-        recurringOrSalary
+        recurring
       }
       settings {
         _id
@@ -52,7 +52,7 @@ export const GET_USERS = gql`
         _id
         Name
         Passive
-        RecurringOrSalary
+        Recurring
       }
       Settings {
         _id
@@ -95,7 +95,22 @@ export const GET_INCOME = gql`
       passive
       passive
       name
-      recurringOrSalary
+      recurring
+      }
+    }
+  }
+`;
+
+export const GET_GOAL = gql`
+  query getGoal {
+    me {
+      goal {
+        _id
+        name
+        amountToSave
+        byDate
+        shortTerm
+        createdOn
       }
     }
   }
