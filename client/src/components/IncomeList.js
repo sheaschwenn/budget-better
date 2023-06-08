@@ -14,7 +14,7 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
                 <div key= {single._id} >
                     <h4>{single.name} ${single.amount} {single.createdOn}
                     <button onClick={() => handleDelete(single._id) }>Delete</button>
-                      <button onClick={() => handleIncomeEdit(single._id) }>Edit</button>
+                      {/* <button onClick={() => handleIncomeEdit(single._id) }>Edit</button> */}
                     </h4>
                      </div>
             ))}
