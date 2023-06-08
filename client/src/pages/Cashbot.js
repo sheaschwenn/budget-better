@@ -1,8 +1,10 @@
+
 import React, { useState } from "react";
 
 const Cashbot = () => {
   const [message, setMessage] = useState("");
   const [history, setHistory] = useState([]);
+
 
   const handleUserInput = (e) => {
     setMessage(e.target.value);
@@ -83,6 +85,7 @@ const Cashbot = () => {
           role="status"
         ></div>
       </div>
+
     </div>
   );
 };

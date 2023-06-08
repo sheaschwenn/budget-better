@@ -13,7 +13,7 @@ db.once('open', async () => {
 
     // Create new data
     for (let userSeed of userSeeds) {
-      const { expenses, income, goals, settings, ...userDetails } = userSeed;
+      const { expenses, income, goal, settings, ...userDetails } = userSeed;
 
       // Create expense docs
       const expenseDocs = await Expense.create(expenses);
@@ -24,10 +24,10 @@ db.once('open', async () => {
       const incomeIds = incomeDocs.map(doc => doc._id);
 
       // Convert byDate string to Date object and create goal docs
-      for (let goal of goals) {
-        goal.byDate = new Date(goal.byDate);
+      for (let eachGoal of goal) {
+        eachGoal.byDate = new Date(eachGoal.byDate);
       }
-      const goalDocs = await Goal.create(goals);
+      const goalDocs = await Goal.create(goal);
       const goalIds = goalDocs.map(doc => doc._id);
 
       // Create setting docs
@@ -39,7 +39,7 @@ db.once('open', async () => {
         ...userDetails,
         expenses: expenseIds,
         income: incomeIds,
-        goals: goalIds,
+        goal: goalIds,
         settings: settingIds
       });
     }

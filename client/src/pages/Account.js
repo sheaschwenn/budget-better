@@ -1,20 +1,22 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import {useMutation, useQuery} from '@apollo/client'
 import { 
   CREATE_EXPENSE,
   CREATE_INCOME,
   CREATE_GOAL,
  } from '../utils/mutations';
-
- import { GET_EXPENSES, GET_INCOME } from '../utils/queries';
+  import {
+    GET_EXPENSES,
+    GET_INCOME,
+    GET_GOAL } from '../utils/queries';
  import Auth from '../utils/auth'
- import { ThemeContext} from '../utils/ThemeContext'
+
 
 import IncomeList from '../components/IncomeList'
 
 const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
-  const { isDarkMode } = useContext(ThemeContext);
+
 
   const{loading, data} = useQuery(GET_EXPENSES)
   const getExpenses = data?.me.expenses || []
@@ -30,7 +32,7 @@ const Account = () => {
     name: '',
     passive: false,
     amount: '',
-    recurringOrSalary: false
+    recurring: false
   })
   
   const [goal, setGoal] = useState({
@@ -41,9 +43,20 @@ const Account = () => {
   })
 
   // need to fix this 
-  const [createExpense] = useMutation(CREATE_EXPENSE)
-  const [createIncome] = useMutation(CREATE_INCOME)
-  const [createGoal] = useMutation(CREATE_GOAL)
+const [createExpense] = useMutation(CREATE_EXPENSE, {
+  refetchQueries: [{ query: GET_EXPENSES }, { query: GET_INCOME }, { query: GET_GOAL }],
+  awaitRefetchQueries: true
+});
+
+const [createIncome] = useMutation(CREATE_INCOME, {
+  refetchQueries: [{ query: GET_EXPENSES }, { query: GET_INCOME }, { query: GET_GOAL }],
+  awaitRefetchQueries: true
+});
+
+const [createGoal] = useMutation(CREATE_GOAL, {
+  refetchQueries: [{ query: GET_EXPENSES }, { query: GET_INCOME }, { query: GET_GOAL }],
+  awaitRefetchQueries: true
+});
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
@@ -58,7 +71,7 @@ const Account = () => {
           name: income.name,
           passive: income.passive,
           amount: parseFloat(income.amount),
-          recurringOrSalary: income.recurringOrSalary
+          recurring: income.recurring
         },
       })
       console.log(data)
@@ -66,7 +79,7 @@ const Account = () => {
         name: '',
         passive: false,
         amount: '',
-        recurringOrSalary: false
+        recurring: false
       })
     }catch (err) {
       console.error(err);
@@ -133,10 +146,10 @@ const handleIncomeCheckboxChange = (event) => {
     passive: checked,
   })
   );}
-  else if(event.target.name === 'recurringOrSalary'){
+  else if(event.target.name === 'recurring'){
     setIncome((prevState) => ({
       ...prevState,
-      recurringOrSalary: checked,
+      recurring: checked,
     }))
   }
 };
@@ -185,13 +198,9 @@ const handleIncomeCheckboxChange = (event) => {
   };
 
 
-  const styles = {
-    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
-    color: isDarkMode ? '#ffffff' : '#000000',
-  };
 
   return (
-    <div style={styles}>
+    <div >
       <h2>Account</h2>
 
       <div>
@@ -226,8 +235,8 @@ const handleIncomeCheckboxChange = (event) => {
               Recurring:
               <input 
               type="checkbox" 
-              name= 'recurringOrSalary'
-              checked= {income.recurringOrSalary}
+              name= 'recurring'
+              checked= {income.recurring}
               onChange= {handleIncomeCheckboxChange}
               />
             </label>

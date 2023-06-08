@@ -1,24 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-import { ThemeContext } from '../utils/ThemeContext';
-import { useContext } from 'react';
+
 
 import { GET_ME } from '../utils/queries';
 
 const Home = () => {
   const { loading, data } = useQuery(GET_ME);
   const me = data?.me || {};
-  const { isDarkMode } = useContext(ThemeContext);
-
-  const styles = {
-    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
-    color: isDarkMode ? '#ffffff' : '#000000',
-  };
 
   return (
     <main>
-      <div style={styles} className="flex-row justify-center">
+      <div className="flex-row justify-center">
         <div className="col-12 col-md-10 my-3">
           {loading ? (
             <div>Loading...</div>
