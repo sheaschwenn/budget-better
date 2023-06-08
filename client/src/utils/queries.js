@@ -20,12 +20,6 @@ export const GET_ME = gql`
         amount
         recurring
       }
-      settings {
-        _id
-        light
-        currency
-        language
-      }
       goal {
         _id
         name
