@@ -37,6 +37,7 @@ const Account = () => {
   recurring: false})
 
   const [income, setIncome] = useState({
+    _id: "",
     name: '',
     passive: false,
     amount: '',
@@ -84,6 +85,7 @@ const Account = () => {
 
   
       setIncome({
+        _id: '',
         name: '',
         passive: false,
         amount: '',
@@ -249,12 +251,13 @@ const incomeEdit = (income) => {
 
 const [updateIncome] = useMutation(UPDATE_INCOME, {refetchQueries: [{query: GET_ME}]})
 
-const handleIncomeEdit =async (event) =>{
-  event.preventDefault()
+const handleIncomeEdit = async(event, incomeId) =>{
+  event.preventDefault();
+  console.log("editIncome", "id",editIncome._id, editIncome.name, editIncome.passive, editIncome.amount, editIncome.recurring )
   try{
     const{data} = await updateIncome({
         variables: {
-          incomeId: editIncome._id,
+          incomeId: incomeId,
           name: editIncome.name,
           passive: editIncome.passive,
           amount: parseFloat(editIncome.amount),

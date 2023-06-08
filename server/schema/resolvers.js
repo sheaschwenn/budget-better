@@ -88,11 +88,13 @@ const resolvers = {
         },
         updateIncome: async(parent, {incomeId, name, passive, amount, recurring}, context) =>{
             if(context.user){
+                console.log("before update")
                 const updatedIncome = await Income.findOneAndUpdate(
                     {_id: incomeId},
                     {$set: {name: name, passive: passive, amount: amount, recurring: recurring }},
                     {runValidators: true, new: true}
                 )
+                console.log("after update")
                 return updatedIncome
             }
         },

@@ -98,8 +98,8 @@ export const CREATE_INCOME = gql`
 `;
 
 export const UPDATE_INCOME = gql`
-  mutation updateIncome($id: ID!, $name: String, $passive: Boolean, $recurring: Boolean) {
-    updateIncome(_id: $id, name: $name, passive: $passive, recurring: $recurring) {
+  mutation updateIncome($incomeId: ID!, $name: String, $passive: Boolean,$amount: Float! $recurring: Boolean) {
+    updateIncome(incomeId: $incomeId, name: $name, passive: $passive, amount: $amount, recurring: $recurring) {
     
         _id
         name
