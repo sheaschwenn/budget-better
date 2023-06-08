@@ -1,7 +1,12 @@
-
 import React, { useContext } from "react";
 
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Route,
+  Routes,
+  Navigate,
+} from "react-router-dom";
+import Auth from "./utils/auth";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
@@ -30,12 +35,7 @@ import {
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
 
-
-import ProtectedRoute from './components/ProtectedRoute';
-import { ThemeContext } from './utils/ThemeContext';
-
-
-
+import { ThemeContext } from "./utils/ThemeContext";
 
 // Create an HTTP link to the GraphQL server
 const httpLink = createHttpLink({
@@ -56,14 +56,20 @@ const authLink = setContext((_, { headers }) => {
 });
 
 const cache = new InMemoryCache({
-  dataIdFromObject: object => {
+  dataIdFromObject: (object) => {
     switch (object.__typename) {
-      case 'User': return `User:${object._id}`;
-      case 'Expense': return `Expense:${object._id}`;
-      case 'Income': return `Income:${object._id}`;
-      case 'Setting': return `Setting:${object._id}`;
-      case 'Goal': return `Goal:${object._id}`;
-      default: return object._id || object.id || null;
+      case "User":
+        return `User:${object._id}`;
+      case "Expense":
+        return `Expense:${object._id}`;
+      case "Income":
+        return `Income:${object._id}`;
+      case "Setting":
+        return `Setting:${object._id}`;
+      case "Goal":
+        return `Goal:${object._id}`;
+      default:
+        return object._id || object.id || null;
     }
   },
 });
@@ -71,7 +77,7 @@ const cache = new InMemoryCache({
 // Create an Apollo Client instance with the auth link and the in-memory cache
 const client = new ApolloClient({
   link: authLink.concat(httpLink),
-  cache, 
+  cache,
 });
 
 function App() {
@@ -86,29 +92,50 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div style={styles}>
+          <h1>Budget Better</h1>
+          <Navbar />
+          <Routes>
+            <Route
+              path="/"
+              element={Auth.loggedIn() ? <Home /> : <Navigate to="/login" />}
+            />
+            <Route
+              path="/dashboard"
+              element={
+                Auth.loggedIn() ? <Dashboard /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/account"
+              element={Auth.loggedIn() ? <Account /> : <Navigate to="/login" />}
+            />
+            <Route path="/login" element={<Login />} />
+            <Route path="/signup" element={<Signup />} />
+            <Route
+              path="/settings"
+              element={
+                Auth.loggedIn() ? <Settings /> : <Navigate to="/login" />
+              }
+            />
+            <Route
+              path="/cashbot"
+              element={Auth.loggedIn() ? <Cashbot /> : <Navigate to="/login" />}
+            />
+            <Route path="/about" element={<About />} />
+            <Route path="/contact" element={<Contact />} />
+            <Route path="/demo" element={<Demo />} />
+            <Route path="/testimonials" element={<Testimonials />} />
+            <Route path="/features" element={<Features />} />
+            <Route
+              path="/ourmission"
+              element={
+                Auth.loggedIn() ? <OurMission /> : <Navigate to="/login" />
+              }
+            />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
 
-        <h1>Budget Better</h1>
-        <Navbar />
-        <Routes>
-
-    <Route path="/" element={Auth.loggedIn() ? <Home /> : <Navigate to="/login" />} />
-    <Route path="/dashboard" element={Auth.loggedIn() ? <Dashboard /> : <Navigate to="/login" />} />
-    <Route path="/account" element={Auth.loggedIn() ? <Account /> : <Navigate to="/login" />} />
-    <Route path="/login" element={<Login />} />
-    <Route path="/signup" element={<Signup />} />
-    <Route path="/settings" element={Auth.loggedIn() ? <Settings /> : <Navigate to="/login" />} />
-    <Route path="/cashbot" element={Auth.loggedIn() ? <Cashbot /> : <Navigate to="/login" />} />
-    <Route path="/about" element={<About />} />
-    <Route path="/contact" element={<Contact />} />
-    <Route path="/demo" element={<Demo />} />
-    <Route path="/testimonials" element={<Testimonials />} />
-    <Route path="/features" element={<Features />} />
-    <Route path="/ourmission" element={Auth.loggedIn() ? <OurMission /> : <Navigate to="/login" />} />
-    <Route path="*" element={<PageNotFound />} />
-</Routes>
-
-        <Footer />
-
+          <Footer />
         </div>
       </Router>
     </ApolloProvider>
