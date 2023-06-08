@@ -1,88 +1,3 @@
-// import React, { useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import Auth from '../utils/auth';
-// import '../styles/Navbar.css'
-// import DarkMode from '../components/DarkMode';
-
-// const Navbar = () => {
-//   const [dropdownOpen, setDropdownOpen] = useState(false);
-
-//   const toggleDropdown = () => {
-//     setDropdownOpen(!dropdownOpen);
-//   };
-
-//   const closeDropdown = () => {
-//     setDropdownOpen(false);
-//   };
-
-//   const logout = (event) => {
-//     event.preventDefault();
-//     Auth.logout();
-//   };
-
-//   return (
-//     <nav>
-//       <ul className="nav">
-//       <DarkMode />
-//         <li>
-//           <Link to="/dashboard">Dashboard</Link>
-//         </li>
-//         <li className={`dropdown ${dropdownOpen ? 'open' : ''}`}>
-//           <div className="dropdown-toggle" onClick={toggleDropdown}>
-//             Menu
-//           </div>
-//           {dropdownOpen && (
-//             <ul className="dropdown-menu">
-//               <li>
-//                 <Link to="/settings" onClick={closeDropdown}>Settings</Link>
-//               </li>
-//               <li>
-//                 <Link to="/help" onClick={closeDropdown}>Help</Link>
-//               </li>
-//               <li>
-//                 <Link to="/faq" onClick={closeDropdown}>FAQ</Link>
-//               </li>
-//               <li>
-//                 <Link to="/" onClick={logout}>Logout</Link>
-//               </li>
-//             </ul>
-
-//           )}
-//         </li>
-//         <li>
-//           <Link to="/account">Account</Link>
-//         </li>
-//         <li>
-//           <Link to="/cashbot">Cashbot</Link>
-//         </li>
-//         <li>
-//           <Link to="/contact">Contact</Link>
-//         </li>
-//         <li>
-//           <Link to="/login">Login</Link>
-//         </li>
-//         <li>
-//           <Link to="/signup">Signup</Link>
-//         </li>
-//         <li>
-//           <Link to="/contact">Contact</Link>
-//         </li>
-//         <li>
-//           <Link to="/demo">Demo</Link>
-//         </li>
-//         <li>
-//           <Link to="/features">Features</Link>
-//         </li>
-//         <li>
-//           <Link to="/ourmission">Our Mission</Link>
-//         </li>
-//       </ul>
-//     </nav>
-//   );
-// };
-
-// export default Navbar;
-
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 
@@ -103,39 +18,40 @@ import {
 
 const products = [
   {
-    name: "Analytics",
-    description: "Get a better understanding of your traffic",
-    href: "#",
+    name: "Settings",
+    href: "/settings",
     icon: ChartPieIcon,
   },
   {
-    name: "Engagement",
-    description: "Speak directly to your customers",
-    href: "#",
+    name: "Help",
+    href: "/help",
+    icon: ChartPieIcon,
+  },
+  {
+    name: "FAQ",
+    href: "/faq",
     icon: CursorArrowRaysIcon,
   },
   {
-    name: "Security",
-    description: "Your customers data will be safe and secure",
-    href: "#",
+    name: "About",
+    href: "/about",
     icon: FingerPrintIcon,
   },
   {
-    name: "Integrations",
-    description: "Connect with third-party tools",
-    href: "#",
+    name: "Testamonials",
+    href: "/testamonials",
     icon: SquaresPlusIcon,
   },
   {
-    name: "Automations",
-    description: "Build strategic funnels that will convert",
-    href: "#",
+    name: "OurMission",
+    href: "/ourmission",
+
     icon: ArrowPathIcon,
   },
 ];
 const callsToAction = [
-  { name: "Watch demo", href: "#", icon: PlayCircleIcon },
-  { name: "Contact sales", href: "#", icon: PhoneIcon },
+  { name: "Watch demo", href: "/demo", icon: PlayCircleIcon },
+  { name: "Contact Us", href: "/contact", icon: PhoneIcon },
 ];
 
 function classNames(...classes) {
@@ -153,12 +69,8 @@ export default function Example() {
       >
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
-            <span className="sr-only">Your Company</span>
-            <img
-              className="h-8 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-              alt=""
-            />
+            <span className="sr-only">Budget Better</span>
+            <img className="h-8 w-auto" src=" " alt="" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -174,7 +86,7 @@ export default function Example() {
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
             <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
-              Product
+              Explore
               <ChevronDownIcon
                 className="h-5 w-5 flex-none text-gray-400"
                 aria-hidden="true"
@@ -235,18 +147,30 @@ export default function Example() {
             </Transition>
           </Popover>
 
-          <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
-            Features
+          <a
+            href="/dashboard"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Dashboard
           </a>
-          <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
-            Marketplace
+          <a
+            href="/account"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Account
           </a>
-          <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
-            Company
+          <a
+            href="/cashbot"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
+            Cashbot
           </a>
         </Popover.Group>
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a href="/" className="text-sm font-semibold leading-6 text-gray-900">
+          <a
+            href="/login"
+            className="text-sm font-semibold leading-6 text-gray-900"
+          >
             Log in <span aria-hidden="true">&rarr;</span>
           </a>
         </div>
@@ -261,7 +185,7 @@ export default function Example() {
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="/" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
+              <span className="sr-only">Budget Better</span>
               <img
                 className="h-8 w-auto"
                 src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
@@ -284,7 +208,7 @@ export default function Example() {
                   {({ open }) => (
                     <>
                       <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        Product
+                        Explore
                         <ChevronDownIcon
                           className={classNames(
                             open ? "rotate-180" : "",
@@ -309,27 +233,27 @@ export default function Example() {
                   )}
                 </Disclosure>
                 <a
-                  href="/"
+                  href="/dashboard"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Features
+                  Dashboard
                 </a>
                 <a
-                  href="/"
+                  href="/account"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Marketplace
+                  Account
                 </a>
                 <a
-                  href="/"
+                  href="/cashbot"
                   className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
-                  Company
+                  Cashbot
                 </a>
               </div>
               <div className="py-6">
                 <a
-                  href="/"
+                  href="/login"
                   className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
                 >
                   Log in
