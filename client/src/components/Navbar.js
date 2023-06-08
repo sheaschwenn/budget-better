@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import { useLocation } from "react-router-dom";
 
 import {
   ArrowPathIcon,
@@ -58,9 +59,13 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Navbar() {
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
+  if (location.pathname === "/") {
+    return null;
+  }
   return (
     <header className="bg-white">
       <nav

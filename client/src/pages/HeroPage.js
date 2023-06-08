@@ -1,15 +1,14 @@
 import { useState } from "react";
 import { Dialog } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
-
+import logo from "./BudgetBetterLogo.png";
 const navigation = [
-  { name: "Product", href: "#" },
-  { name: "Features", href: "#" },
-  { name: "Marketplace", href: "#" },
-  { name: "Company", href: "#" },
+  { name: "Features", href: "/features" },
+  { name: "Testamonials", href: "/testamonials" },
+  { name: "Our Mission", href: "/ourmission" },
 ];
 
-export default function Example() {
+export default function HeroPage() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
@@ -20,13 +19,9 @@ export default function Example() {
           aria-label="Global"
         >
           <div className="flex lg:flex-1">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
+            <a href="/" className="-m-1.5 p-1.5">
+              <span className="sr-only"></span>
+              <img className="h-8 w-auto" src={logo} alt="Budget Better Logo" />
             </a>
           </div>
           <div className="flex lg:hidden">
