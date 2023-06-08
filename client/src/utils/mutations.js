@@ -72,17 +72,13 @@ export const UPDATE_EXPENSE = gql`
 `;
 
 export const DELETE_EXPENSE = gql`
-  mutation deleteExpense($id: ID!) {
-    deleteExpense(_id: $id) {
-      _id
-      name
-      email
-      expenses {
+  mutation deleteExpense($expenseId: ID!) {
+    deleteExpense(expenseId: $expenseId) {
+     
         _id
         category
         amount
         recurring
-      }
     }
   }
 `;
@@ -164,18 +160,15 @@ export const UPDATE_GOAL = gql`
 `;
 
 export const DELETE_GOAL = gql`
-  mutation deleteGoal($id: ID!) {
-    deleteGoal(_id: $id) {
-      _id
-      name
-      email
-      goal {
+  mutation deleteGoal($goalId: ID!) {
+    deleteGoal(goalId: $goalId) {
+     
         _id
         name
         amountToSave
         byDate
         shortTerm
-      }
+      
     }
   }
 `;

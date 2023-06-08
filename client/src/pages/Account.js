@@ -4,7 +4,9 @@ import {
   CREATE_EXPENSE,
   CREATE_INCOME,
   CREATE_GOAL,
-  DELETE_INCOME
+  DELETE_INCOME,
+  DELETE_EXPENSE,
+  DELETE_GOAL
  } from '../utils/mutations';
 
  import {  GET_ME } from '../utils/queries';
@@ -75,6 +77,7 @@ const Account = () => {
         },
       })
       console.log(data)
+      console.log(getIncome)
       setIncome({
         name: '',
         passive: false,
@@ -203,14 +206,27 @@ const handleIncomeCheckboxChange = (event) => {
       try{
           const {data} = await deleteIncome({
               variables: {incomeId},
-              refetchQueries: [{query: GET_ME}]
+              // refetchQueries: [{query: GET_ME}]
       })
+      console.log(getIncome)
+
       }catch(err){
           console.error(err);
       }
   }
 
 
+const [deleteExpense] = useMutation(DELETE_EXPENSE, {refetchQueries: [{query: GET_ME}]})
+
+const handleExpenseDelete = async(expenseId) => {
+  try{
+    const{data} = await deleteExpense({
+      variables: {expenseId}
+    })
+  }catch(err){
+    console.error(err)
+  }
+}
   const styles = {
     backgroundColor: isDarkMode ? '#000000' : '#ffffff',
     color: isDarkMode ? '#ffffff' : '#000000',
@@ -265,7 +281,7 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
-          <IncomeList incomes={getIncome} handleDelete={handleDelete}/>
+          <IncomeList getIncome={getIncome} handleDelete={handleDelete}/>
         </div>
         )}
       </div>
@@ -307,7 +323,7 @@ const handleIncomeCheckboxChange = (event) => {
             </label>
             <button type="submit">Submit</button>
           </form>
-          <ExpensesList expensesList= {getExpenses}/>
+          <ExpensesList expensesList= {getExpenses} handleExpenseDelete={handleExpenseDelete}/>
           </div>
         )}
       </div>

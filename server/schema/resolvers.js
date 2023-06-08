@@ -52,10 +52,14 @@ const resolvers = {
                 return updatedExpense
             }
         },
-        deleteExpense:async(parent, args, context) => {
+        deleteExpense:async(parent, {expenseId}, context) => {
             if(context.user){
                 const deleteExpense = await Expense.findOneAndDelete(
-                    {_id: args}
+                    {_id: expenseId}
+                )
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {expenses: deleteExpense._id}}
                 )
                 return deleteExpense
                 }
@@ -90,7 +94,7 @@ const resolvers = {
                 )
                 await User.findOneAndUpdate(
                     {_id: context.user._id},
-                    {$pull: {income: income._id}}
+                    {$pull: {income: deleteIncome._id}}
                 )
                 return deleteIncome
                 }
@@ -121,6 +125,10 @@ const resolvers = {
             if(context.user){
                 const deleteGoal = await Goal.findOneAndDelete(
                     {_id: args}
+                )
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {goal: deleteGoal._id}}
                 )
                 return deleteGoal
                 }

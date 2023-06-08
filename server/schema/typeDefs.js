@@ -63,13 +63,13 @@ type Mutation{
     addUser(name: String!, email: String!, password: String!): Auth
     createExpense( category: String!, amount: Float!, recurring: Boolean!): Expense
     updateExpense(_id:ID!, category: String, amount: Float, recurring: Boolean): User
-    deleteExpense(_id: ID!): User
+    deleteExpense(expenseId: ID!): Expense
     createIncome(  name: String!, passive: Boolean!, amount: Float!, recurringOrSalary: Boolean!): Income
     updateIncome(_id: ID!, name: String, passive: Boolean, amount: Float!, recurringOrSalary: Boolean): User
     deleteIncome(incomeId: ID!): Income
     createGoal(name: String!, amountToSave: Float!, byDate: Date, shortTerm: Boolean!): Goal
     updateGoal(_id: ID!, name: String, amountToSave: Float, byDate: String, shortTerm: Boolean): User
-    deleteGoal(_id: ID!): User
+    deleteGoal(goalId: ID!): Goal
     updateSetting(_id:ID!, light: Boolean, currency: String, language: String ): User
 
 }
