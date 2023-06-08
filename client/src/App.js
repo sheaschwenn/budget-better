@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-import Home from "./pages/Home";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
@@ -14,7 +13,7 @@ import Contact from "./pages/Contact";
 import Demo from "./pages/Demo";
 import Testimonials from "./pages/Testimonials";
 import Features from "./pages/Features";
-// import HeroPage from "./pages/HeroPage";
+import HeroPage from "./pages/HeroPage";
 import OurMission from "./pages/OurMission";
 import PageNotFound from "./pages/PageNotFound";
 import {
@@ -63,10 +62,8 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div style={styles}>
-          <h1>Budget Better</h1>
           <Navbar />
           <Routes>
-            <Route path="/" element={<Home />} />
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/account" element={<Account />} />
             <Route path="/login" element={<Login />} />
@@ -78,7 +75,7 @@ function App() {
             <Route path="/demo" element={<Demo />} />
             <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/features" element={<Features />} />
-            {/* <Route path="/heropage" element={<HeroPage />} /> */}
+            <Route path="/" element={<HeroPage />} />
             <Route path="/ourmission" element={<OurMission />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>

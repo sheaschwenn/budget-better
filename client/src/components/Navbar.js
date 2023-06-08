@@ -59,7 +59,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function Navbar() {
+  const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
   const styles = {
@@ -82,6 +83,9 @@ if (isDarkMode) {
     color: isDarkMode ? "#ffffff" : "#121212",
   };
 
+  if (location.pathname === "/") {
+    return null;
+  }
   return (
     <header style={styles} className="bg-white">
       <nav
@@ -94,7 +98,7 @@ if (isDarkMode) {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Budget Better</span>
-            <img className="h-8 w-auto" src=" " alt="" />
+            <img className="h-8 w-auto" src={logo} alt="Budget Better Logo" />
           </a>
         </div>
         <div className="flex lg:hidden">

@@ -61,10 +61,14 @@ const resolvers = {
                 return updatedExpense
             }
         },
-        deleteExpense:async(parent, args, context) => {
+        deleteExpense:async(parent, {expenseId}, context) => {
             if(context.user){
                 const deleteExpense = await Expense.findOneAndDelete(
-                    {_id: args}
+                    {_id: expenseId}
+                )
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {expenses: deleteExpense._id}}
                 )
                 return deleteExpense
                 }
@@ -82,20 +86,24 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in!');
 
         },
-        updateIncome: async(parent, args, context) =>{
+        updateIncome: async(parent, {incomeId, name, passive, amount, recurring}, context) =>{
             if(context.user){
                 const updatedIncome = await Income.findOneAndUpdate(
-                    {_id: args._id},
-                    {$set: args},
+                    {_id: incomeId},
+                    {$set: {name: name, passive: passive, amount: amount, recurring: recurring }},
                     {runValidators: true, new: true}
                 )
                 return updatedIncome
             }
         },
-        deleteIncome: async(parent, args, context) =>{
-            if(context.user){
+        deleteIncome: async(parent, {incomeId}, context) =>{
+             if(context.user){
                 const deleteIncome = await Income.findOneAndDelete(
-                    {_id: args}
+                    {_id: incomeId}
+                )
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {income: deleteIncome._id}}
                 )
                 return deleteIncome
                 }
@@ -122,10 +130,14 @@ const resolvers = {
                 return updatedGoal
             }
         },
-        deleteGoal: async(parent, args, context) => {
+        deleteGoal: async(parent, {goalId}, context) => {
             if(context.user){
                 const deleteGoal = await Goal.findOneAndDelete(
-                    {_id: args}
+                    {_id: goalId}
+                )
+                await User.findOneAndUpdate(
+                    {_id: context.user._id},
+                    {$pull: {goal: deleteGoal._id}}
                 )
                 return deleteGoal
                 }
