@@ -23,7 +23,7 @@ const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
   const { isDarkMode } = useContext(ThemeContext);
 
-  const [isEditing, setIsEditing] = useState(false)
+
  
 
   const{loading, data} = useQuery(GET_ME)
@@ -81,7 +81,7 @@ const Account = () => {
       console.log(data)
       console.log(getIncome)
 
-        setIsEditing(false)
+
   
       setIncome({
         name: '',
@@ -241,20 +241,26 @@ const handleGoalDelete = async(goalId) => {
     console.error(err)
   }
 }
+const [editedIncome, setEditedIncome] = useState("")
+const incomeEdit = (income) => {
+  setEditedIncome(income)
+
+}
 
 const [updateIncome] = useMutation(UPDATE_INCOME, {refetchQueries: [{query: GET_ME}]})
-const handleIncomeEdit =async (incomeId) =>{
+const handleIncomeEdit =async (editedIncome) =>{
   try{
     const{data} = await updateIncome({
         variables: {
-          incomeId: {incomeId},
-          name: income.name,
-          passive: income.passive,
-          amount: parseFloat(income.amount),
-          recurring: income.recurring
+          incomeId: editedIncome._id,
+          name: editedIncome.name,
+          passive: editedIncome.passive,
+          amount: parseFloat(editedIncome.amount),
+          recurring: editedIncome.recurring
         },
         
     })
+  
   }catch(err){
     console.error(err)
   }
@@ -315,7 +321,7 @@ const handleIncomeEdit =async (incomeId) =>{
             </label>
             <button type="submit">Submit</button>
           </form>
-          <IncomeList getIncome={getIncome} handleDelete={handleDelete} handleIncomeEdit= {handleIncomeEdit} handleIncomeCheckboxChange = {handleIncomeCheckboxChange} handleIncomeChange= {handleIncomeChange} />
+          <IncomeList getIncome={getIncome} handleDelete={handleDelete} handleIncomeEdit= {handleIncomeEdit} handleIncomeCheckboxChange = {handleIncomeCheckboxChange} handleIncomeChange= {handleIncomeChange} incomeEdit = {incomeEdit} />
         </div>
         )}
       </div>
