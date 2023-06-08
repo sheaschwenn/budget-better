@@ -31,10 +31,10 @@ const userSchema = new mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Setting'
   },
-  goal: {
+  goal: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Goal'
-  }
+  }]
 });
 
 // hash user password

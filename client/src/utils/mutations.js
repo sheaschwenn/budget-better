@@ -88,22 +88,22 @@ export const DELETE_EXPENSE = gql`
 `;
 
 export const CREATE_INCOME = gql`
-  mutation createIncome($name: String!, $passive: Boolean!, $amount: Float!, $recurringOrSalary: Boolean!) {
-    createIncome(name: $name, passive: $passive, amount: $amount, recurringOrSalary: $recurringOrSalary) {
+  mutation createIncome($name: String!, $passive: Boolean!, $amount: Float!, $recurring: Boolean!) {
+    createIncome(name: $name, passive: $passive, amount: $amount, recurring: $recurring) {
      
         _id
         name
         passive
         amount
-        recurringOrSalary
+        recurring
         createdOn
       }
   }
 `;
 
 export const UPDATE_INCOME = gql`
-  mutation updateIncome($id: ID!, $name: String, $passive: Boolean, $recurringOrSalary: Boolean) {
-    updateIncome(_id: $id, name: $name, passive: $passive, recurringOrSalary: $recurringOrSalary) {
+  mutation updateIncome($id: ID!, $name: String, $passive: Boolean, $recurring: Boolean) {
+    updateIncome(_id: $id, name: $name, passive: $passive, recurring: $recurring) {
       _id
       name
       email
@@ -111,7 +111,7 @@ export const UPDATE_INCOME = gql`
         _id
         name
         passive
-        recurringOrSalary
+        recurring
       }
     }
   }
@@ -127,7 +127,7 @@ export const DELETE_INCOME = gql`
         _id
         name
         passive
-        recurringOrSalary
+        recurring
       }
     }
   }
