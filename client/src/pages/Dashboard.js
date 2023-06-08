@@ -1,11 +1,15 @@
+
 import React, { useEffect, useContext, useRef } from 'react';
 import { ThemeContext } from '../utils/ThemeContext';
 import { GET_EXPENSES, GET_INCOME, GET_GOAL } from '../utils/queries';
+
 import { useQuery } from '@apollo/client';
 import { generateGroupedBarChart, generateLineChart } from '../utils/chart';
 
 const Dashboard = () => {
+
   const { isDarkMode } = useContext(ThemeContext);
+
 
   const { loading: expensesLoading, error: expensesError, data: expensesData } = useQuery(GET_EXPENSES);
   const { loading: incomeLoading, error: incomeError, data: incomeData } = useQuery(GET_INCOME);
@@ -57,6 +61,7 @@ const Dashboard = () => {
     }
   }, [expensesData, incomeData, goalsData, totalExpenses, totalIncome, totalGoals]);
 
+
   // This will check if there is data for multiple months for the given data set (income or expenses)
   const checkMultipleMonthsData = (data) => {
     // This will store the month and year for each item in the data set
@@ -71,6 +76,7 @@ const Dashboard = () => {
     // If there is more than one month and year in the set, then there is data for multiple months
     return monthYearSet.size > 1;
   };
+
 
   // This will generate a line graph for the income and expenses data 
   const generateLineChartButtonClicked = () => {
@@ -165,7 +171,7 @@ const Dashboard = () => {
   if (expensesError || incomeError || goalsError) return <p>Error :(</p>;
 
   return (
-    <div style={styles}>
+    <div>
       <section className="dashboard-section">
         <h2>Welcome to Your Dashboard</h2>
         <div className="finance-info">

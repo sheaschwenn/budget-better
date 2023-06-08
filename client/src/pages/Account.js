@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import {useMutation, useQuery} from '@apollo/client'
 import { 
   CREATE_EXPENSE,
@@ -10,13 +10,13 @@ import {
     GET_INCOME,
     GET_GOAL } from '../utils/queries';
  import Auth from '../utils/auth'
- import { ThemeContext} from '../utils/ThemeContext'
+
 
 import IncomeList from '../components/IncomeList'
 
 const Account = () => {
   const [selectedTab, setSelectedTab] = useState('');
-  const { isDarkMode } = useContext(ThemeContext);
+
 
   const{loading, data} = useQuery(GET_EXPENSES)
   const getExpenses = data?.me.expenses || []
@@ -198,13 +198,9 @@ const handleIncomeCheckboxChange = (event) => {
   };
 
 
-  const styles = {
-    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
-    color: isDarkMode ? '#ffffff' : '#000000',
-  };
 
   return (
-    <div style={styles}>
+    <div >
       <h2>Account</h2>
 
       <div>
