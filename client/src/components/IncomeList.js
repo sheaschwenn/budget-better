@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 
 
-const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeCheckboxChange, handleIncomeChange}) => {
+const IncomeList = ({getIncome, handleDelete, handleIncomeEdit}) => {
     const [edit, setEdit] = useState({})
 
     const [editIncome, setEditIncome] = useState({
