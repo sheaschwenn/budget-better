@@ -25,6 +25,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { ThemeContext } from "./utils/ThemeContext";
 import "./style.css";
+import { ThemeProvider } from "./utils/ThemeContext";
 
 // Create an HTTP link to the GraphQL server
 const httpLink = createHttpLink({
@@ -64,6 +65,7 @@ function App() {
         <div style={styles}>
           <Navbar />
           <Routes>
+            
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/account" element={<Account />} />
             <Route path="/login" element={<Login />} />

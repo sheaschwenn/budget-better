@@ -1,8 +1,11 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-
 import { useMutation } from '@apollo/client';
 import { ADD_USER } from '../utils/mutations';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
+import companyLogo from '../assets/images/BudgetBetterLogo.png';
+import { ThemeContext } from '../utils/ThemeContext';
 
 import Auth from '../utils/auth';
 
@@ -38,60 +41,102 @@ const Signup = () => {
     }
   };
 
-  return (
-    <main className="flex-row justify-center mb-4">
-      <div className="col-12 col-lg-10">
-        <div className="card">
-          <h4 className="card-header bg-dark text-light p-2">Sign Up</h4>
-          <div className="card-body">
-            {data ? (
-              <p>
-                Success! You may now head{' '}
-                <Link to="/dashboard">back to the homepage.</Link>
-              </p>
-            ) : (
-              <form onSubmit={handleFormSubmit}>
-                <input
-                  className="form-input"
-                  placeholder="Your name"
-                  name="name"
-                  type="text"
-                  value={formState.name}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="Your email"
-                  name="email"
-                  type="email"
-                  value={formState.email}
-                  onChange={handleChange}
-                />
-                <input
-                  className="form-input"
-                  placeholder="******"
-                  name="password"
-                  type="password"
-                  value={formState.password}
-                  onChange={handleChange}
-                />
-                <button
-                  className="btn btn-block btn-primary"
-                  style={{ cursor: 'pointer' }}
-                  type="submit"
-                >
-                  Submit
-                </button>
-              </form>
-            )}
+  const { isDarkMode } = useContext(ThemeContext);
+  const styles = {
+    backgroundColor: isDarkMode ? '#121212' : '#ffffff',
+    color: isDarkMode ? '#ffffff' : '#121212',
+  };
 
-            {error && (
-              <div className="my-3 p-3 bg-danger text-white">
-                {error.message}
-              </div>
-            )}
-          </div>
+  return (
+    <main className="flex items-center justify-center h-screen">
+      <div style={styles} className="bg-white shadow-lg rounded-lg p-8 max-w-sm">
+        <div className="flex justify-center">
+          <img src={companyLogo} alt="Company Logo" className="h-16 w-auto" />
         </div>
+        <form className="mt-6" onSubmit={handleFormSubmit}>
+          <div>
+            <div className="flex">
+              <span className="text-gray-400">
+                <FontAwesomeIcon icon={faUser} className="h-5 w-5" />
+              </span>
+              <input
+                type="text"
+                className="ml-2.5 border-b-2 border-gray-400 focus:border-indigo-600 outline-none"
+                id="name"
+                name="name"
+                placeholder="Your name"
+                value={formState.name}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="mt-4">
+            <div className="flex">
+              <span className="text-gray-400">
+                <FontAwesomeIcon icon={faUser} className="h-5 w-5" />
+              </span>
+              <input
+                type="email"
+                className="ml-2.5 border-b-2 border-gray-400 focus:border-indigo-600 outline-none"
+                id="email"
+                name="email"
+                placeholder="Email"
+                value={formState.email}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="mt-4">
+            <div className="flex">
+              <span className="text-gray-400">
+                <FontAwesomeIcon icon={faLock} className="h-5 w-5" />
+              </span>
+              <input
+                type="password"
+                className="ml-2.5 border-b-2 border-gray-400 focus:border-indigo-600 outline-none"
+                id="password"
+                name="password"
+                placeholder="Password"
+                value={formState.password}
+                onChange={handleChange}
+              />
+            </div>
+          </div>
+          <div className="mt-6">
+            <button
+              type="submit"
+              className="w-full bg-indigo-600 text-white rounded-md py-2.5 px-4 text-center font-semibold hover:bg-indigo-700 transition duration-200"
+            >
+              Sign Up
+            </button>
+          </div>
+        </form>
+        <p className="mt-4 text-center text-sm">
+          Already have an account?{' '}
+          <Link
+            to="/login"
+            className="text-indigo-600 hover:text-indigo-700 font-semibold"
+          >
+            Sign In
+          </Link>
+        </p>
+        {error && (
+          <div className="my-4 p-3 bg-red-500 text-white rounded-md">
+            {error.message}
+          </div>
+        )}
+        {data && (
+          <div className="my-4 p-3 bg-green-500 text-white rounded-md">
+            Success! You may now{' '}
+            <Link
+              to="/dashboard"
+              className="underline font-semibold hover:text-white"
+            >
+              go to the dashboard
+            </Link>
+            .
+          </div>
+        )}
       </div>
     </main>
   );

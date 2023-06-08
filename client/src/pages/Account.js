@@ -268,12 +268,12 @@ const handleIncomeEdit =async (editedIncome) =>{
 }
 
   const styles = {
-    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
-    color: isDarkMode ? '#ffffff' : '#000000',
+    backgroundColor: isDarkMode ? "#121212" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#121212",
   };
 
   return (
-    <div className="bg-white shadow p-6 rounded-lg">
+    <div style={styles} className="bg-white shadow p-6 rounded-lg">
       <h2 className="text-xl font-bold mb-4">Account</h2>
   
       <div className="mb-4">

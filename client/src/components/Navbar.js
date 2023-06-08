@@ -1,6 +1,8 @@
 import React, { Fragment, useState, useContext } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { ThemeContext } from "../utils/ThemeContext";
+import { useLocation } from "react-router-dom";
+
 
 import {
   ArrowPathIcon,
@@ -55,9 +57,9 @@ const callsToAction = [
   { name: "Contact Us", href: "/contact", icon: PhoneIcon },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+// function classNames(...classes) {
+//   return classes.filter(Boolean).join(" ");
+// }
 
 export default function Navbar() {
   const location = useLocation();
@@ -98,7 +100,6 @@ if (isDarkMode) {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Budget Better</span>
-            <img className="h-8 w-auto" src={logo} alt="Budget Better Logo" />
           </a>
         </div>
         <div className="flex lg:hidden">

@@ -43,6 +43,7 @@ html {
 */
 
 body {
+  height: 100vh;
   margin: 0; /* 1 */
   line-height: inherit; /* 2 */
 }
