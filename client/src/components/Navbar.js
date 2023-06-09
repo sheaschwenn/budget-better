@@ -1,4 +1,5 @@
 import { Fragment, useState } from "react";
+import AuthService from "../utils/auth";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { useLocation } from "react-router-dom";
 import logo from "./BudgetBetterLogo.png";
@@ -57,6 +58,7 @@ function classNames(...classes) {
 }
 
 export default function Navbar() {
+  const isLoggedIn = AuthService.loggedIn();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -254,12 +256,22 @@ export default function Navbar() {
                 </a>
               </div>
               <div className="py-6">
-                <a
-                  href="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </a>
+                {isLoggedIn ? (
+                  <a
+                    href="/logout"
+                    className="text-sm font-semibold leading-6 text-gray-900"
+                    onClick={AuthService.logout}
+                  >
+                    Log out <span aria-hidden="true">&rarr;</span>
+                  </a>
+                ) : (
+                  <a
+                    href="/login"
+                    className="text-sm font-semibold leading-6 text-gray-900"
+                  >
+                    Log in <span aria-hidden="true">&rarr;</span>
+                  </a>
+                )}
               </div>
             </div>
           </div>
