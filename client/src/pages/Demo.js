@@ -1,7 +1,5 @@
 import React, { useContext } from "react";
-import { ThemeContext } from '../utils/ThemeContext';
-
-
+import { ThemeContext } from "../utils/ThemeContext";
 
 function Demo() {
   const { isDarkMode } = useContext(ThemeContext);
@@ -14,8 +12,7 @@ function Demo() {
   };
 
   return (
-    <div style={styles} className="flex flex-col min-h-screen bg-gray-50">
-
+    <div className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <main className="flex-grow px-4 py-5 sm:p-6">
         <h1 className="text-3xl font-bold mb-4">How to use Budget Better</h1>
 
@@ -23,18 +20,14 @@ function Demo() {
           <h2 className="text-2xl font-bold mb-2">
             Signup and enter basic info
           </h2>
-          <p className="text-base ">
-            Description and usage of this feature
-          </p>
+          <p className="text-base ">Description and usage of this feature</p>
         </section>
 
         <section className="mb-8">
           <h2 className="text-2xl font-bold mb-2">
             Use Budget Better tools to your Advantage
           </h2>
-          <p className="text-base">
-            Description and usage of this feature
-          </p>
+          <p className="text-base">Description and usage of this feature</p>
         </section>
 
         <section className="mb-8">
@@ -52,7 +45,6 @@ function Demo() {
           </div>
         </section>
       </main>
-
     </div>
   );
 }

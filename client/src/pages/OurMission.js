@@ -1,6 +1,5 @@
-import { ThemeContext } from '../utils/ThemeContext';
-import React, { useContext } from 'react';
-
+import React, { useContext } from "react";
+import { ThemeContext } from "../utils/ThemeContext";
 const stats = [
   { name: "Individuals gained financial Freedom", value: "10,000+" },
   { name: "Five Star Reviews", value: "300+" },
@@ -9,7 +8,7 @@ const stats = [
 ];
 
 export default function OurMission() {
-    const { isDarkMode } = useContext(ThemeContext);
+  const { isDarkMode } = useContext(ThemeContext);
   const styles = {
     backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#121212",
@@ -19,8 +18,7 @@ export default function OurMission() {
   };
   return (
     <div>
-
-      <div style={styles}className="relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
+      <div className="pointer-event-none relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">
         <img
           src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&crop=focalpoint&fp-y=.8&w=2830&h=1500&q=80&blend=111827&sat=-100&exp=15&blend-mode=multiply"
           alt=""
@@ -81,7 +79,6 @@ export default function OurMission() {
           </div>
         </div>
       </div>
-
     </div>
   );
 }

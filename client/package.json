@@ -1,3 +1,4 @@
+
 {
   "name": "client",
   "version": "0.1.0",
@@ -27,11 +28,14 @@
     "web-vitals": "^1.0.1"
   },
   "scripts": {
+    
     "start": "craco start",
     "build": "craco build",
+    "build:css": "tailwind -i ./src/index.css -o ./src/style.css", 
+    "postbuild": "npm run build:css",
     "test": "craco test",
-    "eject": "react-scripts eject",
-    "build:css": "postcss src/index.css -o dist/style.css"
+    "eject": "react-scripts eject"
+    
   },
   "eslintConfig": {
     "extends": [
