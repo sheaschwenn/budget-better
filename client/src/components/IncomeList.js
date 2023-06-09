@@ -88,15 +88,11 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, editIncome, setE
                           onChange= {handleCheckboxChange}
                           />
                         </label>
-                        <label>
-                          Frequency:
-                          <select>
-                            <option value="monthly">Monthly</option>
-                            <option value="yearly">Yearly</option>
-                          </select>
-                        </label>
+                        
                         {/* <button type="submit"  onClick= {() => handleIncomeEdit(single._id) }>Submit</button> */}
-                        <button type="submit" >Submit</button>
+                        <button 
+                        
+                        type="submit" >Submit</button>
                       </form>
                     )}
                      </div>
