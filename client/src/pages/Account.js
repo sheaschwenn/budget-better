@@ -53,7 +53,7 @@ const Account = () => {
     shortTerm: false
   })
 
-  // need to fix this 
+ 
   const [createExpense] = useMutation(CREATE_EXPENSE, {
     refetchQueries: [{query: GET_ME}]
   })
@@ -112,7 +112,7 @@ const Account = () => {
         },
        
       })
-      console.log(data)
+  
       setExpenses({
         category: '' ,
        amount: '',
@@ -275,7 +275,6 @@ const [editExpense, setEditExpense] = useState('')
 const [updateExpense] = useMutation(UPDATE_EXPENSE, {refetchQueries: [{query: GET_ME}]})
 const handleExpenseEdit = async(event, expenseId) => {
   event.preventDefault()
-  console.log(editExpense)
   try{
     const{data} = await updateExpense({
       variables: {
@@ -363,13 +362,6 @@ const handleGoalEdit = async(event, goalId) => {
                   onChange= {handleIncomeCheckboxChange}
                 />
               </label>
-              <label className="flex items-center mt-2">
-                Frequency:
-                <select className="border border-gray-300 p-2 rounded" name="frequency">
-                  <option value="monthly">Monthly</option>
-                  <option value="yearly">Yearly</option>
-                </select>
-              </label>
               <button className="bg-blue-500 text-white py-2 px-4 rounded mt-2" type="submit">Submit</button>
             </form>
             <IncomeList 
@@ -416,13 +408,6 @@ const handleGoalEdit = async(event, goalId) => {
                   onChange={handleExpenseCheckboxChange}
                 />
               </label>
-              <label className="flex items-center mt-2">
-                Frequency:
-                <select className="border border-gray-300 p-2 rounded" name="frequency">
-                  <option value="monthly">Monthly</option>
-                  <option value="yearly">Yearly</option>
-                </select>
-              </label>
               <button className="bg-blue-500 text-white py-2 px-4 rounded mt-2" type="submit">Submit</button>
             </form>
             <ExpensesList 
@@ -433,7 +418,6 @@ const handleGoalEdit = async(event, goalId) => {
             setEditExpense={setEditExpense} 
             edit={edit} 
             setEdit={setEdit} 
-            
             />
           </div>
         )}
