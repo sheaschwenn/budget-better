@@ -69,6 +69,7 @@ export const GET_USERS = gql`
 export const GET_EXPENSES = gql`
   query getExpenses {
     me {
+      _id
       expenses {
         _id
         category
@@ -83,6 +84,7 @@ export const GET_EXPENSES = gql`
 export const GET_INCOME = gql`
   query getIncome {
     me {
+      _id
       income {
         _id
         amount
@@ -99,6 +101,7 @@ export const GET_INCOME = gql`
 export const GET_GOAL = gql`
   query getGoal {
     me {
+      _id
       goal {
         _id
         name

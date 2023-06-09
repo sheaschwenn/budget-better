@@ -1,9 +1,8 @@
 //  import { CloudArrowUpIcon, LockClosedIcon } from "@heroicons/react/20/solid";
 
-
 export default function Features() {
   return (
-    <div className="flex flex-col min-h-screen bg-gray-50">
+    <div className="pointer-event-none flex flex-col min-h-screen bg-gray-50">
       <main className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0 flex-grow">
         <div className="absolute inset-0 -z-10 overflow-hidden">
           <svg
@@ -80,9 +79,8 @@ export default function Features() {
                 <ul role="list" className="mt-8 space-y-8 text-gray-600">
                   <li className="flex gap-x-3">
                     {/* <CloudArrowUpIcon */}
-                      className="mt-1 h-5 w-5 flex-none text-indigo-600"
-                      aria-hidden="true"
-                    />
+                    className="mt-1 h-5 w-5 flex-none text-indigo-600"
+                    aria-hidden="true" />
                     <span>
                       <strong className="font-semibold text-gray-900">
                         AI Chatbot
@@ -94,9 +92,8 @@ export default function Features() {
                   </li>
                   <li className="flex gap-x-3">
                     {/* <LockClosedIcon */}
-                      className="mt-1 h-5 w-5 flex-none text-indigo-600"
-                      aria-hidden="true"
-                    />
+                    className="mt-1 h-5 w-5 flex-none text-indigo-600"
+                    aria-hidden="true" />
                     <span>
                       <strong className="font-semibold text-gray-900">
                         Visualizations
