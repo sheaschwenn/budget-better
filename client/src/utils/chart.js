@@ -18,6 +18,11 @@ export const generateGroupedBarChart = (ctx, labels, datasets) => {
       scales: {
         y: {
           beginAtZero: true,
+          ticks: {
+            callback: function (value) {
+              return '$' + value; // Add a '$' symbol to the tick label
+            },
+          },
         },
       },
     },
@@ -45,6 +50,11 @@ export const generateLineChart = (ctx, labels, datasets) => {
       scales: {
         y: {
           beginAtZero: true,
+          ticks: {
+            callback: function (value) {
+              return '$' + value; // Add a '$' symbol to the tick label
+            },
+          },
         },
       },
     },

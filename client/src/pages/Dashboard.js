@@ -9,7 +9,7 @@ import { generateGroupedBarChart, generateLineChart } from '../utils/chart';
 const Dashboard = () => {
 
 
-
+// declare variables for the data we will be using to generate the charts 
   const { loading: expensesLoading, error: expensesError, data: expensesData } = useQuery(GET_EXPENSES);
   const { loading: incomeLoading, error: incomeError, data: incomeData } = useQuery(GET_INCOME);
   const { loading: goalsLoading, error: goalsError, data: goalsData } = useQuery(GET_GOAL);
