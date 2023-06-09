@@ -31,7 +31,7 @@ const Cashbot = () => {
     setMessage("");
   };
   return (
-    <div className="container mx-auto mt-10 w-1/2">
+    <div className="min-h-screen container mx-auto mt-10 w-1/2">
       <h1 className="text-center text-3xl mb-6">My Chatbot</h1>
       <div className="border rounded shadow p-4">
         <div className="font-bold mb-2">Chat History</div>
