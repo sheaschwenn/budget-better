@@ -1,6 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import { ThemeContext } from '../utils/ThemeContext';
 
 const Cashbot = () => {
+  const { isDarkMode } = useContext(ThemeContext);
+  const styles = {
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#121212",
+  };
+
   const [message, setMessage] = useState("");
   const [history, setHistory] = useState([]);
 
@@ -31,7 +38,7 @@ const Cashbot = () => {
     setMessage("");
   };
   return (
-    <div className="container mx-auto mt-10 w-1/2">
+    <div style={styles}className="container mx-auto mt-10 w-1/2">
       <h1 className="text-center text-3xl mb-6">My Chatbot</h1>
       <div className="border rounded shadow p-4">
         <div className="font-bold mb-2">Chat History</div>

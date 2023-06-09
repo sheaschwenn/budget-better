@@ -315,12 +315,15 @@ const handleGoalEdit = async(event, goalId) => {
 }
 
   const styles = {
-    backgroundColor: isDarkMode ? '#000000' : '#ffffff',
-    color: isDarkMode ? '#ffffff' : '#000000',
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
   };
 
   return (
-    <div className="bg-white shadow p-6 rounded-lg">
+    <div style={styles} className="bg-white shadow p-6 rounded-lg">
       <h2 className="text-xl font-bold mb-4">Account</h2>
   
       <div className="mb-4">

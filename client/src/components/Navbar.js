@@ -1,7 +1,9 @@
-import { Fragment, useState } from "react";
+import React, { Fragment, useState, useContext } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import { ThemeContext } from "../utils/ThemeContext";
 import { useLocation } from "react-router-dom";
-import logo from "./BudgetBetterLogo.png";
+import { FaSun, FaMoon } from "react-icons/fa";
+
 import {
   ArrowPathIcon,
   Bars3Icon,
@@ -55,27 +57,49 @@ const callsToAction = [
   { name: "Contact Us", href: "/contact", icon: PhoneIcon },
 ];
 
-function classNames(...classes) {
-  return classes.filter(Boolean).join(" ");
-}
+// function classNames(...classes) {
+//   return classes.filter(Boolean).join(" ");
+// }
 
 export default function Navbar() {
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
+  const styles = {
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
+  };
+  const exploreDropdownStyles = {
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
+    borderColor: isDarkMode ? "#4B5563" : "#D1D5DB",
+  };
+
+if (isDarkMode) {
+  exploreDropdownStyles.color = "#ffffff";
+} else {
+  exploreDropdownStyles.color = "#192734";
+}
+  const sideMenuStyles = {
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
+  };
 
   if (location.pathname === "/") {
     return null;
   }
   return (
-    <header className="bg-white">
+    <header style={styles} className="bg-white">
       <nav
         className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
+        <button onClick={toggleDarkMode}>
+          {isDarkMode ? <FaSun /> : <FaMoon />}
+        </button>
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Budget Better</span>
-            <img className="h-8 w-auto" src={logo} alt="Budget Better Logo" />
           </a>
         </div>
         <div className="flex lg:hidden">
@@ -90,11 +114,13 @@ export default function Navbar() {
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
-            <Popover.Button className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+              
+            <Popover.Button style={exploreDropdownStyles} className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
               Explore
               <ChevronDownIcon
-                className="h-5 w-5 flex-none text-gray-400"
+                className="h-5 w-5 flex-none"
                 aria-hidden="true"
+                style={exploreDropdownStyles}
               />
             </Popover.Button>
 
@@ -107,7 +133,10 @@ export default function Navbar() {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
+              <Popover.Panel
+                className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
+                style={exploreDropdownStyles}
+              >
                 <div className="p-4">
                   {products.map((item) => (
                     <div
@@ -123,7 +152,7 @@ export default function Navbar() {
                       <div className="flex-auto">
                         <a
                           href={item.href}
-                          className="block font-semibold text-gray-900"
+                          className="block font-semibold"
                         >
                           {item.name}
                           <span className="absolute inset-0" />
@@ -154,19 +183,22 @@ export default function Navbar() {
 
           <a
             href="/dashboard"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm font-semibold leading-6"
+            style={sideMenuStyles}
           >
             Dashboard
           </a>
           <a
             href="/account"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm font-semibold leading-6 "
+            style={sideMenuStyles}
           >
             Account
           </a>
           <a
             href="/cashbot"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm font-semibold leading-6 "
+            style={sideMenuStyles}
           >
             Cashbot
           </a>
@@ -174,7 +206,8 @@ export default function Navbar() {
         <div className="hidden lg:flex lg:flex-1 lg:justify-end">
           <a
             href="/login"
-            className="text-sm font-semibold leading-6 text-gray-900"
+            className="text-sm font-semibold leading-6 "
+            style={sideMenuStyles}
           >
             Log in <span aria-hidden="true">&rarr;</span>
           </a>
@@ -206,68 +239,73 @@ export default function Navbar() {
               <XMarkIcon className="h-6 w-6" aria-hidden="true" />
             </button>
           </div>
-          <div className="mt-6 flow-root">
-            <div className="-my-6 divide-y divide-gray-500/10">
-              <div className="space-y-2 py-6">
-                <Disclosure as="div" className="-mx-3">
-                  {({ open }) => (
-                    <>
-                      <Disclosure.Button className="flex w-full items-center justify-between rounded-lg py-2 pl-3 pr-3.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50">
-                        Explore
-                        <ChevronDownIcon
-                          className={classNames(
-                            open ? "rotate-180" : "",
-                            "h-5 w-5 flex-none"
-                          )}
-                          aria-hidden="true"
-                        />
-                      </Disclosure.Button>
-                      <Disclosure.Panel className="mt-2 space-y-2">
-                        {[...products, ...callsToAction].map((item) => (
-                          <Disclosure.Button
-                            key={item.name}
-                            as="a"
-                            href={item.href}
-                            className="block rounded-lg py-2 pl-6 pr-3 text-sm font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                          >
-                            {item.name}
-                          </Disclosure.Button>
-                        ))}
-                      </Disclosure.Panel>
-                    </>
-                  )}
-                </Disclosure>
+          <div className="mt-6">
+            <nav className="grid gap-y-8">
+              {callsToAction.map((item) => (
+                <a
+                  key={item.name}
+                  href={item.href}
+                  className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                >
+                  <item.icon
+                    className="flex-shrink-0 h-6 w-6 text-indigo-600"
+                    aria-hidden="true"
+                  />
+                  <span className="ml-3 text-base font-medium text-gray-900">
+                    {item.name}
+                  </span>
+                </a>
+              ))}
+            </nav>
+          </div>
+          <div className="mt-8">
+            <h2 className="text-sm font-semibold text-gray-900 tracking-wide uppercase">
+              Dashboard
+            </h2>
+            <ul className="mt-2">
+              <li className="flow-root">
                 <a
                   href="/dashboard"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                 >
-                  Dashboard
+                  <span>Dashboard</span>
                 </a>
+              </li>
+              <li className="flow-root">
                 <a
                   href="/account"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                 >
-                  Account
+                  <span>Account</span>
                 </a>
+              </li>
+              <li className="flow-root">
                 <a
                   href="/cashbot"
-                  className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                 >
-                  Cashbot
+                  <span>Cashbot</span>
                 </a>
-              </div>
-              <div className="py-6">
-                <a
-                  href="/login"
-                  className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                >
-                  Log in
-                </a>
-              </div>
-            </div>
+              </li>
+            </ul>
+          </div>
+          <div className="mt-8">
+            <a
+              href="/login"
+              className="flex items-center justify-center w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
+            >
+              Log in
+            </a>
+            <p className="mt-6 text-center text-base font-medium text-gray-500">
+              Existing customer?{" "}
+              <a href="/login" className="text-indigo-600 hover:text-indigo-500">
+                Log in
+              </a>
+            </p>
           </div>
         </Dialog.Panel>
       </Dialog>
     </header>
   );
 }
+
