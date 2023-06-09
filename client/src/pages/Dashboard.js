@@ -171,21 +171,21 @@ const Dashboard = () => {
   if (expensesError || incomeError || goalsError) return <p>Error :(</p>;
 
   return (
-    <div>
+    <div className="bg-white shadow p-6 rounded-lg">
       <section className="dashboard-section">
-        <h2>Welcome to Your Dashboard</h2>
+        <h2 className="text-xl font-bold mb-4">Welcome to Your Dashboard</h2>
         <div className="finance-info">
           <canvas ref={barChartRef}></canvas>
           {checkMultipleMonthsData(incomeData?.me?.income) || checkMultipleMonthsData(expensesData?.me?.expenses) ? (
             <canvas ref={lineChartRef}></canvas>
           ) : null}
-          <p>Total Expenses: ${totalExpenses || 0}</p>
+          <p className="mt-2">Total Expenses: ${totalExpenses || 0}</p>
           <p>Total Income: ${totalIncome || 0}</p>
           <p>Total Goals: ${totalGoals || 0}</p>
         </div>
       </section>
     </div>
   );
-};
-
+  
+          };
 export default Dashboard;

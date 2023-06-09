@@ -320,151 +320,170 @@ const handleGoalEdit = async(event, goalId) => {
   };
 
   return (
-    <div >
-      <h2>Account</h2>
-
-      <div>
-        <button onClick={() => handleTabChange('income')}>Income</button>
+    <div className="bg-white shadow p-6 rounded-lg">
+      <h2 className="text-xl font-bold mb-4">Account</h2>
+  
+      <div className="mb-4">
+        <button className="border border-gray-300 py-2 px-4 rounded" onClick={() => handleTabChange('income')}>Income</button>
         {selectedTab === 'income' && (
           <div>
-          <form onSubmit={handleIncomeSubmit}>
-            <input 
-            type="text" 
-            placeholder="Name"
-            name= 'name'
-            value= {income.name}
-            onChange={handleIncomeChange} />
-            <label>
-              Passive:
+            <form className="mt-4" onSubmit={handleIncomeSubmit}>
               <input 
-              type="checkbox" 
-              name= 'passive'
-              checked= {income.passive}
-              onChange= {handleIncomeCheckboxChange}
-              />
-            </label>
-            <input 
-            type="number" 
-            placeholder="Amount" 
-            name= 'amount'
-            value= {income.amount}
-            onChange= {handleIncomeChange}
-            />
-            <label>
-              Recurring:
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                type="text" 
+                placeholder="Name"
+                name= 'name'
+                value= {income.name}
+                onChange={handleIncomeChange} />
+              <label className="flex items-center mt-2">
+                Passive:
+                <input 
+                  className="ml-2"
+                  type="checkbox" 
+                  name= 'passive'
+                  checked= {income.passive}
+                  onChange= {handleIncomeCheckboxChange}
+                />
+              </label>
               <input 
-              type="checkbox" 
-              name= 'recurring'
-              checked= {income.recurring}
-              onChange= {handleIncomeCheckboxChange}
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                type="number" 
+                placeholder="Amount" 
+                name= 'amount'
+                value= {income.amount}
+                onChange= {handleIncomeChange}
               />
-            </label>
-            <label>
-              Frequency:
-              <select>
-                <option value="monthly">Monthly</option>
-                <option value="yearly">Yearly</option>
-              </select>
-            </label>
-            <button type="submit">Submit</button>
-          </form>
-          <IncomeList 
-          getIncome={getIncome} 
-          handleDelete={handleDelete} 
-          handleIncomeEdit= {handleIncomeEdit}   
-          editIncome={editIncome} 
-          setEditIncome={setEditIncome}
-          edit= {edit}
-          setEdit= {setEdit}
-          />
-        </div>
-        )}
-      </div>
-
-      <div>
-        <button onClick={() => handleTabChange('expenses')}>Expenses</button>
-        {selectedTab === 'expenses' && (
-          <div>
-          <form onSubmit={handleExpenseSubmit}>
-            <input 
-            name= 'category'
-            type="text" 
-            placeholder="Category" 
-            value= {expenses.category}
-            onChange={handleExpensesChange}
+              <label className="flex items-center mt-2">
+                Recurring:
+                <input 
+                  className="ml-2"
+                  type="checkbox" 
+                  name= 'recurring'
+                  checked= {income.recurring}
+                  onChange= {handleIncomeCheckboxChange}
+                />
+              </label>
+              <label className="flex items-center mt-2">
+                Frequency:
+                <select className="border border-gray-300 p-2 rounded" name="frequency">
+                  <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
+                </select>
+              </label>
+              <button className="bg-blue-500 text-white py-2 px-4 rounded mt-2" type="submit">Submit</button>
+            </form>
+            <IncomeList 
+            getIncome={getIncome} 
+            handleDelete={handleDelete} 
+            handleIncomeEdit={handleIncomeEdit} 
+            editIncome={editIncome} 
+            setEditIncome={setEditIncome} 
+            edit={edit} 
+            setEdit={setEdit} 
             />
-            <input 
-            name= 'amount'
-            type="number" 
-            placeholder="Amount" 
-            value= {expenses.amount}
-            onChange={handleExpensesChange }
-            />
-             <label>
-              Recurring:
-              <input
-              name= 'recurring'
-                type="checkbox"
-                checked={expenses.recurring}
-                onChange={handleExpenseCheckboxChange}
-              />
-            </label>
-            <button type="submit">Submit</button>
-          </form>
-          <ExpensesList 
-          expensesList= {getExpenses} 
-          handleExpenseDelete={handleExpenseDelete}
-          handleExpenseEdit= {handleExpenseEdit}
-          editExpense= {editExpense}
-          setEditExpense= {setEditExpense}
-          edit= {edit}
-          setEdit= {setEdit}
-          />
           </div>
         )}
       </div>
-
-      <div>
-        <button onClick={() => handleTabChange('goals')}>Goals</button>
+  
+      <div className="mb-4">
+        <button className="border border-gray-300 py-2 px-4 rounded" onClick={() => handleTabChange('expenses')}>Expenses</button>
+        {selectedTab === 'expenses' && (
+          <div>
+            <form className="mt-4" onSubmit={handleExpenseSubmit}>
+              <input 
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                name= 'category'
+                type="text" 
+                placeholder="Category" 
+                value= {expenses.category}
+                onChange={handleExpensesChange}
+              />
+              <input 
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                name= 'amount'
+                type="number" 
+                placeholder="Amount" 
+                value= {expenses.amount}
+                onChange={handleExpensesChange}
+              />
+              <label className="flex items-center mt-2">
+                Recurring:
+                <input
+                  className="ml-2"
+                  name= 'recurring'
+                  type="checkbox"
+                  checked={expenses.recurring}
+                  onChange={handleExpenseCheckboxChange}
+                />
+              </label>
+              <label className="flex items-center mt-2">
+                Frequency:
+                <select className="border border-gray-300 p-2 rounded" name="frequency">
+                  <option value="monthly">Monthly</option>
+                  <option value="yearly">Yearly</option>
+                </select>
+              </label>
+              <button className="bg-blue-500 text-white py-2 px-4 rounded mt-2" type="submit">Submit</button>
+            </form>
+            <ExpensesList 
+            expensesList={getExpenses} 
+            handleExpenseDelete={handleExpenseDelete}
+            handleExpenseEdit={handleExpenseEdit} 
+            editExpense={editExpense} 
+            setEditExpense={setEditExpense} 
+            edit={edit} 
+            setEdit={setEdit} 
+            
+            />
+          </div>
+        )}
+      </div>
+  
+      <div className="mb-4">
+        <button className="border border-gray-300 py-2 px-4 rounded" onClick={() => handleTabChange('goals')}>Goals</button>
         {selectedTab === 'goals' && (
           <div>
-          <form onSubmit={handleGoalSubmit}>
-            <input 
-            type="text"
-             placeholder="Name"
-             name= 'name'
-             value = {goal.name}
-             onChange= {handleGoalChange}
+            <form className="mt-4" onSubmit={handleGoalSubmit}>
+              <input 
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                type="text"
+                placeholder="Name"
+                name= 'name'
+                value={goal.name}
+                onChange={handleGoalChange}
               />
-            <input
-             type="number" 
-             placeholder="Amount to Save" 
-             name = 'amountToSave'
-             value = {goal.amountToSave}
-             onChange = {handleGoalChange}
-             />
-            <input 
-            type="date" 
-            placeholder="Deadline"
-            name= 'byDate'
-            value = {goal.byDate}
-            onChange= {handleGoalChange}
-             />
-
-            <label>
-              Short Term:
               <input
-              name= 'shortTerm'
-                type="checkbox"
-                checked={goal.shortTerm}
-                onChange={handleGoalCheckboxChange}
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                type="number" 
+                placeholder="Amount to Save" 
+                name="amountToSave"
+                value={goal.amountToSave}
+                onChange={handleGoalChange}
               />
-            </label>
-            <button type="submit">Submit</button>
-          </form>
-          <GoalList 
-          goalList= {getGoals} 
-          handleGoalDelete= {handleGoalDelete}
+              <input 
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                type="date" 
+                placeholder="Deadline"
+                name= 'byDate'
+                value={goal.byDate}
+                onChange={handleGoalChange}
+              />
+  
+              <label className="flex items-center mt-2">
+                Short Term:
+                <input
+                  className="ml-2"
+                  name= 'shortTerm'
+                  type="checkbox"
+                  checked={goal.shortTerm}
+                  onChange={handleGoalCheckboxChange}
+                />
+              </label>
+              <button className="bg-blue-500 text-white py-2 px-4 rounded mt-2" type="submit">Submit</button>
+            </form>
+            <GoalList 
+          goalList={getGoals} 
+          handleGoalDelete={handleGoalDelete}
           handleGoalEdit= {handleGoalEdit}
           editGoal= {editGoal}
           setEditGoal= {setEditGoal}
@@ -476,6 +495,6 @@ const handleGoalEdit = async(event, goalId) => {
       </div>
     </div>
   );
-};
+        };
 
 export default Account;
