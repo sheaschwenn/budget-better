@@ -56,17 +56,13 @@ export const UPDATE_SETTING = gql`
 `;
 
 export const UPDATE_EXPENSE = gql`
-  mutation updateExpense($id: ID!, $category: String, $amount: Float, $recurring: Boolean) {
-    updateExpense(_id: $id, category: $category, Amount: $amount, recurring: $recurring) {
-      _id
-      name
-      email
-      expenses {
+  mutation updateExpense($expenseId: ID!, $category: String, $amount: Float, $recurring: Boolean) {
+    updateExpense(expenseId: $expenseId, category: $category, amount: $amount, recurring: $recurring) {
+     
         _id
         category
         amount
         recurring
-      }
     }
   }
 `;
@@ -98,8 +94,8 @@ export const CREATE_INCOME = gql`
 `;
 
 export const UPDATE_INCOME = gql`
-  mutation updateIncome($id: ID!, $name: String, $passive: Boolean, $recurring: Boolean) {
-    updateIncome(_id: $id, name: $name, passive: $passive, recurring: $recurring) {
+  mutation updateIncome($incomeId: ID!, $name: String, $passive: Boolean,$amount: Float! $recurring: Boolean) {
+    updateIncome(incomeId: $incomeId, name: $name, passive: $passive, amount: $amount, recurring: $recurring) {
     
         _id
         name
@@ -138,18 +134,15 @@ export const CREATE_GOAL = gql`
 `;
 
 export const UPDATE_GOAL = gql`
-  mutation updateGoal($id: ID!, $name: String, $amountToSave: Float, $byDate: String, $shortTerm: Boolean) {
-    updateGoal(_id: $id, name: $name, amountToSave: $amountToSave, byDate: $byDate, shortTerm: $shortTerm) {
-      _id
-      name
-      email
-      goal {
+  mutation updateGoal($goalId: ID!, $name: String, $amountToSave: Float, $byDate: String, $shortTerm: Boolean) {
+    updateGoal(goalId: $goalId, name: $name, amountToSave: $amountToSave, byDate: $byDate, shortTerm: $shortTerm) {
+   
         _id
         name
         amountToSave
         byDate
         shortTerm
-      }
+      
     }
   }
 `;
