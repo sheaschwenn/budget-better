@@ -1,19 +1,19 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
-import companyLogo from '../assets/images/BudgetBetterLogo.png';
-import { ThemeContext } from '../utils/ThemeContext';
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { ADD_USER } from "../utils/mutations";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
+import companyLogo from "../assets/images/BudgetBetterLogo.png";
+import { ThemeContext } from "../utils/ThemeContext";
 
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Signup = () => {
   const [formState, setFormState] = useState({
-    name: '',
-    email: '',
-    password: '',
+    name: "",
+    email: "",
+    password: "",
   });
   const [addUser, { error, data }] = useMutation(ADD_USER);
 
@@ -43,13 +43,16 @@ const Signup = () => {
 
   const { isDarkMode } = useContext(ThemeContext);
   const styles = {
-    backgroundColor: isDarkMode ? '#192734' : '#ffffff',
-    color: isDarkMode ? '#ffffff' : '#192734',
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
   };
 
   return (
     <main style={styles} className="flex items-center justify-center h-screen">
-      <div style={styles} className="bg-white shadow-lg rounded-lg p-8 max-w-sm">
+      <div
+        style={styles}
+        className="bg-white shadow-lg rounded-lg p-8 max-w-sm"
+      >
         <div className="flex justify-center">
           <img src={companyLogo} alt="Company Logo" className="h-16 w-auto" />
         </div>
@@ -112,7 +115,7 @@ const Signup = () => {
           </div>
         </form>
         <p className="mt-4 text-center text-sm">
-          Already have an account?{' '}
+          Already have an account?{" "}
           <Link
             to="/login"
             className="text-indigo-600 hover:text-indigo-700 font-semibold"
@@ -127,7 +130,7 @@ const Signup = () => {
         )}
         {data && (
           <div className="my-4 p-3 bg-green-500 text-white rounded-md">
-            Success! You may now{' '}
+            Success! You may now{" "}
             <Link
               to="/dashboard"
               className="underline font-semibold hover:text-white"

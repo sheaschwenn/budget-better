@@ -1,9 +1,7 @@
- import { CloudArrowUpIcon, LockClosedIcon } from "@heroicons/react/20/solid";
-import React, { useContext } from "react";
-import { ThemeContext } from '../utils/ThemeContext';
-
+import { CloudArrowUpIcon, LockClosedIcon } from "@heroicons/react/20/solid";
+import { ThemeContext } from "../utils/ThemeContext";
+import { useContext } from "react";
 export default function Features() {
-
   const { isDarkMode } = useContext(ThemeContext);
   const styles = {
     backgroundColor: isDarkMode ? "#192734" : "#ffffff",
@@ -13,9 +11,8 @@ export default function Features() {
     flexDirection: "column",
   };
 
-
   return (
-    <div style={styles} className="flex flex-col min-h-screen bg-gray-50">
+    <div className="pointer-event-none flex flex-col min-h-screen bg-gray-50">
       <main className="relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:overflow-visible lg:px-0 flex-grow">
         <div style={styles} className="absolute inset-0 -z-10 overflow-hidden">
           <svg
@@ -92,27 +89,23 @@ export default function Features() {
                 <ul role="list" className="mt-8 space-y-8 ">
                   <li className="flex gap-x-3">
                     <CloudArrowUpIcon
-                      className="mt-1 h-5 w-5 flex-none"
+                      className="mt-1 h-5 w-5 flex-none text-indigo-600"
                       aria-hidden="true"
                     />
                     <span>
-                      <strong className="font-semibold">
-                        AI Chatbot
-                      </strong>{" "}
-                      Our AI chatbot provides personalized financial guidance
-                      and support 24/7, helping users make informed decisions
-                      and achieve their financial goals with ease.
+                      <strong className="font-semibold">AI Chatbot</strong> Our
+                      AI chatbot provides personalized financial guidance and
+                      support 24/7, helping users make informed decisions and
+                      achieve their financial goals with ease.
                     </span>
                   </li>
                   <li className="flex gap-x-3">
                     <LockClosedIcon
-                      className="mt-1 h-5 w-5 flex-none "
+                      className="mt-1 h-5 w-5 flex-none text-indigo-600"
                       aria-hidden="true"
                     />
                     <span>
-                      <strong className="font-semibold ">
-                        Visualizations
-                      </strong>{" "}
+                      <strong className="font-semibold ">Visualizations</strong>{" "}
                       Our charts and graphs feature offers visual
                       representations of your financial data, allowing you to
                       gain valuable insights and track your progress

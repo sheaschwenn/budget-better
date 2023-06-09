@@ -1,19 +1,16 @@
-import React, { useState, useContext } from 'react';
-import { Link } from 'react-router-dom';
-import { useMutation } from '@apollo/client';
-import { LOGIN_USER } from '../utils/mutations';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faUser, faLock } from '@fortawesome/free-solid-svg-icons';
-import companyLogo from '../assets/images/BudgetBetterLogo.png';
-import { ThemeContext } from '../utils/ThemeContext';
+import React, { useState, useContext } from "react";
+import { Link } from "react-router-dom";
+import { useMutation } from "@apollo/client";
+import { LOGIN_USER } from "../utils/mutations";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faUser, faLock } from "@fortawesome/free-solid-svg-icons";
+import companyLogo from "../assets/images/BudgetBetterLogo.png";
+import { ThemeContext } from "../utils/ThemeContext";
 
-
-
-
-import Auth from '../utils/auth';
+import Auth from "../utils/auth";
 
 const Login = (props) => {
-  const [formState, setFormState] = useState({ email: '', password: '' });
+  const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
   // update state based on form input changes
@@ -43,22 +40,25 @@ const Login = (props) => {
 
     // clear form values
     setFormState({
-      email: '',
-      password: '',
+      email: "",
+      password: "",
     });
   };
   const { isDarkMode } = useContext(ThemeContext);
   const styles = {
     backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#121212",
-    
+
     display: "flex",
     flexDirection: "column",
   };
 
   return (
     <main style={styles} className="flex items-center justify-center h-screen">
-      <div style={styles} className="bg-white shadow-lg rounded-lg p-8 max-w-sm">
+      <div
+        style={styles}
+        className="bg-white shadow-lg rounded-lg p-8 max-w-sm"
+      >
         <div className="flex justify-center">
           <img src={companyLogo} alt="Company Logo" className="h-16 w-auto" />
         </div>
@@ -105,7 +105,7 @@ const Login = (props) => {
           </div>
         </form>
         <p className="mt-4 text-center text-sm">
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <Link
             to="/signup"
             className="text-indigo-600 hover:text-indigo-700 font-semibold"
@@ -118,10 +118,10 @@ const Login = (props) => {
             {error.message}
           </div>
         )}
-  
+
         {data && (
           <div className="my-4 p-3 bg-green-500 text-white rounded-md">
-            Success! You may now{' '}
+            Success! You may now{" "}
             <Link
               to="/dashboard"
               className="underline font-semibold hover:text-white"

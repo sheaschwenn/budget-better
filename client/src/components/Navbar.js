@@ -3,58 +3,55 @@ import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { ThemeContext } from "../utils/ThemeContext";
 import { useLocation } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
-
+import logo from "./BudgetBetterLogo.png";
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
+  CogIcon,
+  QuestionMarkCircleIcon,
+  MagnifyingGlassIcon,
+  HandThumbUpIcon,
+  RocketLaunchIcon,
+  ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
-} from "@heroicons/react/20/solid";
+import { ChevronDownIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
 
 const products = [
   {
     name: "Settings",
     href: "/settings",
-    icon: ChartPieIcon,
+    icon: CogIcon,
   },
-  {
-    name: "Help",
-    href: "/help",
-    icon: ChartPieIcon,
-  },
+
   {
     name: "FAQ",
     href: "/faq",
-    icon: CursorArrowRaysIcon,
+    icon: QuestionMarkCircleIcon,
   },
   {
     name: "About",
     href: "/about",
-    icon: FingerPrintIcon,
+    icon: MagnifyingGlassIcon,
   },
   {
     name: "Testamonials",
     href: "/testamonials",
-    icon: SquaresPlusIcon,
+    icon: HandThumbUpIcon,
   },
   {
-    name: "OurMission",
+    name: "Our Mission",
     href: "/ourmission",
 
-    icon: ArrowPathIcon,
+    icon: RocketLaunchIcon,
   },
 ];
 const callsToAction = [
   { name: "Watch demo", href: "/demo", icon: PlayCircleIcon },
-  { name: "Contact Us", href: "/contact", icon: PhoneIcon },
+  {
+    name: "Contact Us",
+    href: "/contact",
+    icon: ChatBubbleBottomCenterTextIcon,
+  },
 ];
 
 // function classNames(...classes) {
@@ -62,6 +59,7 @@ const callsToAction = [
 // }
 
 export default function Navbar() {
+  // const isLoggedIn = AuthService.loggedIn();
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -75,11 +73,11 @@ export default function Navbar() {
     borderColor: isDarkMode ? "#4B5563" : "#D1D5DB",
   };
 
-if (isDarkMode) {
-  exploreDropdownStyles.color = "#ffffff";
-} else {
-  exploreDropdownStyles.color = "#192734";
-}
+  if (isDarkMode) {
+    exploreDropdownStyles.color = "#ffffff";
+  } else {
+    exploreDropdownStyles.color = "#192734";
+  }
   const sideMenuStyles = {
     backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#192734",
@@ -100,9 +98,10 @@ if (isDarkMode) {
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Budget Better</span>
+            <img className="h-16 w-auto" src={logo} alt="Budget Better Logo" />
           </a>
         </div>
-        <div className="flex lg:hidden">
+        <div className="flex relative  lg:hidden">
           <button
             type="button"
             className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
@@ -114,8 +113,10 @@ if (isDarkMode) {
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12">
           <Popover className="relative">
-              
-            <Popover.Button style={exploreDropdownStyles} className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
+            <Popover.Button
+              style={exploreDropdownStyles}
+              className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+            >
               Explore
               <ChevronDownIcon
                 className="h-5 w-5 flex-none"
@@ -133,10 +134,7 @@ if (isDarkMode) {
               leaveFrom="opacity-100 translate-y-0"
               leaveTo="opacity-0 translate-y-1"
             >
-              <Popover.Panel
-                className="absolute -left-8 top-full z-10 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5"
-                style={exploreDropdownStyles}
-              >
+              <Popover.Panel className="absolute -left-8 top-full z-50 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
                 <div className="p-4">
                   {products.map((item) => (
                     <div
@@ -150,10 +148,7 @@ if (isDarkMode) {
                         />
                       </div>
                       <div className="flex-auto">
-                        <a
-                          href={item.href}
-                          className="block font-semibold"
-                        >
+                        <a href={item.href} className="block font-semibold">
                           {item.name}
                           <span className="absolute inset-0" />
                         </a>
@@ -219,15 +214,15 @@ if (isDarkMode) {
         open={mobileMenuOpen}
         onClose={setMobileMenuOpen}
       >
-        <div className="fixed inset-0 z-10" />
-        <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+        <div className="fixed inset-0 z-50" />
+        <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
             <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Budget Better</span>
               <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
+                className="h-16 w-auto"
+                src={logo}
+                alt="Budget Better Logo"
               />
             </a>
             <button
@@ -288,24 +283,17 @@ if (isDarkMode) {
                 </a>
               </li>
             </ul>
-          </div>
-          <div className="mt-8">
-            <a
-              href="/login"
-              className="flex items-center justify-center w-full py-3 px-4 border border-transparent rounded-md shadow-sm text-base font-medium text-white bg-indigo-600 hover:bg-indigo-700"
-            >
-              Log in
-            </a>
-            <p className="mt-6 text-center text-base font-medium text-gray-500">
-              Existing customer?{" "}
-              <a href="/login" className="text-indigo-600 hover:text-indigo-500">
+            <div className="py-6">
+              <a
+                href="/login"
+                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              >
                 Log in
               </a>
-            </p>
+            </div>
           </div>
         </Dialog.Panel>
       </Dialog>
     </header>
   );
 }
-
