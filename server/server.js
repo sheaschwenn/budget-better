@@ -3,7 +3,7 @@ const { ApolloServer } = require("apollo-server-express");
 const path = require("path");
 const dateScalar = require("./schema/dateScalar");
 const openai = require("openai");
-// require("dotenv").config();
+require("dotenv").config();
 
 const { authMiddleware } = require("./utils/auth");
 const { typeDefs, resolvers } = require("./schema");
