@@ -1,6 +1,16 @@
-import React from "react";
+import React, { useContext } from "react";
+import { ThemeContext } from "../utils/ThemeContext";
 
 function Demo() {
+  const { isDarkMode } = useContext(ThemeContext);
+  const styles = {
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#121212",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  };
+
   return (
     <div className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <main className="flex-grow px-4 py-5 sm:p-6">
@@ -10,18 +20,14 @@ function Demo() {
           <h2 className="text-2xl font-bold mb-2">
             Signup and enter basic info
           </h2>
-          <p className="text-base text-gray-500">
-            Description and usage of this feature
-          </p>
+          <p className="text-base ">Description and usage of this feature</p>
         </section>
 
         <section className="mb-8">
           <h2 className="text-2xl font-bold mb-2">
             Use Budget Better tools to your Advantage
           </h2>
-          <p className="text-base text-gray-500">
-            Description and usage of this feature
-          </p>
+          <p className="text-base">Description and usage of this feature</p>
         </section>
 
         <section className="mb-8">

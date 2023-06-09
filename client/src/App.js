@@ -11,7 +11,7 @@ import Cashbot from "./pages/Cashbot";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Demo from "./pages/Demo";
-import Testamonials from "./pages/Testamonials";
+import Testimonials from "./pages/Testimonials";
 import Features from "./pages/Features";
 import HeroPage from "./pages/HeroPage";
 import OurMission from "./pages/OurMission";
@@ -23,7 +23,7 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { ThemeContext } from "./utils/ThemeContext";
+import { ThemeContext, ThemeProvider } from "./utils/ThemeContext";
 import "./style.css";
 
 // Create an HTTP link to the GraphQL server
@@ -54,12 +54,16 @@ function App() {
   const { isDarkMode } = useContext(ThemeContext); // Retrieve the isDarkMode value from the ThemeContext
 
   const styles = {
-    backgroundColor: isDarkMode ? "#121212" : "#ffffff",
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#121212",
+        minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
   };
 
   return (
     <ApolloProvider client={client}>
+      <ThemeProvider>
       <Router>
         <div style={styles}>
           <Navbar />
@@ -76,6 +80,7 @@ function App() {
             />
           </div>
           <Routes>
+            
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/account" element={<Account />} />
             <Route path="/login" element={<Login />} />
@@ -85,7 +90,7 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/demo" element={<Demo />} />
-            <Route path="/testamonials" element={<Testamonials />} />
+            <Route path="/testimonials" element={<Testimonials />} />
             <Route path="/features" element={<Features />} />
             <Route path="/" element={<HeroPage />} />
             <Route path="/ourmission" element={<OurMission />} />
@@ -94,6 +99,7 @@ function App() {
           <Footer />
         </div>
       </Router>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }

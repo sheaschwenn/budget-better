@@ -3,6 +3,9 @@ import chrisImg from "../assets/images/chris.png";
 import didrikImg from "../assets/images/didrik.jpg";
 import mattImg from "../assets/images/matt.jpeg";
 import sheaImg from "../assets/images/shea.jpeg";
+import { ThemeContext } from "../utils/ThemeContext";
+import React, { useContext } from "react";
+
 const people = [
   {
     name: "Shea Schwennicke",
@@ -35,16 +38,23 @@ const people = [
 ];
 
 export default function About() {
+  const { isDarkMode } = useContext(ThemeContext);
+  const styles = {
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  };
+
   return (
     <div className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-2xl">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             About Us
           </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
-            Meet our leadership
-          </p>
+          <p className="mt-6 text-lg leading-8">Meet our leadership</p>
         </div>
         <ul className="grid gap-x-8 gap-y-12 sm:grid-cols-2 sm:gap-y-16 xl:col-span-2">
           {people.map((person) => (
@@ -56,7 +66,7 @@ export default function About() {
                   alt={person.name}
                 />
                 <div>
-                  <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
+                  <h3 className="text-base font-semibold leading-7 tracking-tight">
                     {person.name}
                   </h3>
                   <p className="text-sm font-semibold leading-6 text-indigo-600">

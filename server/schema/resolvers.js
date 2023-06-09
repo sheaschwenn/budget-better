@@ -51,11 +51,11 @@ const resolvers = {
            throw new AuthenticationError('You need to be logged in!');
 
         },
-        updateExpense: async(parent, args, context) =>{
+        updateExpense: async(parent, {expenseId, category, amount, recurring}, context) =>{
             if(context.user){
                 const updatedExpense = await Expense.findOneAndUpdate(
-                    {_id: args._id},
-                    {$set: args},
+                    {_id: expenseId},
+                    {$set: {category: category, amount: amount, recurring: recurring}},
                     {runValidators: true, new: true}
                 )
                 return updatedExpense
@@ -88,11 +88,13 @@ const resolvers = {
         },
         updateIncome: async(parent, {incomeId, name, passive, amount, recurring}, context) =>{
             if(context.user){
+                
                 const updatedIncome = await Income.findOneAndUpdate(
                     {_id: incomeId},
                     {$set: {name: name, passive: passive, amount: amount, recurring: recurring }},
                     {runValidators: true, new: true}
                 )
+               
                 return updatedIncome
             }
         },
@@ -120,11 +122,11 @@ const resolvers = {
                }
                throw new AuthenticationError('You need to be logged in!');
         },
-        updateGoal: async(parent, args, context) =>{
+        updateGoal: async(parent, {goalId, name, amountToSave, byDate, shortTerm}, context) =>{
             if(context.user){
                 const updatedGoal = await Goal.findOneAndUpdate(
-                    {_id: args._id},
-                    {$set: args},
+                    {_id: goalId},
+                    {$set: { name: name, amountToSave: amountToSave, byDate: byDate, shortTerm: shortTerm}},
                     {runValidators: true, new: true}
                 )
                 return updatedGoal

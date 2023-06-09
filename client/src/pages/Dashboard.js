@@ -6,8 +6,7 @@ import { useQuery } from "@apollo/client";
 import { generateGroupedBarChart, generateLineChart } from "../utils/chart";
 
 const Dashboard = () => {
-  const { isDarkMode } = useContext(ThemeContext);
-
+  // declare variables for the data we will be using to generate the charts
   const {
     loading: expensesLoading,
     error: expensesError,
@@ -24,9 +23,13 @@ const Dashboard = () => {
     data: goalsData,
   } = useQuery(GET_GOAL);
 
+  const { isDarkMode } = useContext(ThemeContext);
   const styles = {
-    backgroundColor: isDarkMode ? "#000000" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#000000",
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#121212",
+    // minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
   };
   // here we are using the useRef hook to create a reference to the canvas element that we will use to render the chart
   const totalExpenses = expensesData?.me?.expenses?.reduce(

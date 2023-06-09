@@ -1,3 +1,5 @@
+import React, { useContext } from "react";
+import { ThemeContext } from "../utils/ThemeContext";
 const stats = [
   { name: "Individuals gained financial Freedom", value: "10,000+" },
   { name: "Five Star Reviews", value: "300+" },
@@ -6,6 +8,14 @@ const stats = [
 ];
 
 export default function OurMission() {
+  const { isDarkMode } = useContext(ThemeContext);
+  const styles = {
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#121212",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+  };
   return (
     <div>
       <div className="pointer-event-none relative isolate overflow-hidden bg-gray-900 py-24 sm:py-32">

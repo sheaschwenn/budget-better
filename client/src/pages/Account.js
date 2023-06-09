@@ -8,6 +8,8 @@ import {
   DELETE_EXPENSE,
   DELETE_GOAL,
   UPDATE_INCOME,
+  UPDATE_EXPENSE,
+  UPDATE_GOAL,
 } from "../utils/mutations";
 
 import { GET_ME } from "../utils/queries";
@@ -34,6 +36,7 @@ const Account = () => {
   });
 
   const [income, setIncome] = useState({
+    _id: "",
     name: "",
     passive: false,
     amount: "",
@@ -43,11 +46,10 @@ const Account = () => {
   const [goal, setGoal] = useState({
     name: "",
     amountToSave: "",
-    byDate: "2023-06-07",
+    byDate: "",
     shortTerm: false,
   });
 
-  // need to fix this
   const [createExpense] = useMutation(CREATE_EXPENSE, {
     refetchQueries: [{ query: GET_ME }],
   });
@@ -79,6 +81,7 @@ const Account = () => {
       console.log(getIncome);
 
       setIncome({
+        _id: "",
         name: "",
         passive: false,
         amount: "",
@@ -101,7 +104,7 @@ const Account = () => {
           recurring: expenses.recurring,
         },
       });
-      console.log(data);
+
       setExpenses({
         category: "",
         amount: "",
@@ -166,7 +169,7 @@ const Account = () => {
       setGoal({
         name: "",
         amountToSave: "",
-        byDate: "2023-06-07",
+        byDate: "",
         shortTerm: false,
       });
     } catch {}
@@ -236,45 +239,83 @@ const Account = () => {
     setEditedIncome(income);
   };
 
+  const [editIncome, setEditIncome] = useState("");
+  const [edit, setEdit] = useState({});
+
   const [updateIncome] = useMutation(UPDATE_INCOME, {
     refetchQueries: [{ query: GET_ME }],
   });
-  const handleIncomeEdit = async (editedIncome) => {
+
+  const handleIncomeEdit = async (event, incomeId) => {
+    event.preventDefault();
     try {
       const { data } = await updateIncome({
         variables: {
-          incomeId: editedIncome._id,
-          name: editedIncome.name,
-          passive: editedIncome.passive,
-          amount: parseFloat(editedIncome.amount),
-          recurring: editedIncome.recurring,
+          incomeId: incomeId,
+          name: editIncome.name,
+          passive: editIncome.passive,
+          amount: parseFloat(editIncome.amount),
+          recurring: editIncome.recurring,
         },
       });
+      setEdit(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+  const [editExpense, setEditExpense] = useState("");
+  const [updateExpense] = useMutation(UPDATE_EXPENSE, {
+    refetchQueries: [{ query: GET_ME }],
+  });
+  const handleExpenseEdit = async (event, expenseId) => {
+    event.preventDefault();
+    try {
+      const { data } = await updateExpense({
+        variables: {
+          expenseId: expenseId,
+          category: editExpense.category,
+          amount: parseFloat(editExpense.amount),
+          recurring: editExpense.recurring,
+        },
+      });
+      setEdit(false);
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
+  const [editGoal, setEditGoal] = useState("");
+  const [updateGoal] = useMutation(UPDATE_GOAL, {
+    refetchQueries: [{ query: GET_ME }],
+  });
+  const handleGoalEdit = async (event, goalId) => {
+    event.preventDefault();
+    try {
+      const { data } = await updateGoal({
+        variables: {
+          goalId: goalId,
+          name: editGoal.name,
+          amountToSave: parseFloat(editGoal.amountToSave),
+          byDate: editGoal.byDate,
+          shortTerm: editGoal.shortTerm,
+        },
+      });
+      setEdit(false);
     } catch (err) {
       console.error(err);
     }
   };
 
   const styles = {
-    backgroundColor: isDarkMode ? "#000000" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#000000",
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
   };
 
   return (
-    <div className="pointer-events-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
-      <div
-        className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
-        aria-hidden="true"
-      >
-        <div
-          className="relative left-1/2  -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
-          style={{
-            clipPath:
-              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-          }}
-        />
-      </div>
-
+    <div style={styles} className="bg-white shadow p-6 rounded-lg">
       <h2 className="text-xl font-bold mb-4">Account</h2>
 
       <div className="mb-4">
@@ -323,16 +364,6 @@ const Account = () => {
                   onChange={handleIncomeCheckboxChange}
                 />
               </label>
-              <label className="flex items-center mt-2">
-                Frequency:
-                <select
-                  className="border border-gray-300 p-2 rounded"
-                  name="frequency"
-                >
-                  <option value="monthly">Monthly</option>
-                  <option value="yearly">Yearly</option>
-                </select>
-              </label>
               <button
                 className="bg-blue-500 text-white py-2 px-4 rounded mt-2"
                 type="submit"
@@ -344,9 +375,10 @@ const Account = () => {
               getIncome={getIncome}
               handleDelete={handleDelete}
               handleIncomeEdit={handleIncomeEdit}
-              handleIncomeCheckboxChange={handleIncomeCheckboxChange}
-              handleIncomeChange={handleIncomeChange}
-              incomeEdit={incomeEdit}
+              editIncome={editIncome}
+              setEditIncome={setEditIncome}
+              edit={edit}
+              setEdit={setEdit}
             />
           </div>
         )}
@@ -388,16 +420,6 @@ const Account = () => {
                   onChange={handleExpenseCheckboxChange}
                 />
               </label>
-              <label className="flex items-center mt-2">
-                Frequency:
-                <select
-                  className="border border-gray-300 p-2 rounded"
-                  name="frequency"
-                >
-                  <option value="monthly">Monthly</option>
-                  <option value="yearly">Yearly</option>
-                </select>
-              </label>
               <button
                 className="bg-blue-500 text-white py-2 px-4 rounded mt-2"
                 type="submit"
@@ -408,6 +430,11 @@ const Account = () => {
             <ExpensesList
               expensesList={getExpenses}
               handleExpenseDelete={handleExpenseDelete}
+              handleExpenseEdit={handleExpenseEdit}
+              editExpense={editExpense}
+              setEditExpense={setEditExpense}
+              edit={edit}
+              setEdit={setEdit}
             />
           </div>
         )}
@@ -465,7 +492,15 @@ const Account = () => {
                 Submit
               </button>
             </form>
-            <GoalList goalList={getGoals} handleGoalDelete={handleGoalDelete} />
+            <GoalList
+              goalList={getGoals}
+              handleGoalDelete={handleGoalDelete}
+              handleGoalEdit={handleGoalEdit}
+              editGoal={editGoal}
+              setEditGoal={setEditGoal}
+              edit={edit}
+              setEdit={setEdit}
+            />
           </div>
         )}
       </div>

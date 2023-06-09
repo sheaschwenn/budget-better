@@ -1,15 +1,9 @@
 import React, {useState} from 'react'
 
 
-const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeCheckboxChange, handleIncomeChange}) => {
-    const [edit, setEdit] = useState({})
+const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, editIncome, setEditIncome, edit, setEdit}) => {
+    // const [edit, setEdit] = useState({})
 
-    const [editIncome, setEditIncome] = useState({
-        name: '',
-        passive: false,
-        amount: '',
-        recurring: false
-      })
 
       const handleIncomeEditChange = (event) =>{
         const { name, value } = event.target
@@ -35,21 +29,15 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
         }
       };
 
-    const handleClick = (incomeId) => {
+    const handleClick = (incomeId, initialIncome) => {
         console.log("this is happening")
+        setEditIncome(initialIncome)
         setEdit((prevEdit) => ({
             ...prevEdit,
             [incomeId]: !prevEdit[incomeId],
           }));
     }
-
-    const handleEditSubmit = (incomeId) =>{
-        setEdit((prevEdit) => ({
-            ...prevEdit,
-            [incomeId]: false,
-          }));
-         
-    }
+ 
     if(!getIncome.length){
         return <h4>No recorded income</h4>
     }
@@ -60,13 +48,14 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
                 <div key= {single._id} >
                     <h4>{single.name} ${single.amount} {single.createdOn}
                     <button onClick={() => handleDelete(single._id) }>Delete</button>
-                      <button onClick={() =>handleClick(single._id, setEditIncome({  name: single.name,
+                      <button onClick={() =>handleClick(single._id, { incomeId: single._id, name: single.name,
         passive: single.passive,
         amount: single.amount,
-        recurring: single.recurring})) }>Edit</button> 
+        recurring: single.recurring})  }>Edit</button> 
                     </h4>
                     {edit[single._id] && (
-                        <form onSubmit={handleIncomeEdit}>
+                         <form onSubmit={(event) => handleIncomeEdit(event, single._id)}>
+                        
                         <input 
                         type="text" 
                         placeholder="Name"
@@ -99,14 +88,11 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, handleIncomeChec
                           onChange= {handleCheckboxChange}
                           />
                         </label>
-                        <label>
-                          Frequency:
-                          <select>
-                            <option value="monthly">Monthly</option>
-                            <option value="yearly">Yearly</option>
-                          </select>
-                        </label>
-                        <button type="submit"  onClick= {() => handleEditSubmit(single._id) }>Submit</button>
+                        
+                        {/* <button type="submit"  onClick= {() => handleIncomeEdit(single._id) }>Submit</button> */}
+                        <button 
+                        
+                        type="submit" >Submit</button>
                       </form>
                     )}
                      </div>

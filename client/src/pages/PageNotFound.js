@@ -1,4 +1,12 @@
+import React, { useContext } from "react";
+import { ThemeContext } from "../utils/ThemeContext";
 export default function PageNotFound() {
+  const { isDarkMode } = useContext(ThemeContext);
+  const styles = {
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#121212",
+  };
+
   return (
     <div className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div>
