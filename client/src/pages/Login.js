@@ -9,6 +9,7 @@ import { ThemeContext } from '../utils/ThemeContext';
 
 
 
+
 import Auth from '../utils/auth';
 
 const Login = (props) => {
@@ -48,12 +49,15 @@ const Login = (props) => {
   };
   const { isDarkMode } = useContext(ThemeContext);
   const styles = {
-    backgroundColor: isDarkMode ? "#121212" : "#ffffff",
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#121212",
+    
+    display: "flex",
+    flexDirection: "column",
   };
 
   return (
-    <main className="flex items-center justify-center h-screen">
+    <main style={styles} className="flex items-center justify-center h-screen">
       <div style={styles} className="bg-white shadow-lg rounded-lg p-8 max-w-sm">
         <div className="flex justify-center">
           <img src={companyLogo} alt="Company Logo" className="h-16 w-auto" />

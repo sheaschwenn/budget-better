@@ -8,16 +8,19 @@ import { generateGroupedBarChart, generateLineChart } from '../utils/chart';
 
 const Dashboard = () => {
 
-  const { isDarkMode } = useContext(ThemeContext);
 
 
   const { loading: expensesLoading, error: expensesError, data: expensesData } = useQuery(GET_EXPENSES);
   const { loading: incomeLoading, error: incomeError, data: incomeData } = useQuery(GET_INCOME);
   const { loading: goalsLoading, error: goalsError, data: goalsData } = useQuery(GET_GOAL);
-
+  
+  const { isDarkMode } = useContext(ThemeContext);
   const styles = {
-    backgroundColor: isDarkMode ? "#121212" : "#ffffff",
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#121212",
+    // minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
   };
 // here we are using the useRef hook to create a reference to the canvas element that we will use to render the chart
   const totalExpenses = expensesData?.me?.expenses?.reduce((total, expense) => total + expense.amount, 0);

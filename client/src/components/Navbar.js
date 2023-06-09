@@ -2,7 +2,7 @@ import React, { Fragment, useState, useContext } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { ThemeContext } from "../utils/ThemeContext";
 import { useLocation } from "react-router-dom";
-
+import { FaSun, FaMoon } from "react-icons/fa";
 
 import {
   ArrowPathIcon,
@@ -66,23 +66,23 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
   const styles = {
-    backgroundColor: isDarkMode ? "#121212" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#121212",
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
   };
   const exploreDropdownStyles = {
-    backgroundColor: isDarkMode ? "#121212" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#121212",
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
     borderColor: isDarkMode ? "#4B5563" : "#D1D5DB",
   };
 
 if (isDarkMode) {
   exploreDropdownStyles.color = "#ffffff";
 } else {
-  exploreDropdownStyles.color = "#121212";
+  exploreDropdownStyles.color = "#192734";
 }
   const sideMenuStyles = {
-    backgroundColor: isDarkMode ? "#121212" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#121212",
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
   };
 
   if (location.pathname === "/") {
@@ -95,7 +95,7 @@ if (isDarkMode) {
         aria-label="Global"
       >
         <button onClick={toggleDarkMode}>
-          Toggle Dark Mode: {isDarkMode ? "On" : "Off"}
+          {isDarkMode ? <FaSun /> : <FaMoon />}
         </button>
         <div className="flex lg:flex-1">
           <a href="/" className="-m-1.5 p-1.5">
@@ -152,7 +152,7 @@ if (isDarkMode) {
                       <div className="flex-auto">
                         <a
                           href={item.href}
-                          className="block font-semibold text-gray-900"
+                          className="block font-semibold"
                         >
                           {item.name}
                           <span className="absolute inset-0" />

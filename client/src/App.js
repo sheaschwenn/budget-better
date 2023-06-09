@@ -23,9 +23,8 @@ import {
   createHttpLink,
 } from "@apollo/client";
 import { setContext } from "@apollo/client/link/context";
-import { ThemeContext } from "./utils/ThemeContext";
+import { ThemeContext, ThemeProvider } from "./utils/ThemeContext";
 import "./style.css";
-import { ThemeProvider } from "./utils/ThemeContext";
 
 // Create an HTTP link to the GraphQL server
 const httpLink = createHttpLink({
@@ -55,12 +54,16 @@ function App() {
   const { isDarkMode } = useContext(ThemeContext); // Retrieve the isDarkMode value from the ThemeContext
 
   const styles = {
-    backgroundColor: isDarkMode ? "#121212" : "#ffffff",
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#121212",
+        minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
   };
 
   return (
     <ApolloProvider client={client}>
+      <ThemeProvider>
       <Router>
         <div style={styles}>
           <Navbar />
@@ -84,6 +87,7 @@ function App() {
           <Footer />
         </div>
       </Router>
+      </ThemeProvider>
     </ApolloProvider>
   );
 }

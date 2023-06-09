@@ -3,6 +3,10 @@ import chrisImg from "../assets/images/chris.png";
 import didrikImg from "../assets/images/didrik.jpg";
 import mattImg from "../assets/images/matt.jpeg";
 import sheaImg from "../assets/images/shea.jpeg";
+import { ThemeContext } from '../utils/ThemeContext';
+import React, { useContext } from 'react';
+
+
 const people = [
   {
     name: "Shea Schwennicke",
@@ -34,15 +38,25 @@ const people = [
   },
 ];
 
+
 export default function About() {
+  const { isDarkMode } = useContext(ThemeContext);
+const styles = {
+  backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+  color: isDarkMode ? "#ffffff" : "#192734",
+  minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+};
+
   return (
-    <div className="bg-white py-24 sm:py-32">
+    <div style={styles} className="bg-white py-24 sm:py-32">
       <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-2xl">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
             About Us
           </h2>
-          <p className="mt-6 text-lg leading-8 text-gray-600">
+          <p className="mt-6 text-lg leading-8">
             Meet our leadership
           </p>
         </div>
@@ -59,7 +73,7 @@ export default function About() {
                   alt={person.name}
                 />
                 <div>
-                  <h3 className="text-base font-semibold leading-7 tracking-tight text-gray-900">
+                  <h3 className="text-base font-semibold leading-7 tracking-tight">
                     {person.name}
                   </h3>
                   <p className="text-sm font-semibold leading-6 text-indigo-600">

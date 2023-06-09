@@ -315,8 +315,11 @@ const handleGoalEdit = async(event, goalId) => {
 }
 
   const styles = {
-    backgroundColor: isDarkMode ? "#121212" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#121212",
+    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+    color: isDarkMode ? "#ffffff" : "#192734",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
   };
 
   return (
