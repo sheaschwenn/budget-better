@@ -11,7 +11,6 @@ import {
   QuestionMarkCircleIcon,
   MagnifyingGlassIcon,
   HandThumbUpIcon,
-  RocketLaunchIcon,
   ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
@@ -43,7 +42,7 @@ const products = [
     name: "Our Mission",
     href: "/ourmission",
 
-    icon: RocketLaunchIcon,
+    icon: HandThumbUpIcon,
   },
 ];
 const callsToAction = [
@@ -97,8 +96,7 @@ export default function Navbar() {
           {isDarkMode ? <FaSun /> : <FaMoon />}
         </button>
         <div className="flex lg:flex-1">
-          <Link
-          to="/" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Budget Better</span>
             <img className="h-16 w-auto" src={logo} alt="Budget Better Logo" />
           </Link>
@@ -207,7 +205,7 @@ export default function Navbar() {
             style={sideMenuStyles}
           >
             Log in <span aria-hidden="true">&rarr;</span>
-            </Link>
+          </Link>
         </div>
       </nav>
       <Dialog
