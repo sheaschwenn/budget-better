@@ -7,7 +7,9 @@ import {
   DELETE_INCOME,
   DELETE_EXPENSE,
   DELETE_GOAL,
-  UPDATE_INCOME
+  UPDATE_INCOME,
+  UPDATE_EXPENSE,
+  UPDATE_GOAL
  } from '../utils/mutations';
 
  import {  GET_ME } from '../utils/queries';
@@ -47,7 +49,7 @@ const Account = () => {
   const [goal, setGoal] = useState({
     name: '',
     amountToSave: '',
-    byDate: '2023-06-07',
+    byDate: '',
     shortTerm: false
   })
 
@@ -179,7 +181,7 @@ const handleIncomeCheckboxChange = (event) => {
       setGoal({
         name: '',
         amountToSave: '',
-        byDate:'2023-06-07',
+        byDate:'',
         shortTerm: false
       })
     }catch{
@@ -245,16 +247,12 @@ const handleGoalDelete = async(goalId) => {
 }
 const [editIncome, setEditIncome] = useState("")
 const [edit, setEdit] = useState({})
-const incomeEdit = (income) => {
-  setEditIncome(income)
 
-}
 
 const [updateIncome] = useMutation(UPDATE_INCOME, {refetchQueries: [{query: GET_ME}]})
 
 const handleIncomeEdit = async(event, incomeId) =>{
   event.preventDefault();
-  console.log("editIncome", "id",editIncome._id, editIncome.name, editIncome.passive, editIncome.amount, editIncome.recurring )
   try{
     const{data} = await updateIncome({
         variables: {
@@ -272,6 +270,48 @@ const handleIncomeEdit = async(event, incomeId) =>{
     console.error(err)
   }
 
+}
+const [editExpense, setEditExpense] = useState('')
+const [updateExpense] = useMutation(UPDATE_EXPENSE, {refetchQueries: [{query: GET_ME}]})
+const handleExpenseEdit = async(event, expenseId) => {
+  event.preventDefault()
+  console.log(editExpense)
+  try{
+    const{data} = await updateExpense({
+      variables: {
+        expenseId: expenseId,
+        category: editExpense.category,
+        amount: parseFloat(editExpense.amount),
+        recurring: editExpense.recurring
+
+      }
+    })
+    setEdit(false)
+  }catch(err){
+    console.error(err)
+  }
+}
+
+const [editGoal, setEditGoal] = useState('')
+const [updateGoal] = useMutation(UPDATE_GOAL, {refetchQueries: [{query: GET_ME}]})
+const handleGoalEdit = async(event, goalId) => {
+  event.preventDefault()
+  try{
+    const{data} = await updateGoal({
+      variables: {
+        goalId: goalId,
+        name: editGoal.name,
+        amountToSave: parseFloat(editGoal.amountToSave),
+        byDate: editGoal.byDate,
+        shortTerm: editGoal.shortTerm
+
+
+      }
+    })
+    setEdit(false)
+  }catch(err){
+    console.error(err)
+  }
 }
 
   const styles = {
@@ -331,9 +371,7 @@ const handleIncomeEdit = async(event, incomeId) =>{
           <IncomeList 
           getIncome={getIncome} 
           handleDelete={handleDelete} 
-          handleIncomeEdit= {handleIncomeEdit}  
-          handleIncomeChange= {handleIncomeChange} 
-          incomeEdit = {incomeEdit} 
+          handleIncomeEdit= {handleIncomeEdit}   
           editIncome={editIncome} 
           setEditIncome={setEditIncome}
           edit= {edit}
@@ -371,16 +409,17 @@ const handleIncomeEdit = async(event, incomeId) =>{
                 onChange={handleExpenseCheckboxChange}
               />
             </label>
-            <label>
-              Frequency:
-              <select>
-                <option value="monthly">Monthly</option>
-                <option value="yearly">Yearly</option>
-              </select>
-            </label>
             <button type="submit">Submit</button>
           </form>
-          <ExpensesList expensesList= {getExpenses} handleExpenseDelete={handleExpenseDelete}/>
+          <ExpensesList 
+          expensesList= {getExpenses} 
+          handleExpenseDelete={handleExpenseDelete}
+          handleExpenseEdit= {handleExpenseEdit}
+          editExpense= {editExpense}
+          setEditExpense= {setEditExpense}
+          edit= {edit}
+          setEdit= {setEdit}
+          />
           </div>
         )}
       </div>
@@ -423,7 +462,15 @@ const handleIncomeEdit = async(event, incomeId) =>{
             </label>
             <button type="submit">Submit</button>
           </form>
-          <GoalList goalList= {getGoals} handleGoalDelete= {handleGoalDelete}/>
+          <GoalList 
+          goalList= {getGoals} 
+          handleGoalDelete= {handleGoalDelete}
+          handleGoalEdit= {handleGoalEdit}
+          editGoal= {editGoal}
+          setEditGoal= {setEditGoal}
+          edit= {edit}
+          setEdit= {setEdit}
+          />
           </div>
         )}
       </div>

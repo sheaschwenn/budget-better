@@ -37,17 +37,7 @@ const IncomeList = ({getIncome, handleDelete, handleIncomeEdit, editIncome, setE
             [incomeId]: !prevEdit[incomeId],
           }));
     }
-    const submitClick = () => {
-        setEdit(false)
-    }
-
-    const handleEditSubmit = (incomeId) =>{
-        setEdit((prevEdit) => ({
-            ...prevEdit,
-            [incomeId]: false,
-          }));
-         
-    }
+ 
     if(!getIncome.length){
         return <h4>No recorded income</h4>
     }
