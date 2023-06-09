@@ -3,56 +3,53 @@ import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { useLocation } from "react-router-dom";
 import logo from "./BudgetBetterLogo.png";
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
+  CogIcon,
+  QuestionMarkCircleIcon,
+  MagnifyingGlassIcon,
+  HandThumbUpIcon,
+  RocketLaunchIcon,
+  ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
-} from "@heroicons/react/20/solid";
+import { ChevronDownIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
 
 const products = [
   {
     name: "Settings",
     href: "/settings",
-    icon: ChartPieIcon,
+    icon: CogIcon,
   },
-  {
-    name: "Help",
-    href: "/help",
-    icon: ChartPieIcon,
-  },
+
   {
     name: "FAQ",
     href: "/faq",
-    icon: CursorArrowRaysIcon,
+    icon: QuestionMarkCircleIcon,
   },
   {
     name: "About",
     href: "/about",
-    icon: FingerPrintIcon,
+    icon: MagnifyingGlassIcon,
   },
   {
     name: "Testamonials",
     href: "/testamonials",
-    icon: SquaresPlusIcon,
+    icon: HandThumbUpIcon,
   },
   {
-    name: "OurMission",
+    name: "Our Mission",
     href: "/ourmission",
 
-    icon: ArrowPathIcon,
+    icon: RocketLaunchIcon,
   },
 ];
 const callsToAction = [
   { name: "Watch demo", href: "/demo", icon: PlayCircleIcon },
-  { name: "Contact Us", href: "/contact", icon: PhoneIcon },
+  {
+    name: "Contact Us",
+    href: "/contact",
+    icon: ChatBubbleBottomCenterTextIcon,
+  },
 ];
 
 function classNames(...classes) {
@@ -192,9 +189,9 @@ export default function Navbar() {
             <a href="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Budget Better</span>
               <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
+                className="h-16 w-auto"
+                src={logo}
+                alt="Budget Better Logo"
               />
             </a>
             <button
