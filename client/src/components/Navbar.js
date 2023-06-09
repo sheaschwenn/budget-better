@@ -33,8 +33,8 @@ const products = [
     icon: MagnifyingGlassIcon,
   },
   {
-    name: "Testamonials",
-    href: "/testamonials",
+    name: "Testimonials",
+    href: "/testimonials",
     icon: HandThumbUpIcon,
   },
   {
