@@ -25,6 +25,7 @@ import {
 import { setContext } from "@apollo/client/link/context";
 import { ThemeContext, ThemeProvider } from "./utils/ThemeContext";
 import "./style.css";
+import ProtectedRoute from "./components/ProtectedRoute";
 
 // Create an HTTP link to the GraphQL server
 const httpLink = createHttpLink({
@@ -80,13 +81,12 @@ function App() {
             />
           </div>
           <Routes>
-            
-            <Route path="/dashboard" element={<Dashboard />} />
-            <Route path="/account" element={<Account />} />
+            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
+            <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
+            <Route path="/cashbot" element={<ProtectedRoute><Cashbot /></ProtectedRoute>} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/settings" element={<Settings />} />
-            <Route path="/cashbot" element={<Cashbot />} />
             <Route path="/about" element={<About />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/demo" element={<Demo />} />
