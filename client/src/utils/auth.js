@@ -35,6 +35,7 @@ class AuthService {
 
   logout() {
     localStorage.removeItem('id_token');
+    return <Navigate to="/login" />;
   }
 }
 
