@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useContext } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { ThemeContext } from "../utils/ThemeContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
 import logo from "./BudgetBetterLogo.png";
 import {
@@ -15,6 +15,7 @@ import {
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
+import AuthService from "../utils/auth";
 
 const products = [
   {
@@ -59,7 +60,15 @@ const callsToAction = [
 // }
 
 export default function Navbar() {
-  // const isLoggedIn = AuthService.loggedIn();
+  const isLoggedIn = AuthService.loggedIn();
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    AuthService.logout();
+    navigate('/login');
+  };
+
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -198,14 +207,24 @@ export default function Navbar() {
             Cashbot
           </Link>
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            to="/login"
-            className="text-sm font-semibold leading-6 "
-            style={sideMenuStyles}
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end">
+          {!isLoggedIn && (
+            <Link
+              to="/login"
+              className="text-sm font-semibold leading-6"
+              style={sideMenuStyles}
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
+          {isLoggedIn && (
+            <button
+              className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          )}
         </div>
       </nav>
       <Dialog

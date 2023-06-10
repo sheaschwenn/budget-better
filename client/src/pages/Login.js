@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useMutation } from "@apollo/client";
 import { LOGIN_USER } from "../utils/mutations";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,6 +10,7 @@ import { ThemeContext } from "../utils/ThemeContext";
 import Auth from "../utils/auth";
 
 const Login = (props) => {
+  const navigate = useNavigate();
   const [formState, setFormState] = useState({ email: "", password: "" });
   const [login, { error, data }] = useMutation(LOGIN_USER);
 
@@ -34,6 +35,7 @@ const Login = (props) => {
       });
 
       Auth.login(data.login.token);
+      navigate('/dashboard');
     } catch (e) {
       console.error(e);
     }
@@ -44,6 +46,7 @@ const Login = (props) => {
       password: "",
     });
   };
+
   const { isDarkMode } = useContext(ThemeContext);
   const styles = {
     backgroundColor: isDarkMode ? "#192734" : "#ffffff",
