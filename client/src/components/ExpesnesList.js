@@ -31,13 +31,25 @@ const ExpensesList = ({expensesList, handleExpenseDelete, handleExpenseEdit, edi
 
     return(
         <div>
+            <ul role="list" className="divide-y divide-gray-100">
             {expensesList && expensesList.map((single) =>(
                 <div key= {single._id} >
-                    
-                    <h4>{single.category} ${single.amount} {single.createdOn}
+                    <li className="flex justify-between gap-x-6 py-5">
+                    <div className="flex gap-x-4">
+                    <div className="min-w-0 flex-auto">
+        <p className="text-sm font-semibold leading-6 text-gray-900">{single.category}</p>
+        <p className="mt-1 truncate text-xs leading-5 text-gray-500"> -${single.amount}</p>
+      </div>
+      </div>
+      <div className="hidden sm:flex sm:flex-col sm:items-end">
+                    {/* <h4>{single.category} -${single.amount} {single.createdOn} */}
+                    <p className="mt-1 text-xs leading-5 text-gray-500"><date datetime={single.createdOn}></date></p>
                     <button onClick={() => handleExpenseDelete(single._id) }>Delete</button>
                     <button onClick={() => handleClick(single._id, {expenseId: single._id, category: single.category, amount: single.amount, recurring: single.recurring}) }>Edit</button>
-                    </h4>
+                    {/* </h4> */}
+
+                    </div>
+                    </li>
                     {edit[single._id] && (
                          <form onSubmit={(event) => handleExpenseEdit(event, single._id)}>
                          <input 
@@ -66,8 +78,10 @@ const ExpensesList = ({expensesList, handleExpenseDelete, handleExpenseEdit, edi
                          <button type="submit">Submit</button>
                        </form>
                     )}
+                 
                      </div>
             ))}
+            </ul>
         </div>
     )
 }
