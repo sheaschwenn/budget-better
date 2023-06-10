@@ -60,7 +60,7 @@ const callsToAction = [
 // }
 
 export default function Navbar() {
-  // const isLoggedIn = AuthService.loggedIn();
+  const isLoggedIn = AuthService.loggedIn();
 
   const navigate = useNavigate();
 
@@ -207,20 +207,24 @@ export default function Navbar() {
             Cashbot
           </Link>
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            to="/login"
-            className="text-sm font-semibold leading-6 "
-            style={sideMenuStyles}
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </Link>
-          <button
-                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                onClick={handleLogout}
-              >
-                Log out
-              </button>
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end">
+          {!isLoggedIn && (
+            <Link
+              to="/login"
+              className="text-sm font-semibold leading-6"
+              style={sideMenuStyles}
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
+          {isLoggedIn && (
+            <button
+              className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          )}
         </div>
       </nav>
       <Dialog
@@ -305,12 +309,6 @@ export default function Navbar() {
               >
                 Log in
               </Link>
-              <button
-                className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
-                onClick={handleLogout}
-              >
-                Log out
-              </button>
             </div>
           </div>
         </Dialog.Panel>
