@@ -12,6 +12,7 @@ export const GET_ME = gql`
         category
         amount
         recurring
+        createdOn
       }
       income {
         _id
@@ -19,6 +20,7 @@ export const GET_ME = gql`
         passive
         amount
         recurring
+        createdOn
       }
       goal {
         _id

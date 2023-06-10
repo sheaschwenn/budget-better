@@ -23,7 +23,6 @@ const products = [
     href: "/settings",
     icon: CogIcon,
   },
-
   {
     name: "FAQ",
     href: "/faq",
@@ -35,8 +34,8 @@ const products = [
     icon: MagnifyingGlassIcon,
   },
   {
-    name: "Testamonials",
-    href: "/testamonials",
+    name: "Testimonials",
+    href: "/testimonials",
     icon: HandThumbUpIcon,
   },
   {
@@ -54,11 +53,9 @@ const callsToAction = [
     icon: ChatBubbleBottomCenterTextIcon,
   },
 ];
-
 // function classNames(...classes) {
 //   return classes.filter(Boolean).join(" ");
 // }
-
 export default function Navbar() {
   const isLoggedIn = AuthService.loggedIn();
 
@@ -73,25 +70,23 @@ export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
   const styles = {
-    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#192734",
+    backgroundColor: isDarkMode ? "#192734" : "#FFFFFF",
+    color: isDarkMode ? "#FFFFFF" : "#192734",
   };
   const exploreDropdownStyles = {
-    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#192734",
+    backgroundColor: isDarkMode ? "#192734" : "#FFFFFF",
+    color: isDarkMode ? "#FFFFFF" : "#192734",
     borderColor: isDarkMode ? "#4B5563" : "#D1D5DB",
   };
-
   if (isDarkMode) {
-    exploreDropdownStyles.color = "#ffffff";
+    exploreDropdownStyles.color = "#FFFFFF";
   } else {
     exploreDropdownStyles.color = "#192734";
   }
   const sideMenuStyles = {
-    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#192734",
+    backgroundColor: isDarkMode ? "#192734" : "#FFFFFF",
+    color: isDarkMode ? "#FFFFFF" : "#192734",
   };
-
   if (location.pathname === "/") {
     return null;
   }
@@ -133,7 +128,6 @@ export default function Navbar() {
                 style={exploreDropdownStyles}
               />
             </Popover.Button>
-
             <Transition
               as={Fragment}
               enter="transition ease-out duration-200"
@@ -184,7 +178,6 @@ export default function Navbar() {
               </Popover.Panel>
             </Transition>
           </Popover>
-
           <Link
             to="/dashboard"
             className="text-sm font-semibold leading-6"

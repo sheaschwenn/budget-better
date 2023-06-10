@@ -62,8 +62,13 @@ const Account = () => {
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
-    console.log(data);
+ 
   };
+
+  const handleTabClose = (tab) => {
+    setSelectedTab("")
+    console.log("this happeened")
+  }
 
   const handleIncomeSubmit = async (event) => {
     event.preventDefault();
@@ -320,13 +325,14 @@ const Account = () => {
 
       <div className="mb-4">
         <button
-          className="border border-gray-300 py-2 px-4 rounded"
+          className="border border-gray-300 py-2 px-4 rounded w-full"
           onClick={() => handleTabChange("income")}
         >
           Income
         </button>
         {selectedTab === "income" && (
           <div>
+            <button className= "bg-blue-500 text-white py-0.5 px-3 rounded mt-2" onClick = {() => handleTabClose("income")}>Close</button>
             <form className="mt-4" onSubmit={handleIncomeSubmit}>
               <input
                 className="border border-gray-300 p-2 w-full mb-2 rounded"
@@ -386,13 +392,14 @@ const Account = () => {
 
       <div className="mb-4">
         <button
-          className="border border-gray-300 py-2 px-4 rounded"
+          className="border border-gray-300 py-2 px-4 rounded w-full"
           onClick={() => handleTabChange("expenses")}
         >
           Expenses
         </button>
         {selectedTab === "expenses" && (
           <div>
+            <button className= "bg-blue-500 text-white py-0.5 px-3 rounded mt-2" onClick = {() => handleTabClose("expenses")}>Close</button>
             <form className="mt-4" onSubmit={handleExpenseSubmit}>
               <input
                 className="border border-gray-300 p-2 w-full mb-2 rounded"
@@ -442,13 +449,14 @@ const Account = () => {
 
       <div className="mb-4">
         <button
-          className="border border-gray-300 py-2 px-4 rounded"
+          className="border border-gray-300 py-2 px-4 rounded w-full"
           onClick={() => handleTabChange("goals")}
         >
           Goals
         </button>
         {selectedTab === "goals" && (
           <div>
+            <button className="bg-blue-500 text-white py-0.5 px-3 rounded mt-2" onClick = {() => handleTabClose("goals")}>Close</button>
             <form className="mt-4" onSubmit={handleGoalSubmit}>
               <input
                 className="border border-gray-300 p-2 w-full mb-2 rounded"
