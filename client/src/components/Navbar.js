@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useContext } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { ThemeContext } from "../utils/ThemeContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
 import logo from "./BudgetBetterLogo.png";
 import {
@@ -11,11 +11,12 @@ import {
   QuestionMarkCircleIcon,
   MagnifyingGlassIcon,
   HandThumbUpIcon,
-  RocketLaunchIcon,
   ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
+import AuthService from "../utils/auth";
+
 const products = [
   {
     name: "Settings",
@@ -40,7 +41,8 @@ const products = [
   {
     name: "Our Mission",
     href: "/ourmission",
-    icon: RocketLaunchIcon,
+
+    icon: HandThumbUpIcon,
   },
 ];
 const callsToAction = [
@@ -55,7 +57,15 @@ const callsToAction = [
 //   return classes.filter(Boolean).join(" ");
 // }
 export default function Navbar() {
-  // const isLoggedIn = AuthService.loggedIn();
+  const isLoggedIn = AuthService.loggedIn();
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    AuthService.logout();
+    navigate('/login');
+  };
+
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
@@ -90,8 +100,7 @@ export default function Navbar() {
           {isDarkMode ? <FaSun /> : <FaMoon />}
         </button>
         <div className="flex lg:flex-1">
-          <Link
-          to="/" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Budget Better</span>
             <img className="h-16 w-auto" src={logo} alt="Budget Better Logo" />
           </Link>
@@ -191,14 +200,24 @@ export default function Navbar() {
             Cashbot
           </Link>
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <Link
-            to="/login"
-            className="text-sm font-semibold leading-6 "
-            style={sideMenuStyles}
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end">
+          {!isLoggedIn && (
+            <Link
+              to="/login"
+              className="text-sm font-semibold leading-6"
+              style={sideMenuStyles}
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
             </Link>
+          )}
+          {isLoggedIn && (
+            <button
+              className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          )}
         </div>
       </nav>
       <Dialog
