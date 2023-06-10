@@ -41,13 +41,20 @@ const ExpensesList = ({expensesList, handleExpenseDelete, handleExpenseEdit, edi
         <p className="mt-1 truncate text-xs leading-5 text-gray-500"> -${single.amount}</p>
       </div>
       </div>
-      <div className="hidden sm:flex sm:flex-col sm:items-end">
-                    {/* <h4>{single.category} -${single.amount} {single.createdOn} */}
-                    <p className="mt-1 text-xs leading-5 text-gray-500"><date datetime={single.createdOn}></date></p>
-                    <button onClick={() => handleExpenseDelete(single._id) }>Delete</button>
-                    <button onClick={() => handleClick(single._id, {expenseId: single._id, category: single.category, amount: single.amount, recurring: single.recurring}) }>Edit</button>
+      <div className=" sm:flex sm:flex-col sm:items-end xs:flex xs:flex-col xs:items-end"> 
+      <div className="flex gap-x-4">
+                <div className="min-w-0 flex-auto">
+                  <p className="mt-1 text-xs leading-5 text-gray-500 text-right">
+                                    <time dateTime={single.createdOn}>
+                                       {new Date(single.createdOn).toISOString().split("T")[0]}
+                                       </time>
+                                       </p>
+                    <button className= "bg-red-500 hover:bg-red-700 text-red font-bold py-1 px-4 rounded"  onClick={() => handleExpenseDelete(single._id) }>Delete</button>
+                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-3 rounded" onClick={() => handleClick(single._id, {expenseId: single._id, category: single.category, amount: single.amount, recurring: single.recurring}) }>Edit</button>
                     {/* </h4> */}
 
+                    </div>
+                    </div>
                     </div>
                     </li>
                     {edit[single._id] && (
@@ -60,22 +67,25 @@ const ExpensesList = ({expensesList, handleExpenseDelete, handleExpenseEdit, edi
                          onChange={handleExpenseEditChange}
                          />
                          <input 
+                          className="ml-2"
                          name= 'amount'
                          type="number" 
                          placeholder="Amount" 
                          value= {editExpense.amount}
                          onChange={handleExpenseEditChange }
                          />
-                          <label>
+                          <label  className="ml-2">
                            Recurring:
                            <input
+                           className="ml-2"
                            name= 'recurring'
                              type="checkbox"
                              checked={editExpense.recurring}
                              onChange={handleCheckboxChange}
                            />
                          </label>
-                         <button type="submit">Submit</button>
+                         <button  className="ml-2 rounded-md bg-indigo-600 px-3 py-1 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" type="submit">Submit</button>
+                         <button  className=" ml-2 rounded-md bg-indigo-600 px-3 py-1 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" >Cancel</button>
                        </form>
                     )}
                  
