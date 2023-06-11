@@ -38,7 +38,7 @@ const Cashbot = () => {
     setMessage("");
   };
   return (
-    <div className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div style={styles} className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="min-h-screen container mx-auto mt-10 w-1/2">
         <h1 className="text-center text-3xl mb-6">My Chatbot</h1>
         <div className="border rounded shadow p-4">
