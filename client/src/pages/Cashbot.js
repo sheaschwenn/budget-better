@@ -55,6 +55,7 @@ const Cashbot = () => {
         <div className="mt-4">
           <div className="font-bold mb-2 flex items-center">
             <svg
+            
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
@@ -71,6 +72,7 @@ const Cashbot = () => {
             You
           </div>
           <textarea
+          style={styles}
             id="user-input"
             className="w-full p-2 border rounded"
             onChange={handleUserInput}
