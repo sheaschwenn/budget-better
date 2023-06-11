@@ -27,9 +27,6 @@ const Dashboard = () => {
   const styles = {
     backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#121212",
-    // minHeight: "100vh",
-    display: "flex",
-    flexDirection: "column",
   };
   // here we are using the useRef hook to create a reference to the canvas element that we will use to render the chart
   const totalExpenses = expensesData?.me?.expenses?.reduce(
@@ -225,8 +222,8 @@ const Dashboard = () => {
   if (expensesError || incomeError || goalsError) return <p>Error :(</p>;
 
   return (
-    <div className=" pointer-event-none isolate px-6 py-24 sm:py-32 lg:px-8">
-      <div className="bg-white shadow p-6 rounded-lg">
+    <div style={styles}className=" pointer-event-none isolate px-6 py-24 sm:py-32 lg:px-8">
+      <div style={styles}className="bg-white shadow p-6 rounded-lg">
         <section className="dashboard-section">
           <h2 className="text-xl font-bold mb-4">Welcome to Your Dashboard</h2>
           <div className="finance-info">
