@@ -87,6 +87,7 @@ const Cashbot = () => {
             Submit Prompt
           </button>
           <div
+          style={styles}
             id="spinner"
             className="spinner-grow text-primary visually-hidden mt-2"
             role="status"
