@@ -12,7 +12,7 @@ function Demo() {
   };
 
   return (
-    <div className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div style={styles}className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <main className="flex-grow px-4 py-5 sm:p-6">
         <h1 className="text-3xl font-bold mb-4">How to use Budget Better</h1>
 
