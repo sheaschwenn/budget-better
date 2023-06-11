@@ -63,6 +63,7 @@ const Signup = () => {
                 <FontAwesomeIcon icon={faUser} className="h-5 w-5" />
               </span>
               <input
+              style={styles}
                 type="text"
                 className="ml-2.5 border-b-2 border-gray-400 focus:border-indigo-600 outline-none"
                 id="name"
@@ -79,6 +80,7 @@ const Signup = () => {
                 <FontAwesomeIcon icon={faUser} className="h-5 w-5" />
               </span>
               <input
+              style={styles}
                 type="email"
                 className="ml-2.5 border-b-2 border-gray-400 focus:border-indigo-600 outline-none"
                 id="email"
@@ -95,6 +97,7 @@ const Signup = () => {
                 <FontAwesomeIcon icon={faLock} className="h-5 w-5" />
               </span>
               <input
+              style={styles}
                 type="password"
                 className="ml-2.5 border-b-2 border-gray-400 focus:border-indigo-600 outline-none"
                 id="password"

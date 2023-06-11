@@ -48,7 +48,7 @@ export default function About() {
   };
 
   return (
-    <div className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div style={styles}className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-x-8 gap-y-20 px-6 lg:px-8 xl:grid-cols-3">
         <div className="max-w-2xl">
           <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
