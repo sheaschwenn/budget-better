@@ -17,6 +17,7 @@ import Features from "./pages/Features";
 import HeroPage from "./pages/HeroPage";
 import OurMission from "./pages/OurMission";
 import PageNotFound from "./pages/PageNotFound";
+import Investments from "./pages/Investments";
 import {
   ApolloProvider,
   InMemoryCache,
@@ -106,6 +107,7 @@ function App() {
                   </ProtectedRoute>
                 }
               />
+              <Route path="/investments" element={<Investments />} />
               <Route path="/faq" element={<FAQ />} />
               <Route path="/login" element={<Login />} />
               <Route path="/signup" element={<Signup />} />
