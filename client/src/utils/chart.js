@@ -19,12 +19,31 @@ export const generateGroupedBarChart = (ctx, labels, datasets) => {
         y: {
           beginAtZero: true,
           ticks: {
+            color: 'rgba(75, 85, 99, 1)', // gray-700
             callback: function (value) {
               return '$' + value; // Add a '$' symbol to the tick label
             },
           },
+          grid: {
+            color: 'rgba(229, 231, 235, 1)', // gray-200
+          }
         },
+        x: {
+          ticks: {
+            color: 'rgba(75, 85, 99, 1)', // gray-700
+          },
+          grid: {
+            color: 'rgba(229, 231, 235, 1)', // gray-200
+          }
+        }
       },
+      plugins: {
+        legend: {
+          labels: {
+            color: 'rgba(75, 85, 99, 1)', // gray-700
+          }
+        }
+      }
     },
   });
 

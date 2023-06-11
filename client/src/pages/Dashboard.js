@@ -225,19 +225,25 @@ const Dashboard = () => {
   if (expensesError || incomeError || goalsError) return <p>Error :(</p>;
 
   return (
-    <div className=" pointer-event-none isolate px-6 py-24 sm:py-32 lg:px-8">
-      <div className="bg-white shadow p-6 rounded-lg">
+    <div className="pointer-events-none isolate px-6 py-24 lg:px-8 bg-gray-100 flex items-center justify-center">
+      <div className="bg-white shadow-lg p-6 rounded-lg max-w-screen-lg w-full">
         <section className="dashboard-section">
-          <h2 className="text-xl font-bold mb-4">Welcome to Your Dashboard</h2>
-          <div className="finance-info">
-            <canvas ref={barChartRef}></canvas>
+          <h2 className="text-2xl font-bold text-gray-700 mb-4">Welcome to Your Dashboard</h2>
+          <div className="mt-4 space-y-2">
+            <p className="text-lg text-gray-600">Total Expenses: <span className="font-bold text-red-500">${totalExpenses || 0}</span></p>
+            <p className="text-lg text-gray-600">Total Income: <span className="font-bold text-green-500">${totalIncome || 0}</span></p>
+            <p className="text-lg text-gray-600">Total Goals: <span className="font-bold text-blue-500">${totalGoals || 0}</span></p>
+          </div>
+          <div className="finance-info space-y-4">
+            <div className="w-4/5 mx-auto md:max-w-xl">
+              <canvas ref={barChartRef} className="w-full h-64"></canvas>
+            </div>
             {checkMultipleMonthsData(incomeData?.me?.income) ||
             checkMultipleMonthsData(expensesData?.me?.expenses) ? (
-              <canvas ref={lineChartRef}></canvas>
+              <div className="w-4/5 mx-auto md:max-w-xl">
+                <canvas ref={lineChartRef} className="w-full h-64"></canvas>
+              </div>
             ) : null}
-            <p className="mt-2">Total Expenses: ${totalExpenses || 0}</p>
-            <p>Total Income: ${totalIncome || 0}</p>
-            <p>Total Goals: ${totalGoals || 0}</p>
           </div>
         </section>
       </div>
