@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className=" z-50 py-10 px-5 mt-10 bg-gradient-to-r from-purple-600 to-pink-600 text-white">
+    <footer className=" z-50 py-10 px-5  bg-gradient-to-r from-purple-600 to-pink-600 text-white">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
         {/* My Account Column */}
         <div className="mb-4">
