@@ -221,147 +221,163 @@ const Dashboard = () => {
     return <p>Loading...</p>;
   if (expensesError || incomeError || goalsError) return <p>Error :(</p>;
 
+  const activities = [];
 
-
-const activities = [];
-
-if (expensesData && expensesData.me && expensesData.me.expenses) {
-  const expenses = expensesData.me.expenses.slice(0, 3);
-  expenses.forEach((expense) => {
-    activities.push({
-      id: expense.id,
-      title: expense.category,
-      date: expense.createdOn,
-      amount: expense.amount,
+  if (expensesData && expensesData.me && expensesData.me.expenses) {
+    const expenses = expensesData.me.expenses.slice(0, 3);
+    expenses.forEach((expense) => {
+      activities.push({
+        id: expense.id,
+        title: expense.category,
+        date: expense.createdOn,
+        amount: expense.amount,
+      });
+      console.log(activities);
     });
-    console.log(activities);
-  });
-}
+  }
 
-if (incomeData && incomeData.me && incomeData.me.income) {
-  const incomes = incomeData.me.income.slice(0, 3);
-  incomes.forEach((income) => {
-    activities.push({
-      id: income.id,
-      title: income.name,
-      date: income.createdOn,
-      amount: income.amount,
+  if (incomeData && incomeData.me && incomeData.me.income) {
+    const incomes = incomeData.me.income.slice(0, 3);
+    incomes.forEach((income) => {
+      activities.push({
+        id: income.id,
+        title: income.name,
+        date: income.createdOn,
+        amount: income.amount,
+      });
     });
-  });
-}
+  }
 
-const totalSavings = totalIncome - totalExpenses;
-const monthsToReachGoal = Math.ceil(totalGoals / totalSavings);
+  const totalSavings = totalIncome - totalExpenses;
+  const monthsToReachGoal = Math.ceil(totalGoals / totalSavings);
 
-
-
-return (
-  <div style={styles} className="min-h-screen bg-gray-100">
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div className="py-12">
-        <div className="grid grid-cols-2 gap-8">
-          <div className="col-span-1">
-            <div style={styles} className="bg-white overflow-hidden shadow rounded-lg">
+  return (
+    <div style={styles} className=" z-50 min-h-screen bg-gray-100">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="py-12">
+          <div className="grid grid-cols-2 gap-8">
+            <div className="col-span-1">
+              <div
+                style={styles}
+                className="bg-white overflow-hidden shadow rounded-lg"
+              >
+                <div className="p-5">
+                  <h3 className="text-lg leading-6 font-medium">
+                    Financial Overview
+                  </h3>
+                  <div className="mt-5">
+                    <canvas ref={barChartRef}></canvas>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-span-1 grid grid-cols-1 gap-8">
+              <div
+                style={styles}
+                className="bg-white overflow-hidden shadow rounded-lg"
+              >
+                <div className="p-5">
+                  <h3 className="text-lg leading-6 font-medium">Income</h3>
+                  <div className="mt-2">
+                    <p className="text-3xl font-semibold">
+                      ${totalIncome || 0}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                style={styles}
+                className="bg-white overflow-hidden shadow rounded-lg"
+              >
+                <div className="p-5">
+                  <h3 className="text-lg leading-6 font-medium">Expenses</h3>
+                  <div className="mt-2">
+                    <p className="text-3xl font-semibold">
+                      ${totalExpenses || 0}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                style={styles}
+                className="bg-white overflow-hidden shadow rounded-lg"
+              >
+                <div className="p-5">
+                  <h3 className="text-lg leading-6 font-medium">Savings</h3>
+                  <div className="mt-2">
+                    <p className="text-3xl font-semibold">
+                      ${totalSavings || 0}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <div
+                style={styles}
+                className="bg-white overflow-hidden shadow rounded-lg"
+              >
+                <div className="p-5">
+                  <h3 className="text-lg leading-6 font-medium">
+                    Months to Goal
+                  </h3>
+                  <div className="mt-2">
+                    <p className="text-3xl font-semibold">
+                      {monthsToReachGoal}
+                    </p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="mt-8 grid grid-cols-2 gap-8">
+            <div
+              style={styles}
+              className="bg-white overflow-hidden shadow rounded-lg"
+            >
               <div className="p-5">
                 <h3 className="text-lg leading-6 font-medium">
-                  Financial Overview
+                  Income vs Expenses
                 </h3>
                 <div className="mt-5">
-                  <canvas ref={barChartRef}></canvas>
+                  <canvas ref={lineChartRef}></canvas>
                 </div>
               </div>
             </div>
-          </div>
-          <div className="col-span-1 grid grid-cols-1 gap-8">
-            <div style={styles} className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="p-5">
+            <div className="bg-white overflow-hidden shadow rounded-lg flex-grow">
+              <div style={styles} className="p-5 h-full">
                 <h3 className="text-lg leading-6 font-medium">
-                  Income
+                  Recent Activities
                 </h3>
-                <div className="mt-2">
-                  <p className="text-3xl font-semibold">
-                    ${totalIncome || 0}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div style={styles} className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="p-5">
-                <h3 className="text-lg leading-6 font-medium">
-                  Expenses
-                </h3>
-                <div className="mt-2">
-                  <p className="text-3xl font-semibold">
-                    ${totalExpenses || 0}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div style={styles} className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="p-5">
-                <h3 className="text-lg leading-6 font-medium">
-                  Savings
-                </h3>
-                <div className="mt-2">
-                  <p className="text-3xl font-semibold">
-                    ${totalSavings || 0}
-                  </p>
-                </div>
-              </div>
-            </div>
-            <div style={styles} className="bg-white overflow-hidden shadow rounded-lg">
-              <div className="p-5">
-                <h3 className="text-lg leading-6 font-medium">Months to Goal</h3>
-                <div className="mt-2">
-                  <p className="text-3xl font-semibold">{monthsToReachGoal}</p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="mt-8 grid grid-cols-2 gap-8">
-          <div style={styles} className="bg-white overflow-hidden shadow rounded-lg">
-            <div className="p-5">
-              <h3 className="text-lg leading-6 font-medium">
-                Income vs Expenses
-              </h3>
-              <div className="mt-5">
-                <canvas ref={lineChartRef}></canvas>
-              </div>
-            </div>
-          </div>
-          <div className="bg-white overflow-hidden shadow rounded-lg flex-grow">
-            <div style={styles} className="p-5 h-full">
-              <h3 className="text-lg leading-6 font-medium">
-                Recent Activities
-              </h3>
-              <div className="mt-2 overflow-y-auto">
-                <ul className="divide-y divide-gray-200">
-                  {activities.slice(0, 3).map((activity) => {
-                    const formattedDate = new Date(activity.date).toLocaleDateString();
+                <div className="mt-2 overflow-y-auto">
+                  <ul className="divide-y divide-gray-200">
+                    {activities.slice(0, 3).map((activity) => {
+                      const formattedDate = new Date(
+                        activity.date
+                      ).toLocaleDateString();
 
-                    return (
-                      <li key={activity.id} className="py-4">
-                        <div className="flex space-x-3">
-                          <div className="flex-1 space-y-1">
-                            <div className="flex items-center justify-between">
-                              <h3 className="text-base font-medium">{activity.title}</h3>
-                              <p className="text-base">{`- $${activity.amount}`}</p>
+                      return (
+                        <li key={activity.id} className="py-4">
+                          <div className="flex space-x-3">
+                            <div className="flex-1 space-y-1">
+                              <div className="flex items-center justify-between">
+                                <h3 className="text-base font-medium">
+                                  {activity.title}
+                                </h3>
+                                <p className="text-base">{`- $${activity.amount}`}</p>
+                              </div>
+                              <p className="text-base">{formattedDate}</p>
                             </div>
-                            <p className="text-base">{formattedDate}</p>
                           </div>
-                        </div>
-                      </li>
-                    );
-                  })}
-                </ul>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-);
-                };              
+  );
+};
 export default Dashboard;
