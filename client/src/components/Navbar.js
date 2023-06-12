@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useContext } from "react";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { ThemeContext } from "../utils/ThemeContext";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
 import logo from "./BudgetBetterLogo.png";
 import {
@@ -11,10 +11,11 @@ import {
   QuestionMarkCircleIcon,
   MagnifyingGlassIcon,
   HandThumbUpIcon,
-  RocketLaunchIcon,
   ChatBubbleBottomCenterTextIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
+import { Link } from "react-router-dom";
+import AuthService from "../utils/auth";
 
 const products = [
   {
@@ -22,7 +23,6 @@ const products = [
     href: "/settings",
     icon: CogIcon,
   },
-
   {
     name: "FAQ",
     href: "/faq",
@@ -34,15 +34,15 @@ const products = [
     icon: MagnifyingGlassIcon,
   },
   {
-    name: "Testamonials",
-    href: "/testamonials",
+    name: "Testimonials",
+    href: "/testimonials",
     icon: HandThumbUpIcon,
   },
   {
     name: "Our Mission",
     href: "/ourmission",
 
-    icon: RocketLaunchIcon,
+    icon: HandThumbUpIcon,
   },
 ];
 const callsToAction = [
@@ -53,36 +53,40 @@ const callsToAction = [
     icon: ChatBubbleBottomCenterTextIcon,
   },
 ];
-
 // function classNames(...classes) {
 //   return classes.filter(Boolean).join(" ");
 // }
-
 export default function Navbar() {
-  // const isLoggedIn = AuthService.loggedIn();
+  const isLoggedIn = AuthService.loggedIn();
+
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    AuthService.logout();
+    navigate('/login');
+  };
+
   const location = useLocation();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const { isDarkMode, toggleDarkMode } = useContext(ThemeContext);
   const styles = {
-    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#192734",
+    backgroundColor: isDarkMode ? "#192734" : "#FFFFFF",
+    color: isDarkMode ? "#FFFFFF" : "#192734",
   };
   const exploreDropdownStyles = {
-    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#192734",
+    backgroundColor: isDarkMode ? "#192734" : "#FFFFFF",
+    color: isDarkMode ? "#FFFFFF" : "#192734",
     borderColor: isDarkMode ? "#4B5563" : "#D1D5DB",
   };
-
   if (isDarkMode) {
-    exploreDropdownStyles.color = "#ffffff";
+    exploreDropdownStyles.color = "#FFFFFF";
   } else {
     exploreDropdownStyles.color = "#192734";
   }
   const sideMenuStyles = {
-    backgroundColor: isDarkMode ? "#192734" : "#ffffff",
-    color: isDarkMode ? "#ffffff" : "#192734",
+    backgroundColor: isDarkMode ? "#192734" : "#FFFFFF",
+    color: isDarkMode ? "#FFFFFF" : "#192734",
   };
-
   if (location.pathname === "/") {
     return null;
   }
@@ -96,10 +100,10 @@ export default function Navbar() {
           {isDarkMode ? <FaSun /> : <FaMoon />}
         </button>
         <div className="flex lg:flex-1">
-          <a href="/" className="-m-1.5 p-1.5">
+          <Link to="/" className="-m-1.5 p-1.5">
             <span className="sr-only">Budget Better</span>
             <img className="h-16 w-auto" src={logo} alt="Budget Better Logo" />
-          </a>
+          </Link>
         </div>
         <div className="flex relative  lg:hidden">
           <button
@@ -124,7 +128,6 @@ export default function Navbar() {
                 style={exploreDropdownStyles}
               />
             </Popover.Button>
-
             <Transition
               as={Fragment}
               enter="transition ease-out duration-200"
@@ -148,10 +151,10 @@ export default function Navbar() {
                         />
                       </div>
                       <div className="flex-auto">
-                        <a href={item.href} className="block font-semibold">
+                        <Link to={item.href} className="block font-semibold">
                           {item.name}
                           <span className="absolute inset-0" />
-                        </a>
+                        </Link>
                         <p className="mt-1 text-gray-600">{item.description}</p>
                       </div>
                     </div>
@@ -159,9 +162,9 @@ export default function Navbar() {
                 </div>
                 <div className="grid grid-cols-2 divide-x divide-gray-900/5 bg-gray-50">
                   {callsToAction.map((item) => (
-                    <a
+                    <Link
                       key={item.name}
-                      href={item.href}
+                      to={item.href}
                       className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
                     >
                       <item.icon
@@ -169,43 +172,52 @@ export default function Navbar() {
                         aria-hidden="true"
                       />
                       {item.name}
-                    </a>
+                    </Link>
                   ))}
                 </div>
               </Popover.Panel>
             </Transition>
           </Popover>
-
-          <a
-            href="/dashboard"
+          <Link
+            to="/dashboard"
             className="text-sm font-semibold leading-6"
             style={sideMenuStyles}
           >
             Dashboard
-          </a>
-          <a
-            href="/account"
+          </Link>
+          <Link
+            to="/account"
             className="text-sm font-semibold leading-6 "
             style={sideMenuStyles}
           >
             Account
-          </a>
-          <a
-            href="/cashbot"
+          </Link>
+          <Link
+            to="/cashbot"
             className="text-sm font-semibold leading-6 "
             style={sideMenuStyles}
           >
             Cashbot
-          </a>
+          </Link>
         </Popover.Group>
-        <div className="hidden lg:flex lg:flex-1 lg:justify-end">
-          <a
-            href="/login"
-            className="text-sm font-semibold leading-6 "
-            style={sideMenuStyles}
-          >
-            Log in <span aria-hidden="true">&rarr;</span>
-          </a>
+        <div className="hidden lg:flex lg:flex-1 lg:items-center lg:justify-end">
+          {!isLoggedIn && (
+            <Link
+              to="/login"
+              className="text-sm font-semibold leading-6"
+              style={sideMenuStyles}
+            >
+              Log in <span aria-hidden="true">&rarr;</span>
+            </Link>
+          )}
+          {isLoggedIn && (
+            <button
+              className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              onClick={handleLogout}
+            >
+              Log out
+            </button>
+          )}
         </div>
       </nav>
       <Dialog
@@ -217,14 +229,14 @@ export default function Navbar() {
         <div className="fixed inset-0 z-50" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="/" className="-m-1.5 p-1.5">
+            <Link to="/" className="-m-1.5 p-1.5">
               <span className="sr-only">Budget Better</span>
               <img
                 className="h-16 w-auto"
                 src={logo}
                 alt="Budget Better Logo"
               />
-            </a>
+            </Link>
             <button
               type="button"
               className="-m-2.5 rounded-md p-2.5 text-gray-700"
@@ -237,9 +249,9 @@ export default function Navbar() {
           <div className="mt-6">
             <nav className="grid gap-y-8">
               {callsToAction.map((item) => (
-                <a
+                <Link
                   key={item.name}
-                  href={item.href}
+                  to={item.href}
                   className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
                 >
                   <item.icon
@@ -249,7 +261,7 @@ export default function Navbar() {
                   <span className="ml-3 text-base font-medium text-gray-900">
                     {item.name}
                   </span>
-                </a>
+                </Link>
               ))}
             </nav>
           </div>
@@ -259,37 +271,37 @@ export default function Navbar() {
             </h2>
             <ul className="mt-2">
               <li className="flow-root">
-                <a
-                  href="/dashboard"
+                <Link
+                  to="/dashboard"
                   className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                 >
                   <span>Dashboard</span>
-                </a>
+                </Link>
               </li>
               <li className="flow-root">
-                <a
-                  href="/account"
+                <Link
+                  to="/account"
                   className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                 >
                   <span>Account</span>
-                </a>
+                </Link>
               </li>
               <li className="flow-root">
-                <a
-                  href="/cashbot"
+                <Link
+                  to="/cashbot"
                   className="-m-3 p-3 flex items-center rounded-md text-base font-medium text-gray-900 hover:bg-gray-50"
                 >
                   <span>Cashbot</span>
-                </a>
+                </Link>
               </li>
             </ul>
             <div className="py-6">
-              <a
-                href="/login"
+              <Link
+                to="/login"
                 className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
               >
                 Log in
-              </a>
+              </Link>
             </div>
           </div>
         </Dialog.Panel>
