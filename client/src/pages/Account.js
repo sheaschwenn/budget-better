@@ -321,7 +321,7 @@ const Account = () => {
   };
 
   return (
-    <div style={styles1} className=" z-50 bg-white shadow p-6 rounded-lg">
+    <div style={styles1} className= "pointer-event-none bg-white shadow p-6 rounded-lg">
       <h2 className="text-xl font-bold mb-4">Account</h2>
 
       <div className="mb-4">
