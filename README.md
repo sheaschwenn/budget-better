@@ -1,70 +1,104 @@
-# Getting Started with Create React App
+# Budget Better
+ ![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+Budget Better is a web application that helps users manage their personal finances effectively. With Budget Better, you can track your income and expenses, set budget goals, and gain insights into your spending habits. Take control of your finances and make smarter financial decisions with Budget Better.
 
-In the project directory, you can run:
+Deployed site: https://budgetbetter.herokuapp.com/
 
-### `npm start`
+## Table of Contents
+* [Features](#features)
+* [Technologies used](#technologies-used)
+* [Installation](#installation)
+* [Configuration](#configuration)
+* [Contributing](#contributing)
+* [Authors](#authors)
+* [License](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- User authentication: Create an account, log in, and log out securely.
+- Dashboard: Get an overview of your finances, including income, expenses, and budget progress.
+- Income tracking: 
+- Expense tracking: Record and categorize your expenses for better expense management.
+- Goals: Set savings goals with deadlines to hold yourself accountable.
+- Financial insights: Gain valuable insights into your spending habits through visual charts and reports.
+- AI powered Ca$hBot: Ask AI any finance related questions to help guide you to your financial goals.
 
-### `npm test`
+![Gif of application](./assets/images/Animation.gif)
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Technologies Used
 
-### `npm run build`
+- React.js: JavaScript library for building user interfaces.
+- React Router: Library for handling navigation and routing in React applications.
+- Tailwind CSS: Utility-first CSS framework for quickly styling the application.
+- JWT (JSON Web Tokens): Token-based authentication mechanism for securing user sessions.
+- Node.js: JavaScript runtime environment for server-side logic.
+- Express.js: Web application framework for building APIs with Node.js.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+| Technology Used         | Resource URL           |
+| ------------- |:-------------:|
+| HTML    | [https://developer.mozilla.org/en-US/docs/Web/HTML](https://developer.mozilla.org/en-US/docs/Web/HTML) |
+| CSS     | [https://developer.mozilla.org/en-US/docs/Web/CSS](https://developer.mozilla.org/en-US/docs/Web/CSS)      |  
+| Git | [https://git-scm.com/](https://git-scm.com/)     |  
+| JavaScript | [https://developer.mozilla.org/en-US/docs/Web/JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript)     |    
+| React.js | [https://react.dev/](https://react.dev/)     |
+| Chart.js | [https://www.chartjs.org/](https://www.chartjs.org/)     |
+| OpenAI | [https://platform.openai.com/docs/introduction/](https://platform.openai.com/docs/introduction)     |
+| Tailwind | [https://tailwindcss.com/](https://tailwindcss.com/)     |
+| Node.js | [https://nodejs.org/en](https://nodejs.org/en)     |
+| Express.js | [https://expressjs.com/](https://expressjs.com/)     |
+| Graphql | [https://graphql.org/](https://graphql.org/)     |
+| MongoDB | [https://www.mongodb.com/](https://www.mongodb.com/)     |
+| Mongoose | [https://mongoosejs.com/docs/](https://mongoosejs.com/docs/)     |
+| JSON Web Tokens | [https://jwt.io/](https://jwt.io/)     |
+| bcrypt | [https://www.npmjs.com/package/bcrypt](https://www.npmjs.com/package/bcrypt)  
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Installation
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+1. Clone the repository: `git clone <repository-url>`
+2. Install the dependencies: `npm install`
+3. Start the development server: `npm start`
+4. Open the application in your browser: `http://localhost:3000`
 
-### `npm run eject`
+## Configuration
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+1. Rename `.env.example` file to `.env`.
+2. Modify the environment variables in the `.env` file according to your configuration.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Contributing
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+Contributions to Budget Better are welcome! If you'd like to contribute, please follow these steps:
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix: `git checkout -b my-new-feature`
+3. Commit your changes: `git commit -am 'Add some feature'`
+4. Push the branch to your forked repository: `git push origin my-new-feature`
+5. Submit a pull request.
 
-## Learn More
+## Authors 
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### Christopher Daniels 
+* [GitHub](https://github.com/danielschris96)
+* [LinkedIn](https://www.linkedin.com/in/christopher-daniels-01317726b/)
+* [Portfolio](https://danielschris96.github.io/react-portfolio/)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Didrik Lindberg
+* [GitHub](https://github.com/DidrikLindberg)
+* [LinkedIn](https://www.linkedin.com/in/didrik-lindberg-3b2955148/)
+* [Portfolio]()
 
-### Code Splitting
+### Matthew Gibson
+* [GitHub](https://github.com/ohSweetWampum)
+* [LinkedIn](https://www.linkedin.com/in/matthew-gibson-6b9b12237/)
+* [Portfolio]()
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### Shea Schwennicke
+* [GitHub](https://github.com/sheaschwenn)
+* [LinkedIn](https://www.linkedin.com/in/shea-schwennicke/)
+* [Portfolio](https://sheaschwenn.github.io/react-portfolio/)
 
-### Analyzing the Bundle Size
+## License
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+This project is licensed under the [MIT License](LICENSE).
