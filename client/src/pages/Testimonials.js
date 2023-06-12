@@ -1,7 +1,6 @@
 import React, { useContext } from "react";
 import { ThemeContext } from "../utils/ThemeContext";
 
-
 const testimonials = [
   {
     name: "Emily Johnson",
@@ -14,7 +13,7 @@ const testimonials = [
     name: "Mike Johnson",
     role: "Freelancer",
     imageUrl:
-      "https://images.unsplash.com/photo-1504593811423-6dd6657890d5?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
+      "https://images.unsplash.com/photo-1546456073-6712f79251bb?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80",
     quote: `“Budget Better has revolutionized how I manage my finances. It's an absolute game changer!”`,
   },
   {
@@ -41,8 +40,8 @@ const testimonials = [
 ];
 
 export default function Testimonials() {
-    const { isDarkMode } = useContext(ThemeContext);
-    const styles = {
+  const { isDarkMode } = useContext(ThemeContext);
+  const styles = {
     backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#192734",
     minHeight: "100vh",
@@ -50,11 +49,20 @@ export default function Testimonials() {
     flexDirection: "column",
   };
   return (
-    <div >
-      <section style={styles}className="pointer-event-none relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8">
-        <div style={styles}className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme,white)] opacity-20" />
-        <div style={styles}className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center" />
-        <div style={styles}className="mx-auto max-w-2xl lg:max-w-4xl">
+    <div>
+      <section
+        style={styles}
+        className="pointer-event-none relative isolate overflow-hidden bg-white px-6 py-24 sm:py-32 lg:px-8"
+      >
+        <div
+          style={styles}
+          className="absolute inset-0 -z-10 bg-[radial-gradient(45rem_50rem_at_top,theme,white)] opacity-20"
+        />
+        <div
+          style={styles}
+          className="absolute inset-y-0 right-1/2 -z-10 mr-16 w-[200%] origin-bottom-left skew-x-[-30deg] bg-white shadow-xl shadow-indigo-600/10 ring-1 ring-indigo-50 sm:mr-28 lg:mr-0 xl:mr-16 xl:origin-center"
+        />
+        <div style={styles} className="mx-auto max-w-2xl lg:max-w-4xl">
           <img
             className="mx-auto h-12"
             src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg"
@@ -72,9 +80,7 @@ export default function Testimonials() {
                   alt={testimonial.name}
                 />
                 <div className="mt-4 flex items-center justify-center space-x-3 text-base">
-                  <div className="font-semibold">
-                    {testimonial.name}
-                  </div>
+                  <div className="font-semibold">{testimonial.name}</div>
                   <svg
                     viewBox="0 0 2 2"
                     width={3}
