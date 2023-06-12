@@ -64,8 +64,8 @@ export default function Testimonials() {
         />
         <div style={styles} className="mx-auto max-w-2xl lg:max-w-4xl">
           <img
-            className="mx-auto h-12"
-            src="https://tailwindui.com/img/logos/workcation-logo-indigo-600.svg"
+            className="z-50 mx-auto h-12"
+            src="https://tailwindui.com/img/logos/review-love-logo-indigo-600.svg"
             alt=""
           />
           {testimonials.map((testimonial, index) => (
