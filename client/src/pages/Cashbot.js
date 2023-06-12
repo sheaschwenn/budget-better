@@ -268,14 +268,14 @@ const Cashbot = () => {
       className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8"
     >
       <div className="min-h-screen container mx-auto mt-10 w-1/2">
-        <h1 className="text-center text-3xl mb-6">My Chatbot</h1>
+        <h1 className="text-center text-3xl mb-6">Ca$hbot</h1>
         <div className="border rounded shadow p-4">
           <div className="font-bold mb-2">Chat History</div>
           <ul id="chat-history">
             {history.map((item, index) => (
               <div key={index}>
-                <li className="p-2 border-b">Prompt: {item.prompt}</li>
-                <li className="p-2 border-b">Response: {item.response}</li>
+                <li className="p-2 border-b">You: {item.prompt}</li>
+                <li className="p-2 border-b">Ca$hbot: {item.response}</li>
               </div>
             ))}
           </ul>
@@ -311,7 +311,7 @@ const Cashbot = () => {
             className="block w-full rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
             onClick={handleSubmit}
           >
-            Submit Prompt
+            Ask Ca$hbot
           </button>
           <div
             style={styles}
