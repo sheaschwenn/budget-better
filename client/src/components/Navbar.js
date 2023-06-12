@@ -174,13 +174,16 @@ export default function Navbar() {
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
+                      className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                      onClick={() => setMobileMenuOpen(false)}
                     >
                       <item.icon
-                        className="h-5 w-5 flex-none text-gray-400"
+                        className="flex-shrink-0 h-6 w-6 text-indigo-600"
                         aria-hidden="true"
                       />
-                      {item.name}
+                      <span className="ml-3 text-base font-medium text-gray-900">
+                        {item.name}
+                      </span>
                     </Link>
                   ))}
                 </div>
