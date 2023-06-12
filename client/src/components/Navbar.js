@@ -1,5 +1,5 @@
 import React, { Fragment, useState, useContext } from "react";
-import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
+import { Dialog, Popover, Transition } from "@headlessui/react";
 import { ThemeContext } from "../utils/ThemeContext";
 import { useLocation, useNavigate } from "react-router-dom";
 import { FaSun, FaMoon } from "react-icons/fa";
@@ -12,6 +12,7 @@ import {
   MagnifyingGlassIcon,
   HandThumbUpIcon,
   ChatBubbleBottomCenterTextIcon,
+  RocketLaunchIcon,
 } from "@heroicons/react/24/outline";
 import { ChevronDownIcon, PlayCircleIcon } from "@heroicons/react/20/solid";
 import { Link } from "react-router-dom";
@@ -42,7 +43,7 @@ const products = [
     name: "Our Mission",
     href: "/ourmission",
 
-    icon: HandThumbUpIcon,
+    icon: RocketLaunchIcon,
   },
 ];
 const callsToAction = [
@@ -63,7 +64,7 @@ export default function Navbar() {
 
   const handleLogout = () => {
     AuthService.logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   const location = useLocation();
@@ -108,7 +109,7 @@ export default function Navbar() {
         <div className="flex relative  lg:hidden">
           <button
             type="button"
-            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-gray-700"
+            className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 "
             onClick={() => setMobileMenuOpen(true)}
           >
             <span className="sr-only">Open main menu</span>
@@ -119,7 +120,7 @@ export default function Navbar() {
           <Popover className="relative">
             <Popover.Button
               style={exploreDropdownStyles}
-              className="flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900"
+              className="flex items-center gap-x-1 text-sm font-semibold leading-6 "
             >
               Explore
               <ChevronDownIcon
@@ -138,19 +139,27 @@ export default function Navbar() {
               leaveTo="opacity-0 translate-y-1"
             >
               <Popover.Panel className="absolute -left-8 top-full z-50 mt-3 w-screen max-w-md overflow-hidden rounded-3xl bg-white shadow-lg ring-1 ring-gray-900/5">
-                <div className="p-4">
+                <div style={styles} className="p-4">
                   {products.map((item) => (
                     <div
                       key={item.name}
+                      style={styles}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                     >
-                      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
+                      <div
+                        style={styles}
+                        className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white"
+                      >
                         <item.icon
-                          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600"
+                          className="h-6 w-6 text-gray-600 group-hover:text-indigo-600:"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke-width="1.5"
+                          stroke="currentColor"
                           aria-hidden="true"
                         />
                       </div>
-                      <div className="flex-auto">
+                      <div style={styles} className="flex-auto">
                         <Link to={item.href} className="block font-semibold">
                           {item.name}
                           <span className="absolute inset-0" />
@@ -165,13 +174,16 @@ export default function Navbar() {
                     <Link
                       key={item.name}
                       to={item.href}
-                      className="flex items-center justify-center gap-x-2.5 p-3 text-sm font-semibold leading-6 text-gray-900 hover:bg-gray-100"
+                      className="-m-3 p-3 flex items-center rounded-md hover:bg-gray-50"
+                      onClick={() => setMobileMenuOpen(false)}
                     >
                       <item.icon
-                        className="h-5 w-5 flex-none text-gray-400"
+                        className="flex-shrink-0 h-6 w-6 text-indigo-600"
                         aria-hidden="true"
                       />
-                      {item.name}
+                      <span className="ml-3 text-base font-medium text-gray-900">
+                        {item.name}
+                      </span>
                     </Link>
                   ))}
                 </div>
@@ -212,7 +224,7 @@ export default function Navbar() {
           )}
           {isLoggedIn && (
             <button
-              className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+              className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 "
               onClick={handleLogout}
             >
               Log out

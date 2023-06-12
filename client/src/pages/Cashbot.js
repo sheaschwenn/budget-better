@@ -38,7 +38,7 @@ const Cashbot = () => {
     setMessage("");
   };
   return (
-    <div className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+    <div style={styles} className="pointer-event-none isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div className="min-h-screen container mx-auto mt-10 w-1/2">
         <h1 className="text-center text-3xl mb-6">My Chatbot</h1>
         <div className="border rounded shadow p-4">
@@ -55,6 +55,7 @@ const Cashbot = () => {
         <div className="mt-4">
           <div className="font-bold mb-2 flex items-center">
             <svg
+            
               xmlns="http://www.w3.org/2000/svg"
               width="16"
               height="16"
@@ -71,6 +72,7 @@ const Cashbot = () => {
             You
           </div>
           <textarea
+          style={styles}
             id="user-input"
             className="w-full p-2 border rounded"
             onChange={handleUserInput}
@@ -85,6 +87,7 @@ const Cashbot = () => {
             Submit Prompt
           </button>
           <div
+          style={styles}
             id="spinner"
             className="spinner-grow text-primary visually-hidden mt-2"
             role="status"
