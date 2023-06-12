@@ -35,7 +35,7 @@ const Login = (props) => {
       });
 
       Auth.login(data.login.token);
-      navigate('/dashboard');
+      navigate("/dashboard");
     } catch (e) {
       console.error(e);
     }
@@ -57,7 +57,10 @@ const Login = (props) => {
   };
 
   return (
-    <main style={styles} className="flex items-center justify-center h-screen">
+    <main
+      style={styles}
+      className="pointer-event-none flex items-center justify-center h-screen"
+    >
       <div
         style={styles}
         className="bg-white shadow-lg rounded-lg p-8 max-w-sm"

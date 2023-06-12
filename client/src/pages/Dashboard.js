@@ -252,7 +252,10 @@ const Dashboard = () => {
   const monthsToReachGoal = Math.ceil(totalGoals / totalSavings);
 
   return (
-    <div style={styles} className=" z-50 min-h-screen bg-gray-100">
+    <div
+      style={styles}
+      className=" pointer-event-none min-h-screen bg-gray-100"
+    >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="py-12">
           <div className="grid grid-cols-2 gap-8">
