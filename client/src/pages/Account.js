@@ -321,7 +321,7 @@ const Account = () => {
   };
 
   return (
-    <div style={styles1} className="bg-white shadow p-6 rounded-lg">
+    <div style={styles1} className=" z-50 bg-white shadow p-6 rounded-lg">
       <h2 className="text-xl font-bold mb-4">Account</h2>
 
       <div className="mb-4">
@@ -334,15 +334,14 @@ const Account = () => {
         {selectedTab === "income" && (
           <div>
             <button
-              className="bg-blue-500 text-white py-0.5 px-3 rounded mt-2"
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-red-500 shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
               onClick={() => handleTabClose("income")}
             >
               Close
             </button>
             <form className="mt-4" onSubmit={handleIncomeSubmit}>
               <input
-                style={styles}
-                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
                 type="text"
                 placeholder="Name"
                 name="name"
@@ -352,8 +351,7 @@ const Account = () => {
               <label className="flex items-center mt-2">
                 Passive:
                 <input
-                  style={styles}
-                  className="ml-2"
+                  className="ml-2 form-checkbox text-indigo-600"
                   type="checkbox"
                   name="passive"
                   checked={income.passive}
@@ -361,8 +359,7 @@ const Account = () => {
                 />
               </label>
               <input
-                style={styles}
-                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
                 type="number"
                 placeholder="Amount"
                 name="amount"
@@ -372,8 +369,7 @@ const Account = () => {
               <label className="flex items-center mt-2">
                 Recurring:
                 <input
-                  style={styles}
-                  className="ml-2"
+                  className="ml-2 form-checkbox text-indigo-600"
                   type="checkbox"
                   name="recurring"
                   checked={income.recurring}
@@ -381,12 +377,13 @@ const Account = () => {
                 />
               </label>
               <button
-                className="bg-blue-500 text-white py-2 px-4 rounded mt-2"
+                className="bg-indigo-600 text-lime-500 py-3 px-4 rounded-md mt-2 text-lg focus:outline-none hover:bg-indigo-500"
                 type="submit"
               >
                 Submit
               </button>
             </form>
+
             <IncomeList
               getIncome={getIncome}
               handleDelete={handleDelete}
@@ -400,6 +397,7 @@ const Account = () => {
         )}
       </div>
 
+      {/* --- Expenses section --- */}
       <div className="mb-4">
         <button
           className="border border-gray-300 py-2 px-4 rounded w-full"
@@ -410,43 +408,40 @@ const Account = () => {
         {selectedTab === "expenses" && (
           <div>
             <button
-              className="bg-blue-500 text-white py-0.5 px-3 rounded mt-2"
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-red-500 shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
               onClick={() => handleTabClose("expenses")}
             >
               Close
             </button>
             <form className="mt-4" onSubmit={handleExpenseSubmit}>
               <input
-                style={styles}
-                className="border border-gray-300 p-2 w-full mb-2 rounded"
-                name="category"
+                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
                 type="text"
                 placeholder="Category"
+                name="category"
                 value={expenses.category}
                 onChange={handleExpensesChange}
               />
               <input
-                style={styles}
-                className="border border-gray-300 p-2 w-full mb-2 rounded"
-                name="amount"
+                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
                 type="number"
                 placeholder="Amount"
+                name="amount"
                 value={expenses.amount}
                 onChange={handleExpensesChange}
               />
               <label className="flex items-center mt-2">
                 Recurring:
                 <input
-                  style={styles}
-                  className="ml-2"
-                  name="recurring"
+                  className="ml-2 form-checkbox text-indigo-600"
                   type="checkbox"
+                  name="recurring"
                   checked={expenses.recurring}
                   onChange={handleExpenseCheckboxChange}
                 />
               </label>
               <button
-                className="bg-blue-500 text-white py-2 px-4 rounded mt-2"
+                className="bg-indigo-600 text-lime-500 py-3 px-4 rounded-md mt-2 text-lg focus:outline-none hover:bg-indigo-500"
                 type="submit"
               >
                 Submit
@@ -465,6 +460,7 @@ const Account = () => {
         )}
       </div>
 
+      {/* --- Goals section --- */}
       <div className="mb-4">
         <button
           className="border border-gray-300 py-2 px-4 rounded w-full"
@@ -475,15 +471,14 @@ const Account = () => {
         {selectedTab === "goals" && (
           <div>
             <button
-              className="bg-blue-500 text-white py-0.5 px-3 rounded mt-2"
+              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-red-500 shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
               onClick={() => handleTabClose("goals")}
             >
               Close
             </button>
             <form className="mt-4" onSubmit={handleGoalSubmit}>
               <input
-                style={styles}
-                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
                 type="text"
                 placeholder="Name"
                 name="name"
@@ -491,8 +486,7 @@ const Account = () => {
                 onChange={handleGoalChange}
               />
               <input
-                style={styles}
-                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
                 type="number"
                 placeholder="Amount to Save"
                 name="amountToSave"
@@ -500,35 +494,31 @@ const Account = () => {
                 onChange={handleGoalChange}
               />
               <input
-                style={styles}
-                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
                 type="date"
                 placeholder="Deadline"
                 name="byDate"
                 value={goal.byDate}
                 onChange={handleGoalChange}
               />
-
               <label className="flex items-center mt-2">
                 Short Term:
                 <input
-                  style={styles}
-                  className="ml-2"
-                  name="shortTerm"
+                  className="ml-2 form-checkbox text-indigo-600"
                   type="checkbox"
+                  name="shortTerm"
                   checked={goal.shortTerm}
                   onChange={handleGoalCheckboxChange}
                 />
               </label>
               <button
-                className="bg-blue-500 text-white py-2 px-4 rounded mt-2"
+                className="bg-indigo-600 text-lime-500 py-3 px-4 rounded-md mt-2 text-lg focus:outline-none hover:bg-indigo-500"
                 type="submit"
               >
                 Submit
               </button>
             </form>
             <GoalList
-              style={styles}
               goalList={getGoals}
               handleGoalDelete={handleGoalDelete}
               handleGoalEdit={handleGoalEdit}

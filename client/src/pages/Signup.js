@@ -48,7 +48,10 @@ const Signup = () => {
   };
 
   return (
-    <main style={styles} className="flex items-center justify-center h-screen">
+    <main
+      style={styles}
+      className="pointer-event-none flex items-center justify-center h-screen"
+    >
       <div
         style={styles}
         className="bg-white shadow-lg rounded-lg p-8 max-w-sm"
@@ -63,7 +66,7 @@ const Signup = () => {
                 <FontAwesomeIcon icon={faUser} className="h-5 w-5" />
               </span>
               <input
-              style={styles}
+                style={styles}
                 type="text"
                 className="ml-2.5 border-b-2 border-gray-400 focus:border-indigo-600 outline-none"
                 id="name"
@@ -80,7 +83,7 @@ const Signup = () => {
                 <FontAwesomeIcon icon={faUser} className="h-5 w-5" />
               </span>
               <input
-              style={styles}
+                style={styles}
                 type="email"
                 className="ml-2.5 border-b-2 border-gray-400 focus:border-indigo-600 outline-none"
                 id="email"
@@ -97,7 +100,7 @@ const Signup = () => {
                 <FontAwesomeIcon icon={faLock} className="h-5 w-5" />
               </span>
               <input
-              style={styles}
+                style={styles}
                 type="password"
                 className="ml-2.5 border-b-2 border-gray-400 focus:border-indigo-600 outline-none"
                 id="password"
