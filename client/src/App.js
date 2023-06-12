@@ -1,5 +1,6 @@
 import React, { useContext } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import FAQ from "./pages/FAQs";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import Login from "./pages/Login";
@@ -16,6 +17,7 @@ import Features from "./pages/Features";
 import HeroPage from "./pages/HeroPage";
 import OurMission from "./pages/OurMission";
 import PageNotFound from "./pages/PageNotFound";
+import Investments from "./pages/Investments";
 import {
   ApolloProvider,
   InMemoryCache,
@@ -57,7 +59,7 @@ function App() {
   const styles = {
     backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#121212",
-        minHeight: "100vh",
+    minHeight: "100vh",
     display: "flex",
     flexDirection: "column",
   };
@@ -65,40 +67,63 @@ function App() {
   return (
     <ApolloProvider client={client}>
       <ThemeProvider>
-      <Router>
-        <div style={styles}>
-          <Navbar />
-          <div
-            className=" pointer-events-none absolute inset-x-0   transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
-            aria-hidden="true"
-          >
+        <Router>
+          <div style={styles}>
+            <Navbar />
             <div
-              className="relative left-1/2  pointer-events-none aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
-              style={{
-                clipPath:
-                  "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
-              }}
-            />
+              className=" pointer-events-none absolute inset-x-0   transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+              aria-hidden="true"
+            >
+              <div
+                className="relative left-1/2  pointer-events-none aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr from-[#ff80b5] to-[#9089fc] opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+                style={{
+                  clipPath:
+                    "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+                }}
+              />
+            </div>
+            <Routes>
+              <Route
+                path="/dashboard"
+                element={
+                  <ProtectedRoute>
+                    <Dashboard />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/account"
+                element={
+                  <ProtectedRoute>
+                    <Account />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/cashbot"
+                element={
+                  <ProtectedRoute>
+                    <Cashbot />
+                  </ProtectedRoute>
+                }
+              />
+              <Route path="/investments" element={<Investments />} />
+              <Route path="/faq" element={<FAQ />} />
+              <Route path="/login" element={<Login />} />
+              <Route path="/signup" element={<Signup />} />
+              <Route path="/settings" element={<Settings />} />
+              <Route path="/about" element={<About />} />
+              <Route path="/contact" element={<Contact />} />
+              <Route path="/demo" element={<Demo />} />
+              <Route path="/testimonials" element={<Testimonials />} />
+              <Route path="/features" element={<Features />} />
+              <Route path="/" element={<HeroPage />} />
+              <Route path="/ourmission" element={<OurMission />} />
+              <Route path="*" element={<PageNotFound />} />
+            </Routes>
+            <Footer />
           </div>
-          <Routes>
-            <Route path="/dashboard" element={<ProtectedRoute><Dashboard /></ProtectedRoute>} />
-            <Route path="/account" element={<ProtectedRoute><Account /></ProtectedRoute>} />
-            <Route path="/cashbot" element={<ProtectedRoute><Cashbot /></ProtectedRoute>} />
-            <Route path="/login" element={<Login />} />
-            <Route path="/signup" element={<Signup />} />
-            <Route path="/settings" element={<Settings />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/contact" element={<Contact />} />
-            <Route path="/demo" element={<Demo />} />
-            <Route path="/testimonials" element={<Testimonials />} />
-            <Route path="/features" element={<Features />} />
-            <Route path="/" element={<HeroPage />} />
-            <Route path="/ourmission" element={<OurMission />} />
-            <Route path="*" element={<PageNotFound />} />
-          </Routes>
-          <Footer />
-        </div>
-      </Router>
+        </Router>
       </ThemeProvider>
     </ApolloProvider>
   );
