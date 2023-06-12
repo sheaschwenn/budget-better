@@ -1,4 +1,6 @@
 import React, { useState } from "react";
+import { useContext } from 'react'
+import { ThemeContext } from '../utils/ThemeContext'
 
 const IncomeList = ({
   getIncome,
@@ -9,6 +11,11 @@ const IncomeList = ({
   edit,
   setEdit,
 }) => {
+  const { isDarkMode } = useContext(ThemeContext);
+    const styles = {
+      backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+      color: isDarkMode ? "#ffffff" : "#121212",
+    };
   // const [edit, setEdit] = useState({})
 
   const handleIncomeEditChange = (event) => {
@@ -59,14 +66,14 @@ const IncomeList = ({
                      <li className="flex justify-between gap-x-6 py-5">
                     <div className="flex gap-x-4">
                     <div className="min-w-0 flex-auto">
-        <p className="text-sm font-semibold leading-6 text-gray-900">{single.name}</p>
-        <p className="mt-1 truncate text-xs leading-5 text-gray-500"> ${single.amount}</p>
+        <p style={styles}className="text-sm font-semibold leading-6 text-gray-900">{single.name}</p>
+        <p style={styles}className="mt-1 truncate text-xs leading-5 text-gray-500"> ${single.amount}</p>
       </div>
       </div>
       <div className=" sm:flex sm:flex-col sm:items-end xs:flex xs:flex-col xs:items-end"> 
       <div className="flex gap-x-4">
                 <div className="min-w-0 flex-auto">
-                  <p className="mt-1 text-xs leading-5 text-gray-500 text-right">
+                  <p style={styles}className="mt-1 text-xs leading-5 text-gray-500 text-right">
                                     <time dateTime={single.createdOn}>
                                        {new Date(single.createdOn).toISOString().split("T")[0]}
                                        </time>
@@ -94,6 +101,7 @@ const IncomeList = ({
             {edit[single._id] && (
               <form   onSubmit={(event) => handleIncomeEdit(event, single._id)}>
                 <input
+                style={styles}
                   type="text"
                   placeholder="Name"
                   name="name"
@@ -103,6 +111,7 @@ const IncomeList = ({
                 <label  className="ml-2">
                   Passive:
                   <input
+                  
                   className="ml-2"
                     type="checkbox"
                     name="passive"
@@ -111,6 +120,7 @@ const IncomeList = ({
                   />
                 </label>
                 <input
+                style={styles}
                  className="ml-2"
                   type="number"
                   placeholder="Amount"

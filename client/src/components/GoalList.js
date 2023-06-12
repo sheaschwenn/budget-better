@@ -1,4 +1,6 @@
 import React from "react";
+import { useContext } from 'react'
+import { ThemeContext } from '../utils/ThemeContext'
 
 const GoalList = ({
   goalList,
@@ -9,6 +11,12 @@ const GoalList = ({
   edit,
   setEdit,
 }) => {
+  const { isDarkMode } = useContext(ThemeContext);
+    const styles = {
+      backgroundColor: isDarkMode ? "#192734" : "#ffffff",
+      color: isDarkMode ? "#ffffff" : "#121212",
+    };
+
   const handleGoalEditChange = (event) => {
     const { name, value } = event.target;
     setEditGoal((prevEditGoal) => ({
@@ -47,10 +55,10 @@ const GoalList = ({
               <li className="flex justify-between gap-x-6 py-5">
                 <div className="flex gap-x-4">
                   <div className="min-w-0 flex-auto">
-                    <p className="text-sm font-semibold leading-6 text-gray-900">
+                    <p style={styles}className="text-sm font-semibold leading-6 text-gray-900">
                       {single.name}
                     </p>
-                    <p className="mt-1 truncate text-xs leading-5 text-gray-500">
+                    <p style={styles}className="mt-1 truncate text-xs leading-5 text-gray-500">
                       ${single.amountToSave}
                     </p>
                   </div>
@@ -58,7 +66,7 @@ const GoalList = ({
                 <div className=" sm:flex sm:flex-col sm:items-end xs:flex xs:flex-col xs:items-end"> 
                 <div className="flex gap-x-4">
                 <div className="min-w-0 flex-auto">
-                  <p className="mt-1 text-xs leading-5 text-gray-500 text-right">
+                  <p style={styles}className="mt-1 text-xs leading-5 text-gray-500 text-right">
                     <time dateTime={single.byDate}>
                       By: {new Date(single.byDate).toISOString().split("T")[0]}
                     </time>
@@ -90,6 +98,7 @@ const GoalList = ({
               {edit[single._id] && (
                 <form  onSubmit={(event) => handleGoalEdit(event, single._id)}>
                   <input
+                  style={styles}
                     type="text"
                     placeholder="Name"
                     name="name"
@@ -97,6 +106,7 @@ const GoalList = ({
                     onChange={handleGoalEditChange}
                   />
                   <input
+                  style={styles}
                    className="ml-2"
                     type="number"
                     placeholder="Amount to Save"
@@ -105,6 +115,7 @@ const GoalList = ({
                     onChange={handleGoalEditChange}
                   />
                   <input
+                  style={styles}
                    className="ml-2"
                     type="date"
                     placeholder="Deadline"

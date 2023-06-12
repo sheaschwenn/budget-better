@@ -62,12 +62,13 @@ const Account = () => {
 
   const handleTabChange = (tab) => {
     setSelectedTab(tab);
+ 
   };
 
   const handleTabClose = (tab) => {
-    setSelectedTab("");
-    console.log("this happeened");
-  };
+    setSelectedTab("")
+    console.log("this happeened")
+  }
 
   const handleIncomeSubmit = async (event) => {
     event.preventDefault();
@@ -313,15 +314,17 @@ const Account = () => {
   const styles = {
     backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#192734",
+
   };
   const styles1 = {
     backgroundColor: isDarkMode ? "#192734" : "#ffffff",
     color: isDarkMode ? "#ffffff" : "#192734",
     minHeight: "100vh",
+
   };
 
   return (
-    <div style={styles1} className= "pointer-event-none bg-white shadow p-6 rounded-lg">
+    <div style={styles1} className="bg-white shadow p-6">
       <h2 className="text-xl font-bold mb-4">Account</h2>
 
       <div className="mb-4">
@@ -333,15 +336,11 @@ const Account = () => {
         </button>
         {selectedTab === "income" && (
           <div>
-            <button
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-red-500 shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-              onClick={() => handleTabClose("income")}
-            >
-              Close
-            </button>
+            <button className= "bg-blue-500 text-white py-0.5 px-3 rounded mt-2" onClick = {() => handleTabClose("income")}>Close</button>
             <form className="mt-4" onSubmit={handleIncomeSubmit}>
               <input
-                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
+              style={styles}
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
                 type="text"
                 placeholder="Name"
                 name="name"
@@ -351,7 +350,8 @@ const Account = () => {
               <label className="flex items-center mt-2">
                 Passive:
                 <input
-                  className="ml-2 form-checkbox text-indigo-600"
+                
+                  className="ml-2"
                   type="checkbox"
                   name="passive"
                   checked={income.passive}
@@ -359,7 +359,8 @@ const Account = () => {
                 />
               </label>
               <input
-                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
+              style={styles}
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
                 type="number"
                 placeholder="Amount"
                 name="amount"
@@ -369,7 +370,8 @@ const Account = () => {
               <label className="flex items-center mt-2">
                 Recurring:
                 <input
-                  className="ml-2 form-checkbox text-indigo-600"
+                
+                  className="ml-2"
                   type="checkbox"
                   name="recurring"
                   checked={income.recurring}
@@ -377,13 +379,13 @@ const Account = () => {
                 />
               </label>
               <button
-                className="bg-indigo-600 text-lime-500 py-3 px-4 rounded-md mt-2 text-lg focus:outline-none hover:bg-indigo-500"
+              
+                className="bg-blue-500 text-white py-2 px-4 rounded mt-2"
                 type="submit"
               >
                 Submit
               </button>
             </form>
-
             <IncomeList
               getIncome={getIncome}
               handleDelete={handleDelete}
@@ -397,7 +399,6 @@ const Account = () => {
         )}
       </div>
 
-      {/* --- Expenses section --- */}
       <div className="mb-4">
         <button
           className="border border-gray-300 py-2 px-4 rounded w-full"
@@ -406,46 +407,45 @@ const Account = () => {
           Expenses
         </button>
         {selectedTab === "expenses" && (
-          <div>
-            <button
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-red-500 shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-              onClick={() => handleTabClose("expenses")}
-            >
-              Close
-            </button>
+          <div style={styles}>
+            <button className= "bg-blue-500 text-white py-0.5 px-3 rounded mt-2" onClick = {() => handleTabClose("expenses")}>Close</button>
             <form className="mt-4" onSubmit={handleExpenseSubmit}>
               <input
-                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
+              style={styles}
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                name="category"
                 type="text"
                 placeholder="Category"
-                name="category"
                 value={expenses.category}
                 onChange={handleExpensesChange}
               />
               <input
-                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
+              style={styles}
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
+                name="amount"
                 type="number"
                 placeholder="Amount"
-                name="amount"
                 value={expenses.amount}
                 onChange={handleExpensesChange}
               />
               <label className="flex items-center mt-2">
                 Recurring:
                 <input
+                
                   className="ml-2 form-checkbox text-indigo-600"
-                  type="checkbox"
                   name="recurring"
+                  type="checkbox"
                   checked={expenses.recurring}
                   onChange={handleExpenseCheckboxChange}
                 />
               </label>
               <button
-                className="bg-indigo-600 text-lime-500 py-3 px-4 rounded-md mt-2 text-lg focus:outline-none hover:bg-indigo-500"
+                className="bg-blue-500 text-white py-2 px-4 rounded mt-2"
                 type="submit"
               >
                 Submit
               </button>
+          
             </form>
             <ExpensesList
               expensesList={getExpenses}
@@ -456,11 +456,11 @@ const Account = () => {
               edit={edit}
               setEdit={setEdit}
             />
+          
           </div>
         )}
       </div>
 
-      {/* --- Goals section --- */}
       <div className="mb-4">
         <button
           className="border border-gray-300 py-2 px-4 rounded w-full"
@@ -470,15 +470,11 @@ const Account = () => {
         </button>
         {selectedTab === "goals" && (
           <div>
-            <button
-              className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-center text-sm font-semibold text-red-500 shadow-sm hover:bg-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-600"
-              onClick={() => handleTabClose("goals")}
-            >
-              Close
-            </button>
+            <button className="bg-blue-500 text-white py-0.5 px-3 rounded mt-2" onClick = {() => handleTabClose("goals")}>Close</button>
             <form className="mt-4" onSubmit={handleGoalSubmit}>
               <input
-                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
+              style={styles}
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
                 type="text"
                 placeholder="Name"
                 name="name"
@@ -486,7 +482,8 @@ const Account = () => {
                 onChange={handleGoalChange}
               />
               <input
-                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
+              style={styles}
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
                 type="number"
                 placeholder="Amount to Save"
                 name="amountToSave"
@@ -494,31 +491,37 @@ const Account = () => {
                 onChange={handleGoalChange}
               />
               <input
-                className="border border-gray-300 p-2 w-full mb-2 rounded focus:outline-none"
+              style={styles}
+                className="border border-gray-300 p-2 w-full mb-2 rounded"
                 type="date"
                 placeholder="Deadline"
                 name="byDate"
                 value={goal.byDate}
                 onChange={handleGoalChange}
               />
+
               <label className="flex items-center mt-2">
                 Short Term:
                 <input
-                  className="ml-2 form-checkbox text-indigo-600"
-                  type="checkbox"
+                
+                  className="ml-2"
                   name="shortTerm"
+                  type="checkbox"
                   checked={goal.shortTerm}
                   onChange={handleGoalCheckboxChange}
                 />
               </label>
               <button
-                className="bg-indigo-600 text-lime-500 py-3 px-4 rounded-md mt-2 text-lg focus:outline-none hover:bg-indigo-500"
+              
+                className="bg-blue-500 text-white py-2 px-4 rounded mt-2"
                 type="submit"
               >
                 Submit
               </button>
-            </form>
+            </form >
             <GoalList
+          
+          style={styles}
               goalList={getGoals}
               handleGoalDelete={handleGoalDelete}
               handleGoalEdit={handleGoalEdit}
